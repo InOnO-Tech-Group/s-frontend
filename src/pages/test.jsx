@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../utils/axios/axiosInstance';
+import { Link } from 'react-router-dom';
 
 const TestPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,8 +26,12 @@ const TestPage = () => {
       {isLoading ? (
         'Loading'
       ) : (
-        <div>
+        <div className='text-4xl font-bold"'>
           These are backend datas: <b>{data}</b>
+          <br />
+          <Link to="/" className="underline">
+            Homepage
+          </Link>
         </div>
       )}
     </div>
