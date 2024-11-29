@@ -40,11 +40,14 @@ const ForgotPasswordForm = () => {
                 localStorage.setItem('userId', response.session.userId)
                 navigate("/reset-password");
             }
+            else {
+                addToast('error', response.message || "Unknown error occured");
+            }
         } catch (error) {
             addToast('error', error.message || 'An unexpected error occurred.', 3000);
             console.error(error);
         } finally {
-            setIsSubmitting(false); // Stop spinner
+            setIsSubmitting(false);
         }
     };
 

@@ -4,10 +4,9 @@ import Button from '../re-usable/Button';
 import InputText from '../re-usable/InputText';
 
 import leftImage from '/forgot-password-bg.png';
-import { checkOTPPassword, forgotPassword, resetPassword } from '../../redux/slices/authSlice';
+import { checkOTPPassword, resetPassword } from '../../redux/slices/authSlice';
 import { useToast } from '../toasts/ToastManager';
 import { useNavigate } from 'react-router-dom';
-
 
 const ResetPasswordForm = () => {
     const [otp, setotp] = useState('');
@@ -18,21 +17,21 @@ const ResetPasswordForm = () => {
     const [isChecking, setIsChecking] = useState(false);
     const [isOTPValid, setIsOTPValid] = useState(false);
     const { addToast } = useToast();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleCheckClick = async () => {
         setIsChecking(true);
-        setError("")
+        setError("");
         try {
             if (!otp) {
                 setError("OTP is required");
                 setIsChecking(false);
-                return
+                return;
             }
             if (otp.length < 6) {
                 setError("OTP must be at least 6 characters");
                 setIsChecking(false);
-                return
+                return;
             }
 
             const response = await checkOTPPassword(otp);
@@ -44,9 +43,8 @@ const ResetPasswordForm = () => {
             if (response.status === 400) {
                 addToast("error", "Invalid OTP, try again latter!", 4000);
                 return;
-            }
-            else {
-                addToast("error", "Unkonwn error occured, try again later.", 4000)
+            } else {
+                addToast("error", "Unknown error occurred, try again later.", 4000);
             }
         } catch (error) {
             addToast('error', error.message || 'An unexpected error occurred.', 3000);
@@ -54,7 +52,8 @@ const ResetPasswordForm = () => {
         } finally {
             setIsChecking(false);
         }
-    }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
@@ -91,9 +90,8 @@ const ResetPasswordForm = () => {
         }
     };
 
-
     return (
-        <div className="flex bg-white p-8 rounded-xl shadow-lg w-full mx-auto mt-10 max-w-4xl h-[500px]">
+        <div className="flex flex-col md:flex-row bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-7xl mx-auto mt-6">
             <div className="flex-1 hidden md:block">
                 <img
                     src={leftImage}
@@ -102,162 +100,118 @@ const ResetPasswordForm = () => {
                 />
             </div>
 
-            <div className="flex-1 flex flex-col justify-center w-full px-6 md:px-10">
-                <h1 className="text-3xl font-extrabold text-[#00B5E2] mb-6">
+            <div className="flex-1 flex flex-col justify-center w-full px-4 sm:px-6 md:px-10">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#00B5E2] mb-4 md:mb-6">
                     Reset Password
                 </h1>
+
                 {isOTPValid ? (
-                    <div>
-                        <p className="text-gray-600 mb-8 text-sm">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
+                        <p className="text-gray-600 mb-4 text-sm md:text-base">
                             Enter the new password and then click on reset password button.
                         </p>
-                        <form className="space-y-6" onSubmit={handleSubmit}>
-                            <div>
-                                <label
-                                    htmlFor="Password"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
-                                >
-                                    New password
-                                </label>
-                                <InputText
-                                    type="password"
-                                    id="newpassword"
-                                    value={np}
-                                    onChange={setNp}
-                                    placeholder="type..."
-                                    className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-                                    aria-label="Enter OTP"
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="email"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
-                                >
-                                    Retype password
-                                </label>
-                                <InputText
-                                    type="password"
-                                    id="retypePassword"
-                                    value={rtp}
-                                    onChange={setRtp}
-                                    placeholder="type..."
-                                    className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-                                    aria-label="Enter OTP"
-                                />
-                            </div>
-                            {error && (
-                                <p className="text-red-500 text-sm mt-2">{error}</p>
-                            )}
+                        <div>
+                            <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 mb-1">
+                                New Password
+                            </label>
+                            <InputText
+                                type="password"
+                                id="newpassword"
+                                value={np}
+                                onChange={setNp}
+                                placeholder="Type..."
+                                className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="retypePassword" className="block text-sm font-medium text-gray-700 mb-1">
+                                Retype Password
+                            </label>
+                            <InputText
+                                type="password"
+                                id="retypePassword"
+                                value={rtp}
+                                onChange={setRtp}
+                                placeholder="Type..."
+                                className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+                            />
+                        </div>
+                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
-                            <div>
-                                <Button
-                                    title={
-                                        submitting ? (
-                                            <span className="flex items-center justify-center">
-                                                <svg
-                                                    className="animate-spin h-5 w-5 mr-2 text-white"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <circle
-                                                        className="opacity-25"
-                                                        cx="12"
-                                                        cy="12"
-                                                        r="10"
-                                                        stroke="currentColor"
-                                                        strokeWidth="4"
-                                                    ></circle>
-                                                    <path
-                                                        className="opacity-75"
-                                                        fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                                                    ></path>
-                                                </svg>
-                                                Submitting...
-                                            </span>
-                                        ) : (
-                                            'Reset password'
-                                        )
-                                    }
-                                    disabled={submitting}
-                                    className={`w-full py-2 ${submitting ? 'opacity-70 cursor-not-allowed' : ''}`}
-                                />
-                            </div>
-                        </form>
-                    </div>
+                        <div>
+                            <Button
+                                title={submitting ? 'Submitting...' : 'Reset Password'}
+                                disabled={submitting}
+                                className={`w-full py-2 ${submitting ? 'opacity-70 cursor-not-allowed' : ''
+                                    }`}
+                            />
+                        </div>
+                    </form>
                 ) : (
-                    <div>
-                        <p className="text-gray-600 mb-8 text-sm">
-                            Enter the 6-characters password sent to your email
+                    <form className="space-y-6">
+                        {/* Instruction Text */}
+                        <p className="text-gray-600 mb-4 text-sm md:text-base">
+                            Enter the 6-character OTP sent to your email.
                         </p>
-                        <form className="space-y-6">
-                            <div>
-                                <label
-                                    htmlFor="email"
-                                    className="block text-sm font-medium text-gray-700 mb-1"
+
+                        {/* OTP Input and Button */}
+                        <div>
+                            <label
+                                htmlFor="otp"
+                                className="block text-sm font-medium text-gray-700 mb-1"
+                            >
+                                OTP
+                            </label>
+                            <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0">
+                                {/* Input Field */}
+                                <input
+                                    type="text"
+                                    id="otp"
+                                    value={otp}
+                                    onChange={(e) => setotp(e.target.value)}
+                                    placeholder="******"
+                                    className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
+                                />
+
+                                {/* Submit Button */}
+                                <button
+                                    type="button"
+                                    className="flex items-center justify-center bg-green-500 text-white rounded px-4 py-2 font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 w-full sm:w-auto"
+                                    onClick={handleCheckClick}
                                 >
-                                    OTP
-                                </label>
-                                <div className="flex items-center space-x-3">
-                                    <InputText
-                                        type="text"
-                                        id="otp"
-                                        value={otp}
-                                        onChange={setotp}
-                                        placeholder="******"
-                                        className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
-                                        aria-label="Enter OTP"
-                                    />
-
-                                    <button
-                                        type="button"
-                                        className="flex items-center bg-green-500 text-white rounded px-4 py-2 font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-                                        onClick={handleCheckClick}
-                                    >
-                                        {isChecking ? (
-                                            <span className="flex items-center justify-center">
-                                                <svg
-                                                    className="animate-spin h-5 w-5 mr-2 text-white"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                >
-                                                    <circle
-                                                        className="opacity-25"
-                                                        cx="12"
-                                                        cy="12"
-                                                        r="10"
-                                                        stroke="currentColor"
-                                                        strokeWidth="4"
-                                                    ></circle>
-                                                    <path
-                                                        className="opacity-75"
-                                                        fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                                                    ></path>
-                                                </svg>
-                                                Checking...
-                                            </span>
-                                        ) : (
-                                            <>
-                                                <FaCheckCircle className="mr-2" />
-                                                <span className="mr-2">Check</span>
-                                            </>
-                                        )}
-
-                                    </button>
-                                </div>
-
-                                {error && (
-                                    <p className="text-red-500 text-sm mt-2">{error}</p>
-                                )}
+                                    {isChecking ? (
+                                        <svg
+                                            className="animate-spin h-5 w-5 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                className="opacity-25"
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                                stroke="currentColor"
+                                                strokeWidth="4"
+                                            />
+                                            <path
+                                                className="opacity-75"
+                                                fill="currentColor"
+                                                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                            />
+                                        </svg>
+                                    ) : (
+                                        <FaCheckCircle className="mr-2" />
+                                    )}
+                                    Check
+                                </button>
                             </div>
-                        </form>
-                    </div>
-                )}
 
+                            {/* Error Message */}
+                            {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                        </div>
+                    </form>
+                )}
             </div>
         </div>
     );
