@@ -1,17 +1,17 @@
 import React from 'react'
+import SEO from '../../components/re-usable/SEO'
 import AuthHeader from '../../components/auth/AuthHeader'
 import AuthFooter from '../../components/auth/AuthFooter'
-import ForgotPasswordForm from '../../components/auth/ForgotPasswordForm'
-import SEO from '../../components/re-usable/SEO'
+import ResetPasswordForm from '../../components/auth/ResetPasswordForm'
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
     return (
         <>
-            <SEO title="Forgot your password - ES Gishoma" />
+            <SEO title="Reset your password - ES Gishoma" />
             <div className="bg-[#00B5E2] h-screen">
                 <div className="w-4/5 mx-auto">
                     <AuthHeader />
-                    <ForgotPasswordForm />
+                    <ResetPasswordForm />
                     <AuthFooter />
                 </div>
             </div>
@@ -19,4 +19,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default ResetPassword
