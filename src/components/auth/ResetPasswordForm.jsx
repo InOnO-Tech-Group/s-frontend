@@ -78,8 +78,8 @@ const ResetPasswordForm = () => {
 
             const response = await resetPassword(np);
             if (response.status === 200) {
-                addToast('success', 'Password has been reset successfully.', 3000);
-                navigate('/login');
+                addToast('success', 'Password has been reseted successfully.', 3000);
+                navigate('/reset-password-sucess');
             } else {
                 setError('Failed to reset password. Please try again.');
             }
