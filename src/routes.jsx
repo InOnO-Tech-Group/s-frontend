@@ -2,8 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import TestPage from './pages/test';
 import Homepage from './pages/Homepage';
-import ForgotPassword from './pages/auth/forgotPassword';
 import ResetPassword from './pages/auth/ResetPassword';
+import ForgotPassword from './pages/auth/ForgotPassword';
 
 const AppRouter = () => {
   return (
