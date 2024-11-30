@@ -1,6 +1,15 @@
-import React from "react";
-
+import axios from "axios";
+import React, { useState } from "react";
 const Login = () => {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault;
+    
+  };
   return (
     <div className="flex flex-col min-h-screen">
       <header className="bg-whight text-primary py-4 text-center">
@@ -24,7 +33,7 @@ const Login = () => {
                 <div className="text-primary text-5xl mb-4">🔒</div>
                 <h2 className="text-2xl font-semibold">Welcome Back!</h2>
               </div>
-              <form className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="email" className="sr-only">
                     Email
@@ -32,7 +41,9 @@ const Login = () => {
                   <input
                     id="email"
                     type="email"
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter E-mail"
+                    value={email}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
                   />
                 </div>
@@ -44,13 +55,13 @@ const Login = () => {
                     id="password"
                     type="password"
                     placeholder="Enter Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
                     className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
                   />
                 </div>
 
-                <button
-                  className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary"
-                >
+                <button className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary">
                   Login
                 </button>
               </form>
