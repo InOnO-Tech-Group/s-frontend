@@ -88,7 +88,7 @@ export const resetPassword = async (password) => {
 };
 
 export const verifyOTP = async (otp) => {
-  const response = await axiosInstance.put("/api/v1/auth/verify-otp", {
+  const response = await axiosInstance.post("/api/v1/auth/verify-otp", {
     otp,
   });
   return response.data;

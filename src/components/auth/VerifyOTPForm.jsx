@@ -33,10 +33,8 @@ const VerifyOTPForm = () => {
       }
 
       const response = await verifyOTP(otp);
-      console.log("Test response", response);
       if (response.status === 200) {
-        addToast("success", "Check your email inbox for OTP password", 3000);
-        localStorage.setItem("token", response.session.content);
+        localStorage.setItem("token", response.data.session.content);
         navigate("/dashboard");
       } else {
         addToast("error", response.message || "Unknown error occured");

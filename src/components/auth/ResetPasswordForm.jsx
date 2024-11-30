@@ -91,7 +91,7 @@ const ResetPasswordForm = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-7xl mx-auto mt-6">
+        <div className="flex flex-col md:flex-row bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-6xl mx-auto mt-6">
             <div className="flex-1 hidden md:block">
                 <img
                     src={leftImage}
@@ -101,7 +101,7 @@ const ResetPasswordForm = () => {
             </div>
 
             <div className="flex-1 flex flex-col justify-center w-full px-4 sm:px-6 md:px-10">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-[#00B5E2] mb-4 md:mb-6">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-primary mb-4 md:mb-6">
                     Reset Password
                 </h1>
 

@@ -46,7 +46,7 @@ const LoginForm = () => {
     
   return (
       <main className="flex flex-1 bg-primary items-center justify-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl bg-white rounded-lg shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl bg-white rounded-lg shadow-lg">
           <div className="hidden md:flex flex-col justify-center items-start bg-primary text-white p-8">
             <h1 className="text-4xl font-bold mb-4">Explore More</h1>
             <p className="text-lg">
