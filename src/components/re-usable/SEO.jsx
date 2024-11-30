@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet-async';
 const SEO = ({ 
     title = "ES Gishoma the Hub of Science", 
     description = "Default Description", 
-    keywords = "default, keywords", 
-    author = "Default Author",
+    keywords = "ES Gishoma,Ecole Secondaire Gishoma, High School, Rwanda, Rusizi Schools", 
+    author = "Inono Tech Group",
     ogTitle,
     ogDescription,
     ogImage,
