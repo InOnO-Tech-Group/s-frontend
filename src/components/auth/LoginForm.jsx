@@ -1,18 +1,22 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { Lia500Px } from "react-icons/lia";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "../../components/toasts/ToastManager";
 
-
-const Login = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const LoginForm = () => {
+    const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { addToast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     axios({
       method: "post",
-      url: `http://localhost:7070/api/v1/auth/login`,
+      url: `${import.meta.env.VITE_BACKEND_URL}/api/v1/auth/login`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -20,31 +24,27 @@ const Login = () => {
     })
       .then(function (response) {
         const res = response.data;
-        if (res.success) {
-          // localStorage.setItem("token", res.token);
-          // localStorage.setItem("id", res.user.id);
-          // localStorage.setItem("user", JSON.stringify(res.user));
+        if (res.status === 200) {
           setIsLoading(false);
-          setTimeout(() => {
-            navigate("/dashboard");
-          }, 2000);
+          addToast("success", res.message, 5000);
+          navigate("/verify-otp");
+          return;
         } else {
           setIsLoading(false);
-          alert(res.message);
+          addToast("error", "Try again later.");
+          return;
         }
       })
       .catch(function (error) {
         setIsLoading(false);
-
-        console.log(error.response);
+        addToast("error", error.response.data.message, 5000);
+      })
+      .finally(function () {
+        setIsLoading(false);
       });
   };
+    
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="bg-whight text-primary py-4 text-center">
-        Header Content Here
-      </header>
-
       <main className="flex flex-1 bg-primary items-center justify-center">
         <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl bg-white rounded-lg shadow-lg">
           <div className="hidden md:flex flex-col justify-center items-start bg-primary text-white p-8">
@@ -91,7 +91,33 @@ const Login = () => {
                 </div>
 
                 <button className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary">
-                  Login
+                  {isLoading ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin h-5 w-5 mr-2 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        ></path>
+                      </svg>
+                      Submitting...
+                    </span>
+                  ) : (
+                    "Login"
+                  )}
                 </button>
               </form>
 
@@ -119,24 +145,13 @@ const Login = () => {
 
               {/* Forgot Password */}
               <div className="text-center mt-4">
-                <a
-                  href="#"
-                  className="text-primary hover:underline text-sm font-medium"
-                >
-                  Forgot Password
-                </a>
+                <Link to="/forgot-password">Forgot Password</Link>
               </div>
             </div>
           </div>
         </div>
       </main>
+  )
+}
 
-      {/* Footer Placeholder */}
-      <footer className="bg-white text-primary py-4 text-center">
-        Footer Content Here
-      </footer>
-    </div>
-  );
-};
-
-export default Login;
+export default LoginForm

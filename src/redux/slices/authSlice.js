@@ -6,16 +6,18 @@ import axiosInstance from "../../utils/axios/axiosInstance";
  * @returns {Object} - An object containing the status code and error message.
  */
 const handleError = (error) => {
-    if (error.response) {
-        return {
-            status: error.response.status,
-            message: error.response.data.message || 'Something went wrong. Please try again.',
-        };
-    }
+  if (error.response) {
     return {
-        status: 500,
-        message: error.message || 'Unexpected error occurred. Please try again.',
+      status: error.response.status,
+      message:
+        error.response.data.message ||
+        "Something went wrong. Please try again.",
     };
+  }
+  return {
+    status: 500,
+    message: error.message || "Unexpected error occurred. Please try again.",
+  };
 };
 
 /**
@@ -24,24 +26,34 @@ const handleError = (error) => {
  * @returns {Object} - The API response data or an error object.
  */
 export const forgotPassword = async (email) => {
-    try {
-        const response = await axiosInstance.post('/api/v1/auth/forgot-password', { email });
+  try {
+    const response = await axiosInstance.post("/api/v1/auth/forgot-password", {
+      email,
+    });
 
-        if (response.status === 200) {
-            return response.data;
-        }
-
-        if (response.status === 404) {
-            addToast('error', 'User not found. Please check the email address.', 3000);
-            return null;
-        }
-
-        addToast('error', response.data.message || 'Something went wrong. Please try again.', 3000);
-        return null;
-    } catch (error) {
-        const handledError = handleError(error);
-        return handledError;
+    if (response.status === 200) {
+      return response.data;
     }
+
+    if (response.status === 404) {
+      addToast(
+        "error",
+        "User not found. Please check the email address.",
+        3000
+      );
+      return null;
+    }
+
+    addToast(
+      "error",
+      response.data.message || "Something went wrong. Please try again.",
+      3000
+    );
+    return null;
+  } catch (error) {
+    const handledError = handleError(error);
+    return handledError;
+  }
 };
 
 /**
@@ -50,22 +62,34 @@ export const forgotPassword = async (email) => {
  * @returns {Object} - The API response data or an error object.
  */
 export const checkOTPPassword = async (otp) => {
-    try {
-        localStorage.setItem('otp', otp);
-        const userId = localStorage.getItem('userId');
-        const response = await axiosInstance.post('/api/v1/auth/check-otp-validity', { userId, OTP: otp })
-        return response.data
-    } catch (error) {
-        const handledError = handleError(error);
-        return handledError;
-    }
-}
+  try {
+    localStorage.setItem("otp", otp);
+    const userId = localStorage.getItem("userId");
+    const response = await axiosInstance.post(
+      "/api/v1/auth/check-otp-validity",
+      { userId, OTP: otp }
+    );
+    return response.data;
+  } catch (error) {
+    const handledError = handleError(error);
+    return handledError;
+  }
+};
 
 export const resetPassword = async (password) => {
-    const userId = localStorage.getItem('userId');
-    const OTP = localStorage.getItem('otp');
-    const response = await axiosInstance.put("/api/v1/auth/reset-password", {
-        OTP, userId, password
-    })
-    return response.data
-}
+  const userId = localStorage.getItem("userId");
+  const OTP = localStorage.getItem("otp");
+  const response = await axiosInstance.put("/api/v1/auth/reset-password", {
+    OTP,
+    userId,
+    password,
+  });
+  return response.data;
+};
+
+export const verifyOTP = async (otp) => {
+  const response = await axiosInstance.put("/api/v1/auth/verify-otp", {
+    otp,
+  });
+  return response.data;
+};
