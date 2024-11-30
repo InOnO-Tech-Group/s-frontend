@@ -1,14 +1,43 @@
 import axios from "axios";
 import React, { useState } from "react";
-const Login = () => {
+import { ToastContainer, toast } from 'react-toastify';
 
+
+const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault;
-    
+    e.preventDefault();
+    axios({
+      method: "post",
+      url: `http://localhost:7070/api/v1/auth/login`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: { email, password },
+    })
+      .then(function (response) {
+        const res = response.data;
+        if (res.success) {
+          // localStorage.setItem("token", res.token);
+          // localStorage.setItem("id", res.user.id);
+          // localStorage.setItem("user", JSON.stringify(res.user));
+          setIsLoading(false);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 2000);
+        } else {
+          setIsLoading(false);
+          alert(res.message);
+        }
+      })
+      .catch(function (error) {
+        setIsLoading(false);
+
+        console.log(error.response);
+      });
   };
   return (
     <div className="flex flex-col min-h-screen">
