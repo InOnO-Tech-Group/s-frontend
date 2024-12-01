@@ -20,6 +20,35 @@ const handleError = (error) => {
   };
 };
 
+
+
+export const login = async (email, password) => {
+  try {
+    const response = await axiosInstance.post("/api/v1/auth/login", {
+      email,
+      password
+    })
+    console.log("Ress", response)
+    return response.data
+  } catch (error) {
+    const handledError = handleError(error);
+    return handledError;
+  }
+}
+
+export const verifyOTP = async (OTP) => {
+  try {
+    const userId = localStorage.getItem("userIdToLogin");
+    const response = await axiosInstance.post("/api/v1/auth/verify-otp", {
+      userId, OTP
+    });
+    return response.data;
+  } catch (error) {
+    const handledError = handleError(error);
+    return handledError;
+  }
+};
+
 /**
  * Sends a forgot password request to the server.
  * @param {string} email - The email address of the user requesting a password reset.
@@ -83,13 +112,6 @@ export const resetPassword = async (password) => {
     OTP,
     userId,
     password,
-  });
-  return response.data;
-};
-
-export const verifyOTP = async (otp) => {
-  const response = await axiosInstance.post("/api/v1/auth/verify-otp", {
-    otp,
   });
   return response.data;
 };

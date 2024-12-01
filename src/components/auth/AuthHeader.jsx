@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 const AuthHeader = () => {
     return (
         <header className="flex items-center justify-between bg-[#00B5E2] p-4 md:p-6 lg:p-8">
-            {/* Logo Section */}
             <div className="flex items-center text-white font-bold text-lg sm:text-xl lg:text-2xl">
-                <Link to="/" className="flex items-center space-x-2">
+                <Link to="/login" className="flex items-center space-x-2">
                     <img
                         src={logo}
                         alt="ES Gishoma Logo"
@@ -17,7 +16,6 @@ const AuthHeader = () => {
                 </Link>
             </div>
 
-            {/* Navigation Section */}
             <nav className="text-sm sm:text-base lg:text-lg">
                 <Link
                     to="/"

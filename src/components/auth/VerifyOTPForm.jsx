@@ -34,10 +34,14 @@ const VerifyOTPForm = () => {
 
       const response = await verifyOTP(otp);
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.session.content);
+        localStorage.removeItem("userIdToLogin");
+        localStorage.setItem("token", response.session.content);
         navigate("/dashboard");
-      } else {
-        addToast("error", response.message || "Unknown error occured");
+      } else if (response.status === 400) {
+        addToast("error", "Invalid OTP", 5000);
+      }
+      else {
+        addToast("error", response.message || "Unknown error occured", 5000);
       }
     } catch (error) {
       addToast("error", error.message || "An unexpected error occurred.", 3000);
@@ -114,9 +118,8 @@ const VerifyOTPForm = () => {
                 )
               }
               disabled={submitting}
-              className={`w-full py-2 ${
-                submitting ? "opacity-70 cursor-not-allowed" : ""
-              }`}
+              className={`w-full py-2 ${submitting ? "opacity-70 cursor-not-allowed" : ""
+                }`}
             />
           </div>
         </form>

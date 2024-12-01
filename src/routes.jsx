@@ -5,7 +5,6 @@ import Homepage from "./pages/Homepage";
 import Login from "./pages/auth/Login";
 import ResetPassword from "./pages/auth/ResetPassword";
 import ForgotPassword from "./pages/auth/ForgotPassword";
-import ResetPasswordSuccess from "./components/auth/ResetPasswordSuccess";
 import VerifyOTP from "./pages/auth/VerifyOTP";
 
 const AppRouter = () => {
@@ -17,7 +16,6 @@ const AppRouter = () => {
       <Route path="/verify-otp" element={<VerifyOTP />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/reset-password-sucess" element={<ResetPasswordSuccess />} />
     </Routes>
   );
 };

@@ -78,8 +78,8 @@ const ResetPasswordForm = () => {
 
             const response = await resetPassword(np);
             if (response.status === 200) {
-                addToast('success', 'Password has been reseted successfully.', 3000);
-                navigate('/reset-password-sucess');
+                addToast('success', 'Password has been reseted successfully, Login to continue.', 3000);
+                navigate('/login');
             } else {
                 setError('Failed to reset password. Please try again.');
             }
@@ -91,7 +91,7 @@ const ResetPasswordForm = () => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row bg-white p-6 md:p-8 rounded-xl shadow-lg w-full max-w-6xl mx-auto mt-6">
+        <div className="flex flex-1 bg-white items-center justify-center rounded-3xl shadow-lg w-full mx-auto mt-10 max-w-4xl h-[500px]">
             <div className="flex-1 hidden md:block">
                 <img
                     src={leftImage}
@@ -100,7 +100,7 @@ const ResetPasswordForm = () => {
                 />
             </div>
 
-            <div className="flex-1 flex flex-col justify-center w-full px-4 sm:px-6 md:px-10">
+            <div className="flex-1 flex flex-col justify-center w-full px-4 sm:px-6 md:px-10 p-10">
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-primary mb-4 md:mb-6">
                     Reset Password
                 </h1>

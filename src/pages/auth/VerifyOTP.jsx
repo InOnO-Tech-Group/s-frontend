@@ -8,8 +8,8 @@ const VerifyOTP = () => {
   return (
     <>
       <SEO title="Verify OTP - ES Gishoma" />
-      <div className="bg-primary h-screen">
-        <div className="w-4/5 mx-auto">
+      <div className=" min-h-screen bg-primary">
+      <div className="flex flex-col p-5">
           <AuthHeader />
           <VerifyOTPForm />
           <AuthFooter />
