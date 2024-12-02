@@ -4,7 +4,7 @@ import { FiSettings } from 'react-icons/fi';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
 
-const Sidebar = ({ isCollapsed }) => {
+const Sidebar = ({ isCollapsed, onLogout }) => {
   return (
     <nav
       className={`bg-dashboard-sidebar p-6 rounded-lg w-72 flex flex-col justify-between min-h-[500px] max-h-screen overflow-y-auto transition-all ${
@@ -43,7 +43,6 @@ const Sidebar = ({ isCollapsed }) => {
           >
             <TbDashboard className="text-xl" />
             {!isCollapsed && <span className="text-base">Dashboard</span>}{' '}
-            {/* Conditionally render text */}
           </NavLink>
         </li>
         <li>
@@ -105,17 +104,19 @@ const Sidebar = ({ isCollapsed }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/logout"
-              className={({ isActive }) =>
-                isActive
-                  ? 'flex items-center gap-3 bg-black text-white border-l-4 border-primary transition-colors p-3 rounded'
-                  : 'flex items-center gap-3 text-red hover:text-red-600 transition-colors'
-              }
+            <button
+              onClick={onLogout}
+              className={`flex w-full gap-3 px-4 pt-2 p-2  rounded-lg shadow-sm 
+      text-red-600 hover:text-white hover:bg-red-600 transition-all 
+      duration-300 focus:ring-2 focus:ring-red-400 focus:outline-none pl-1`}
             >
               <FaSignOutAlt className="text-xl" />
-              {!isCollapsed && <span className="text-base">Log Out</span>}
-            </NavLink>
+              {!isCollapsed && (
+                <span className="text-base font-medium tracking-wide">
+                  Log Out
+                </span>
+              )}
+            </button>
           </li>
         </ul>
       </div>

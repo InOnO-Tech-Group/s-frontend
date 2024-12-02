@@ -172,7 +172,7 @@ const ResetPasswordForm = () => {
 
                                 <button
                                     type="button"
-                                    className="flex items-center justify-center bg-green-500 text-white rounded px-4 py-2 font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 w-full sm:w-auto"
+                                    className="flex items-center justify-center bg-primary text-white rounded px-4 py-2 font-semibold focus:outline-none focus:ring-2 w-full sm:w-auto"
                                     onClick={handleCheckClick}
                                 >
                                     {isChecking ? (

@@ -1,41 +1,37 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/dashboard/Sidebar';
 import { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
+import { useToast } from '../../components/toasts/ToastManager';
 
 const DashboardLayout = () => {
   const location = useLocation();
-  const [title, setTitle] = useState('Dashboard');
+  const navigate = useNavigate();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  
+  const { addToast } = useToast();
+
   useEffect(() => {
-    let newTitle = 'Dashboard';
-
-    if (location.pathname === '/dashboard') {
-      newTitle = 'Dashboard';
-    } else if (location.pathname === '/dashboard/news') {
-      newTitle = 'News & Updates';
-    } else if (location.pathname === '/dashboard/announcements') {
-      newTitle = 'Announcements';
-    } else if (location.pathname === '/dashboard/messages') {
-      newTitle = 'Messages';
-    } else if (location.pathname === '/dashboard/profile') {
-      newTitle = 'Profile Page';
-    } else {
-      newTitle = 'Page Not Found';
+    const token = localStorage.getItem('token');
+    if (!token) {
+      addToast('error', 'Please login first!', 5000);
+      navigate('/login');
+      return;
     }
-
-    setTitle(newTitle);
-    document.title = newTitle;
   }, [location]);
 
+  const onLogout = () => {
+    localStorage.removeItem('token');
+    addToast('success', 'Logged out successfully', 5000);
+    navigate('/login');
+  };
+
   const toggleSidebar = () => {
-    setIsSidebarCollapsed(!isSidebarCollapsed); 
+    setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
   return (
     <div className="p-4 flex bg-gray-100">
-      <Sidebar isCollapsed={isSidebarCollapsed} />
+      <Sidebar onLogout={onLogout} isCollapsed={isSidebarCollapsed} />
       <div className="flex-1 min-h-screen overflow-y-auto rounded-lg pl-3">
         <div className="flex justify-between items-center mb-4 pt-2">
           <button onClick={toggleSidebar} className="text-xl text-gray-600">
