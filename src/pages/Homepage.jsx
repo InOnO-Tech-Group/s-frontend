@@ -9,7 +9,7 @@ const Homepage = () => {
         <h1 className="text-3xl font-bold">Homepage</h1>
         <br />
         <p>Welcome to our homepage</p>
-        <Link to="/test" className='underline'>Test backend connection</Link>
+        <Link to="/login" className='underline'>Login</Link>
       </div>
     </>
   );
