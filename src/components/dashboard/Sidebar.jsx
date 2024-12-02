@@ -7,7 +7,7 @@ import { RxAvatar } from 'react-icons/rx';
 const Sidebar = ({ isCollapsed, onLogout }) => {
   return (
     <nav
-      className={`bg-dashboard-sidebar p-6 rounded-lg w-72 flex flex-col justify-between min-h-[500px] max-h-screen overflow-y-auto transition-all ${
+      className={`bg-dashboard-sidebar p-6 rounded-lg flex flex-col justify-between min-h-[500px] max-h-screen overflow-y-auto transition-all ${
         isCollapsed ? 'w-20' : 'w-72'
       }`}
       aria-label="Sidebar Navigation"
