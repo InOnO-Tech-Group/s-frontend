@@ -20,6 +20,13 @@ export default {
           300: "#D9D9D9",
           600: "#575757",
         },
+        "dashboard-sidebar": "#03404F",
+        "grey": "#7F7F7F",
+        "red": {
+          500: "#D01619",
+          "500-dark": "#A40D0D",
+          "500-light": "#F24C4C",
+        }
       },
     },
   },

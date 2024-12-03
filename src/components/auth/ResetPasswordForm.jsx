@@ -149,12 +149,10 @@ const ResetPasswordForm = () => {
                     </form>
                 ) : (
                     <form className="space-y-6">
-                        {/* Instruction Text */}
                         <p className="text-gray-600 mb-4 text-sm md:text-base">
                             Enter the 6-character OTP sent to your email.
                         </p>
 
-                        {/* OTP Input and Button */}
                         <div>
                             <label
                                 htmlFor="otp"
@@ -163,7 +161,6 @@ const ResetPasswordForm = () => {
                                 OTP
                             </label>
                             <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0">
-                                {/* Input Field */}
                                 <input
                                     type="text"
                                     id="otp"
@@ -173,10 +170,9 @@ const ResetPasswordForm = () => {
                                     className="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 w-full"
                                 />
 
-                                {/* Submit Button */}
                                 <button
                                     type="button"
-                                    className="flex items-center justify-center bg-green-500 text-white rounded px-4 py-2 font-semibold hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 w-full sm:w-auto"
+                                    className="flex items-center justify-center bg-primary text-white rounded px-4 py-2 font-semibold focus:outline-none focus:ring-2 w-full sm:w-auto"
                                     onClick={handleCheckClick}
                                 >
                                     {isChecking ? (
