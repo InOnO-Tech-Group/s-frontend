@@ -28,6 +28,9 @@ export default {
           "500-light": "#F24C4C",
         }
       },
+      fontSize: {
+        base: '16px',
+      },
     },
   },
   plugins: [],

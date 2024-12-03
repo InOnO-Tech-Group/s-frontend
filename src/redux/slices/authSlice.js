@@ -5,7 +5,7 @@ import axiosInstance from "../../utils/axios/axiosInstance";
  * @param {Object} error - The error object from the API call.
  * @returns {Object} - An object containing the status code and error message.
  */
-const handleError = (error) => {
+export const handleError = (error) => {
   if (error.response) {
     return {
       status: error.response.status,
@@ -28,7 +28,6 @@ export const login = async (email, password) => {
       email,
       password
     })
-    console.log("Ress", response)
     return response.data
   } catch (error) {
     const handledError = handleError(error);
