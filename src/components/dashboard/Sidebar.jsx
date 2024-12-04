@@ -1,8 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { TbDashboard } from 'react-icons/tb';
-import { FiSettings } from 'react-icons/fi';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FiSettings, FiMessageSquare, FiHome } from 'react-icons/fi';
+import { FaSignOutAlt, FaBullhorn } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
+import { IoNewspaperOutline } from 'react-icons/io5';
 
 const Sidebar = ({ isCollapsed, onLogout }) => {
   return (
@@ -42,7 +43,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
             }
           >
             <TbDashboard className="text-xl" />
-            {!isCollapsed && <span className="text-base">Dashboard</span>}{' '}
+            {!isCollapsed && <span className="text-base">Dashboard</span>}
           </NavLink>
         </li>
         <li>
@@ -54,7 +55,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
                 : 'flex items-center gap-3 text-grey hover:text-blue-500 transition-colors'
             }
           >
-            <TbDashboard className="text-xl" />
+            <IoNewspaperOutline className="text-xl" />
             {!isCollapsed && <span className="text-base">News & Updates</span>}
           </NavLink>
         </li>
@@ -67,7 +68,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
                 : 'flex items-center gap-3 text-grey hover:text-blue-500 transition-colors'
             }
           >
-            <TbDashboard className="text-xl" />
+            <FaBullhorn className="text-xl" />
             {!isCollapsed && <span className="text-base">Announcements</span>}
           </NavLink>
         </li>
@@ -80,7 +81,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
                 : 'flex items-center gap-3 text-grey hover:text-blue-500 transition-colors'
             }
           >
-            <TbDashboard className="text-xl" />
+            <FiMessageSquare className="text-xl" />
             {!isCollapsed && <span className="text-base">Messages</span>}
           </NavLink>
         </li>
