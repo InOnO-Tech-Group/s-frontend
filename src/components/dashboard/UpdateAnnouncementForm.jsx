@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { BiCalendar } from 'react-icons/bi';
@@ -6,22 +6,32 @@ import { CgClose } from 'react-icons/cg';
 import SEO from '../re-usable/SEO';
 import RichTextEditor from './RichTextEditor';
 
-import { adminCreateAnnouncement } from '../../redux/slices/announcementsSlice.js';
+import {
+  adminCreateAnnouncement,
+  adminUpdateAnnouncement,
+} from '../../redux/slices/announcementsSlice.js';
 import { useToast } from '../../components/toasts/ToastManager';
 
-const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
-  const [content, setcontent] = useState('');
-  const [dueDate, setDueDate] = useState('');
+const UpdateAnnouncementForm = ({ isModalOpen, onClose, data }) => {
+  const [content, setContent] = useState(data?.content || '');
+  const [dueDate, setDueDate] = useState(data?.dueDate || '');
   const [errors, setErrors] = useState({ content: '', dueDate: '' });
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
+  useEffect(() => {
+    if (data) {
+      setContent(data.content);
+      setDueDate(data.dueDate);
+    }
+  }, [data]);
+
   const validateForm = () => {
     let isValid = true;
     const newErrors = { content: '', dueDate: '' };
-    const sanitizedcontent = content.replace(/<[^>]*>/g, '').trim();
+    const sanitizedContent = content.replace(/<[^>]*>/g, '').trim();
 
-    if (!sanitizedcontent) {
+    if (!sanitizedContent) {
       newErrors.content = 'Contents are required';
       isValid = false;
     }
@@ -50,12 +60,15 @@ const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
     setLoading(true);
 
     try {
-      const response = await adminCreateAnnouncement({ content, dueDate });
+      const response = await adminUpdateAnnouncement(data._id, {
+        content,
+        dueDate,
+      });
       setLoading(false);
 
-      if (response.status === 201) {
-        addToast('success', 'Announcement created successfully', 3000);
-        setcontent('');
+      if (response.status === 200) {
+        addToast('success', 'Announcement updated successfully', 3000);
+        setContent('');
         setDueDate('');
         setErrors({ content: '', dueDate: '' });
         onClose();
@@ -66,15 +79,16 @@ const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
       setLoading(false);
       addToast(
         'error',
-        'An error occurred while creating the announcement. Please try again later.',
+        error.message ||
+          'An error occurred while updating the announcement. Please try again later.',
         3000
       );
-      console.error('Error creating announcement:', error);
+      console.error('Error updating announcement:', error);
     }
   };
 
   const handleClose = () => {
-    setcontent('');
+    setContent('');
     setDueDate('');
     setErrors({ content: '', dueDate: '' });
     onClose();
@@ -84,12 +98,12 @@ const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
 
   return (
     <>
-      <SEO title="New announcements - ES Gishoma" />
+      <SEO title="Update announcement - ES Gishoma" />
       <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
         <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold flex-1">
-              Create New Announcement
+              Update announcement
             </h2>
             <button
               onClick={handleClose}
@@ -105,7 +119,7 @@ const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
               </label>
               <RichTextEditor
                 value={content}
-                onChange={setcontent}
+                onChange={setContent}
                 placeholder="Enter announcement contents"
               />
               {errors.content && (
@@ -168,4 +182,4 @@ const NewAnnouncementForm = ({ isModalOpen, onClose }) => {
   );
 };
 
-export default NewAnnouncementForm;
+export default UpdateAnnouncementForm;
