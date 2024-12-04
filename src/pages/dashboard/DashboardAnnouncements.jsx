@@ -1,4 +1,10 @@
-import { BiPlus, BiTrashAlt } from 'react-icons/bi';
+import {
+  BiCheckCircle,
+  BiEdit,
+  BiPlus,
+  BiTrashAlt,
+  BiXCircle,
+} from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { BsArrowRightSquare, BsArrowLeftSquare } from 'react-icons/bs';
 import TableSpinner from '../../components/dashboard/TableSpinner';
@@ -8,8 +14,11 @@ import Titles from '../../components/dashboard/Titles';
 import {
   adminViewAnnouncements,
   adminDeleteAnnouncement,
+  adminToggleUpdateAnnouncement,
 } from '../../redux/slices/announcementsSlice';
 import { useToast } from '../../components/toasts/ToastManager';
+import UpdateAnnouncementForm from '../../components/dashboard/UpdateAnnouncementForm';
+import PublishToggle from '../../components/dashboard/PublishToggle';
 
 const DashboardAnnouncements = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,12 +32,18 @@ const DashboardAnnouncements = () => {
   const [pageSize, setPageSize] = useState(10);
   const { addToast } = useToast();
 
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [dataToUpdate, setDataToUpdate] = useState({});
+
   const getAnnouncements = async () => {
     setIsLoading(true);
     try {
       const response = await adminViewAnnouncements();
       if (response.status === 200) {
         setData(response.data);
+      } else if (response.status === 401) {
+        addToast('error', 'You are not authorized to view announcements', 3000);
+        setData([]);
       } else {
         addToast('error', 'Failed to fetch announcements', 3000);
         setData([]);
@@ -81,6 +96,34 @@ const DashboardAnnouncements = () => {
   );
 
   const columns = ['#', 'Contents', 'Due date', 'Status', 'Actions'];
+  const isAnnouncementPublished = (status) => {
+    if (status === 'published') {
+      return true;
+    }
+    return false;
+  };
+
+  const handleToggleClick = async (id, status) => {
+    try {
+      const response = await adminToggleUpdateAnnouncement(id, status);
+      if (response.status === 200) {
+        addToast('success', 'Announcement status updated successfully', 3000);
+        getAnnouncements();
+      } else {
+        addToast(
+          'error',
+          response.message || 'Failed to update announcement status',
+          3000
+        );
+      }
+    } catch (error) {
+      addToast(
+        'error',
+        error.message || 'Error occured while trying to toggle the status',
+        3000
+      );
+    }
+  };
 
   return (
     <div className="p-4 md:p-6 lg:p-8">
@@ -155,13 +198,35 @@ const DashboardAnnouncements = () => {
                   />
                   <td className="px-4 py-2 border-b">{row.dueDate}</td>
                   <td className="px-4 py-2 border-b">{row.status}</td>
-                  <td className="px-4 py-2 border-b">
+                  <td className="px-4 py-2 border-b flex">
+                    <button
+                      onClick={() => {
+                        setIsUpdateModalOpen(true);
+                        setDataToUpdate({
+                          _id: row._id,
+                          content: row.content,
+                          dueDate: row.dueDate,
+                        });
+                      }}
+                      className="px-3 py-1.5 text-blue-500 rounded-md hover:bg-blue-100 flex items-center gap-2"
+                    >
+                      <BiEdit />
+                    </button>
                     <button
                       onClick={() => handleDeleteClick(row._id)}
-                      className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600"
+                      className="px-3 py-1.5 text-white bg-red-500 rounded-md hover:bg-red-600 flex items-center gap-2 ml-2"
                     >
                       <BiTrashAlt />
                     </button>
+                    <PublishToggle
+                      isToggled={isAnnouncementPublished(row.status)}
+                      onClick={() => handleToggleClick(row._id, row.status)}
+                      icons={{
+                        off: <BiCheckCircle />,
+                        on: <BiXCircle />,
+                      }}
+                      className="ml-2"
+                    />
                   </td>
                 </tr>
               ))
@@ -205,6 +270,14 @@ const DashboardAnnouncements = () => {
           setIsModalOpen(false);
           getAnnouncements();
         }}
+      />
+      <UpdateAnnouncementForm
+        isModalOpen={isUpdateModalOpen}
+        onClose={() => {
+          setIsUpdateModalOpen(false);
+          getAnnouncements();
+        }}
+        data={dataToUpdate}
       />
 
       {confirmationModal.isOpen && (

@@ -36,6 +36,7 @@ const VerifyOTPForm = () => {
       if (response.status === 200) {
         localStorage.removeItem("userIdToLogin");
         localStorage.setItem("token", response.session.content);
+        localStorage.setItem("tokenTimestamp", new Date().getTime().toString());
         navigate("/dashboard");
       } else if (response.status === 400) {
         addToast("error", "Invalid OTP", 5000);
