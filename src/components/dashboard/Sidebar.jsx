@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { TbDashboard } from 'react-icons/tb';
-import { FiSettings, FiMessageSquare, FiHome } from 'react-icons/fi';
-import { FaSignOutAlt, FaBullhorn } from 'react-icons/fa';
+import { FiSettings, FiMessageSquare, FiHome, FiFolder } from 'react-icons/fi';
+import { FaSignOutAlt, FaBullhorn, FaHandHolding } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
-import { IoNewspaperOutline } from 'react-icons/io5';
+import { IoNewspaperOutline, IoSettingsOutline } from 'react-icons/io5';
 
 const Sidebar = ({ isCollapsed, onLogout }) => {
   return (
@@ -57,6 +57,19 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
           >
             <IoNewspaperOutline className="text-xl" />
             {!isCollapsed && <span className="text-base">News & Updates</span>}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="services"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex items-center gap-3 bg-black text-white border-l-4 border-primary transition-colors p-3 rounded'
+                : 'flex items-center gap-3 text-grey hover:text-blue-500 transition-colors'
+            }
+          >
+            <FiFolder className="text-xl" />
+            {!isCollapsed && <span className="text-base">Services</span>}
           </NavLink>
         </li>
         <li>
