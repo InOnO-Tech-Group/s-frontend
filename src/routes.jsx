@@ -11,6 +11,8 @@ import DashboardLayout from './pages/dashboard/DashboardLayout';
 import DashboardNotFound from './pages/dashboard/DashboardNotFound';
 import DashboardAnnouncements from './pages/dashboard/DashboardAnnouncements';
 import { useToast } from './components/toasts/ToastManager';
+import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
+import Services from './pages/dashboard/Services';
 
 const ProtectedRoute = ({ children }) => {
   const { addToast } = useToast();
@@ -81,7 +83,8 @@ const AppRouter = () => {
         }
       >
         <Route index element={<Dashboard />} />
-        <Route path="news" element={<div>News & Updates</div>} />
+        <Route path="news" element={<NewsAndUpdates />} />
+        <Route path="services" element={<Services />} />
         <Route path="announcements" element={<DashboardAnnouncements />} />
         <Route path="messages" element={<div>Messages</div>} />
         <Route path="profile" element={<div>Profile Page</div>} />

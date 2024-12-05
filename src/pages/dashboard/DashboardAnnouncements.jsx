@@ -49,7 +49,6 @@ const DashboardAnnouncements = () => {
         setData([]);
       }
     } catch (error) {
-      console.error('Error fetching announcements:', error);
       addToast('error', 'An error occurred while fetching data', 3000);
     } finally {
       setIsLoading(false);
