@@ -56,7 +56,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
             }
           >
             <IoNewspaperOutline className="text-xl" />
-            {!isCollapsed && <span className="text-base">News & Updates</span>}
+            {!isCollapsed && <span className="text-base">Blogs & News</span>}
           </NavLink>
         </li>
         <li>
