@@ -14,7 +14,7 @@ export const ToastProvider = ({ children }) => {
 
         setTimeout(() => {
             removeToast(id);
-        }, duration + 300); // Extra time for animation
+        }, duration + 300);
     };
 
     const removeToast = (id) => {

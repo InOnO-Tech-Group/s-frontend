@@ -54,7 +54,7 @@ const DashboardLayout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenTimestamp');
     addToast('success', 'Logged out successfully', 5000);
-    navigate('/login');
+    window.location.href='/login';
   };
 
   const toggleSidebar = () => {
