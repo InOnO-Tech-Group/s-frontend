@@ -15,7 +15,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { adminGetBlogsStatistics } from '../../redux/slices/blogSlice';
+import { adminGetBlogsStatistics, adminViewBlogs } from '../../redux/slices/blogSlice';
 
 ChartJS.register(
   CategoryScale,
@@ -30,8 +30,9 @@ const Dashboard = () => {
   const currentYear = new Date().getFullYear();
   const [statisticsData, setStatisticsData] = useState([]);
   const [selectedYear, setSelectedYear] = useState(currentYear);
-  const [articleCount, setArticleCount] = useState(0);
+  const [blogsCount, setblogsCount] = useState(0);
   const { addToast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
 
   const generateYears = () => {
     const years = [];
@@ -71,7 +72,8 @@ const Dashboard = () => {
     try {
       const response = await adminViewBlogs();
       if (response.status === 200) {
-        setArticleCount(response.blogs.length);
+        console.log(response.blogs.count);
+        setblogsCount(response.blogs.length);
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);
         localStorage.removeItem('token');
@@ -160,7 +162,7 @@ const Dashboard = () => {
                 Total Articles
               </h3>
               <p className="text-3xl font-bold text-blue-600">
-                {articleCount && articleCount}
+                {blogsCount && blogsCount}
               </p>
             </div>
             <div className="text-blue-500 text-5xl">
