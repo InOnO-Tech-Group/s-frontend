@@ -72,7 +72,6 @@ const Dashboard = () => {
     try {
       const response = await adminViewBlogs();
       if (response.status === 200) {
-        console.log(response.blogs.count);
         setblogsCount(response.blogs.length);
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);

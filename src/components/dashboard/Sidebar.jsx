@@ -5,7 +5,7 @@ import { FaSignOutAlt, FaBullhorn, FaHandHolding } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
 import { IoNewspaperOutline, IoSettingsOutline } from 'react-icons/io5';
 
-const Sidebar = ({ isCollapsed, onLogout }) => {
+const Sidebar = ({ isCollapsed, onLogout, profile }) => {
   return (
     <nav
       className={`bg-dashboard-sidebar p-6 rounded-lg flex flex-col justify-between min-h-[500px] max-h-screen overflow-y-auto transition-all ${
@@ -24,7 +24,7 @@ const Sidebar = ({ isCollapsed, onLogout }) => {
             isCollapsed ? 'hidden' : ''
           }`}
         >
-          John Doe
+          {profile.firstname} {profile.lastname}
         </h3>{' '}
         <p className={`text-sm text-grey ${isCollapsed ? 'hidden' : ''}`}>
           System Admin

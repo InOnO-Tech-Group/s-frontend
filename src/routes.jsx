@@ -14,6 +14,8 @@ import { useToast } from './components/toasts/ToastManager';
 import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
 import Services from './pages/dashboard/Services';
 import HomeNotFound from './pages/dashboard/HomeNotFound';
+import Profile from './pages/dashboard/Profile';
+import { userViewProfile } from './redux/slices/userSlice';
 
 const ProtectedRoute = ({ children }) => {
   const { addToast } = useToast();
@@ -66,6 +68,31 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const AppRouter = () => {
+  const [profile, setProfile] = useState({});
+  const { addToast } = useToast();
+  const fetchProfile = async () => {
+    try {
+      const response = await userViewProfile();
+      if (response.status === 200) {
+        setProfile({
+          firstname: response.data.firstName || '',
+          lastname: response.data.lastName || '',
+          email: response.data.email || '',
+        });
+      } else if (response.status === 401) {
+        localStorage.removeItem('token');
+      } else {
+        throw new Error(response.message || 'Error fetching profile');
+      }
+    } catch (error) {
+      addToast('error', error.message || 'Unknonw error occured', 3000);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
@@ -79,7 +106,7 @@ const AppRouter = () => {
         path="/dashboard"
         element={
           <ProtectedRoute>
-            <DashboardLayout />
+            <DashboardLayout profile={profile} />
           </ProtectedRoute>
         }
       >
@@ -88,7 +115,12 @@ const AppRouter = () => {
         <Route path="services" element={<Services />} />
         <Route path="announcements" element={<DashboardAnnouncements />} />
         <Route path="messages" element={<div>Messages</div>} />
-        <Route path="profile" element={<div>Profile Page</div>} />
+        <Route
+          path="profile"
+          element={
+            <Profile profile={profile} onSuccess={() => fetchProfile()} />
+          }
+        />
         <Route path="*" element={<DashboardNotFound />} />
       </Route>
     </Routes>
