@@ -16,6 +16,29 @@ import Services from './pages/dashboard/Services';
 import HomeNotFound from './pages/dashboard/HomeNotFound';
 import Profile from './pages/dashboard/Profile';
 import { userViewProfile } from './redux/slices/userSlice';
+import Messages from './pages/dashboard/Messages';
+
+// Utility function for token validation
+const validateToken = () => {
+  const token = localStorage.getItem('token');
+  const tokenTimestamp = localStorage.getItem('tokenTimestamp');
+  const sessionDuration = 5 * 60 * 60 * 1000; // 5 hours
+
+  if (!token || !tokenTimestamp) {
+    return { isValid: false, reason: 'Please login first!' };
+  }
+
+  const currentTime = new Date().getTime();
+  const elapsedTime = currentTime - parseInt(tokenTimestamp, 10);
+
+  if (elapsedTime > sessionDuration) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenTimestamp');
+    return { isValid: false, reason: 'Session expired. Please login again.' };
+  }
+
+  return { isValid: true };
+};
 
 const ProtectedRoute = ({ children }) => {
   const { addToast } = useToast();
@@ -24,32 +47,14 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     const checkAuthorization = async () => {
-      const token = localStorage.getItem('token');
-      const tokenTimestamp = localStorage.getItem('tokenTimestamp');
-      const sessionDuration = 5 * 60 * 60 * 1000;
+      const { isValid, reason } = validateToken();
 
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      if (!token || !tokenTimestamp) {
-        addToast('error', 'Please login first!', 3000);
+      if (!isValid) {
+        addToast('error', reason, 5000);
         setIsAuthorized(false);
-        setIsLoading(false);
-        return;
+      } else {
+        setIsAuthorized(true);
       }
-
-      const currentTime = new Date().getTime();
-      const elapsedTime = currentTime - parseInt(tokenTimestamp, 10);
-
-      if (elapsedTime > sessionDuration) {
-        localStorage.removeItem('token');
-        localStorage.removeItem('tokenTimestamp');
-        addToast('error', 'Session expired. Please login again.', 5000);
-        setIsAuthorized(false);
-        setIsLoading(false);
-        return;
-      }
-
-      setIsAuthorized(true);
       setIsLoading(false);
     };
 
@@ -68,8 +73,14 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const AppRouter = () => {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({
+    firstname: '',
+    lastname: '',
+    email: '',
+  });
+
   const { addToast } = useToast();
+
   const fetchProfile = async () => {
     try {
       const response = await userViewProfile();
@@ -81,16 +92,19 @@ const AppRouter = () => {
         });
       } else if (response.status === 401) {
         localStorage.removeItem('token');
+        addToast('error', 'Session expired. Please login again.', 5000);
       } else {
         throw new Error(response.message || 'Error fetching profile');
       }
     } catch (error) {
-      addToast('error', error.message || 'Unknonw error occured', 3000);
+      addToast('error', error.message || 'Unknown error occurred', 3000);
     }
   };
 
   useEffect(() => {
-    fetchProfile();
+    if (localStorage.getItem('token')) {
+      fetchProfile();
+    }
   }, []);
 
   return (
@@ -114,7 +128,7 @@ const AppRouter = () => {
         <Route path="news" element={<NewsAndUpdates />} />
         <Route path="services" element={<Services />} />
         <Route path="announcements" element={<DashboardAnnouncements />} />
-        <Route path="messages" element={<div>Messages</div>} />
+        <Route path="messages" element={<Messages />} />
         <Route
           path="profile"
           element={
