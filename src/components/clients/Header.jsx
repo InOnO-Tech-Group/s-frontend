@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <div className="block bg-white py-1 sticky top-0">
+    <div className="block bg-white py-1 sticky top-0 z-50">
       <div className=" bg-white p-2 flex justify-between items-center">
         <div className="flex items-center lg:px-20">
           <img
