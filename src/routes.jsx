@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import TestPage from './pages/test';
-import Homepage from './pages/Homepage';
+import Homepage from './pages/client/Homepage';
 import Login from './pages/auth/Login';
 import ResetPassword from './pages/auth/ResetPassword';
 import ForgotPassword from './pages/auth/ForgotPassword';
@@ -18,8 +17,9 @@ import SingleBlogPage from './pages/singleBlogPage';
 import Profile from './pages/dashboard/Profile';
 import { userViewProfile } from './redux/slices/userSlice';
 import Messages from './pages/dashboard/Messages';
+import About from './pages/client/About';
+import ClientsLayout from './pages/client/ClientsLayout';
 
-// Utility function for token validation
 const validateToken = () => {
   const token = localStorage.getItem('token');
   const tokenTimestamp = localStorage.getItem('tokenTimestamp');
@@ -118,6 +118,11 @@ const AppRouter = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<HomeNotFound />} />
+
+      <Route path="/" element={<ClientsLayout />}>
+      <Route index element={<Homepage />} />
+      <Route path="about" element={<About />} />
+      </Route>
       <Route
         path="/dashboard"
         element={
