@@ -13,6 +13,7 @@ import DashboardAnnouncements from './pages/dashboard/DashboardAnnouncements';
 import { useToast } from './components/toasts/ToastManager';
 import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
 import Services from './pages/dashboard/Services';
+import HomeNotFound from './pages/dashboard/HomeNotFound';
 
 const ProtectedRoute = ({ children }) => {
   const { addToast } = useToast();
@@ -73,7 +74,7 @@ const AppRouter = () => {
       <Route path="/verify-otp" element={<VerifyOTP />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-
+      <Route path="*" element={<HomeNotFound />} />
       <Route
         path="/dashboard"
         element={
