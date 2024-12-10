@@ -1,14 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from  "/public/es gishoma logo.svg";
+import { clientsAnnouncements } from "../../redux/slices/announcementsSlice";
+import { useToast } from '../../components/toasts/ToastManager';
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const route = useLocation().pathname;
+    const { addToast } = useToast();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [publishedAnnoncement,setPublishedAnnouncement]= useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const route = useLocation().pathname;
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
+  const getActiveAnnoncement = async ()=>{
+    try {
+        const response = await clientsAnnouncements();
+        if (response.status === 200) {
+          console.log(response);
+          setPublishedAnnouncement(response.data)
+        } else {
+          console.log('error', response.message || 'Error in getting announcement');
+        }
+      } catch (error) {
+        console.log('error', error.toString() || 'Unknown error occurred');
+      } 
+    };
+    useEffect(()=>{
+        getActiveAnnoncement();
+    },[])
+    useEffect(() => {
+        if (publishedAnnoncement.length > 0) {
+          const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) =>
+              prevIndex === publishedAnnoncement.length - 1 ? 0 : prevIndex + 1
+            );
+          }, 8000);
+      
+          return () => clearInterval(interval);
+        }
+      }, [publishedAnnoncement]);
+      
 
   return (
     <div className="block bg-white py-1 sticky top-0 z-50">
@@ -116,11 +150,28 @@ const Header = () => {
         </div>
       )}
 
-      <div className="bg-primary w-full text-center text-white font-semibold p-3">
-        Office of Director is announcing that the student go home is planned at
-        20/12/2024 | Office of Director is announcing that the student go home
-        is planned at 20/12/2024
+{
+  publishedAnnoncement.length > 0 && (
+    <div className="bg-primary w-full text-center text-white font-semibold p-3 overflow-hidden">
+      <div
+        className="whitespace-nowrap transition-transform duration-1000 ease-linear"
+        style={{
+          transform: `translateX(-${currentIndex * 100}%)`,
+        }}
+      >
+        {publishedAnnoncement.map((data, index) => (
+          <div
+            key={index}
+            className="inline-block w-full text-center"
+            dangerouslySetInnerHTML={{ __html: data.content }}
+          ></div>
+        ))}
       </div>
+    </div>
+  )
+}
+
+
     </div>
   );
 };

@@ -53,3 +53,13 @@ export const adminUpdateAnnouncement = async (id, data) => {
         return handledError;
     }
 }
+
+export const clientsAnnouncements = async () => {
+    try {
+        const response = await axiosInstance.get("/api/v1/announcement/view-active");
+        return response.data;
+    } catch (error) {
+        const handledError = handleError(error);
+        return handledError;
+    }
+}
