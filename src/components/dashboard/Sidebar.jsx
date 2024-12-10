@@ -9,7 +9,7 @@ const Sidebar = ({ isCollapsed, onLogout, profile }) => {
   return (
     <nav
       className={`bg-dashboard-sidebar p-6 rounded-lg flex flex-col justify-between min-h-[500px] max-h-screen overflow-y-auto transition-all ${
-        isCollapsed ? 'w-20' : 'w-72'
+        isCollapsed ? 'w-20' : 'w-62'
       }`}
       aria-label="Sidebar Navigation"
     >
