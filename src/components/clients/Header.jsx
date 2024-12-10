@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import logo from  "/public/es gishoma logo.svg";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ const Header = () => {
       <div className=" bg-white p-2 flex justify-between items-center">
         <div className="flex items-center lg:px-20">
           <img
-            src="../../../public/es gishoma logo.svg"
+            src={logo}
             alt="Logo"
             className="h-15 w-12 object-cover"
           />
@@ -47,7 +48,6 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Hamburger Button for Mobile */}
         <h2 className=" md:hidden lg:hidden">Science,Technology & Culture</h2>
         <button
           className="lg:hidden text-black"
@@ -70,7 +70,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Centered Mobile Menu */}
       {isMobileMenuOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
@@ -117,7 +116,6 @@ const Header = () => {
         </div>
       )}
 
-      {/* Announcement Bar */}
       <div className="bg-primary w-full text-center text-white font-semibold p-3">
         Office of Director is announcing that the student go home is planned at
         20/12/2024 | Office of Director is announcing that the student go home

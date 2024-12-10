@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import logo from  "/public/es gishoma logo.svg";
 const Footer = () => {
   return (
     <footer className="bg-primary text-white py-4">
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Section: Logo and Description */}
         <div className="flex flex-col items-center">
           <img
-            src="../../../public/es gishoma logo.svg" // Replace with the actual logo URL
+            src={logo}
             alt="ES Gishoma Logo"
             className="h-16 w-auto mb-4"
           />
@@ -20,7 +19,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Middle Section: Quick Links */}
+  
         <div className="flex flex-col items-center">
           <h3 className="font-bold text-lg mb-4">Quick links</h3>
           <ul className="space-y-2 text-sm">
