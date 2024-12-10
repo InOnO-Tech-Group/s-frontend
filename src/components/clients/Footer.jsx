@@ -1,4 +1,5 @@
 import React from "react";
+import { IoCall, IoLocationSharp, IoMail } from "react-icons/io5"; // Import icons
 import { Link } from "react-router-dom";
 import logo from  "/public/es gishoma logo.svg";
 const Footer = () => {
@@ -51,7 +52,7 @@ const Footer = () => {
           <ul className="space-y-2 text-sm">
             <li>
               <span className="flex items-center">
-                📍 Gishoma, Rusizi Rwanda
+                <IoLocationSharp className="text-lg mx-2"/>  Gishoma, Rusizi Rwanda
               </span>
             </li>
             <li>
@@ -59,7 +60,7 @@ const Footer = () => {
                 href="mailto:info@esgishoma.rw"
                 className="hover:underline flex items-center"
               >
-                ✉️ info@esgishoma.rw
+               <IoMail className="text-lg mx-2"/>  info@esgishoma.rw
               </a>
             </li>
             <li>
@@ -67,7 +68,7 @@ const Footer = () => {
                 href="tel:+250781234567"
                 className="hover:underline flex items-center"
               >
-                📞 +250781234567
+                <IoCall className="text-lg mx-2"/>  +250781234567
               </a>
             </li>
           </ul>

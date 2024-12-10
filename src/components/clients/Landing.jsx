@@ -1,4 +1,7 @@
 import React from "react";
+import { Fa0 } from "react-icons/fa6";
+import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
+import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
@@ -70,8 +73,8 @@ const Landing = () => {
               <div className="flex w-full items-center">
                 <h3>November 20,2024</h3>
                 <div className="flex ml-auto">
-                    <h2 className="bg-primary p-1 m-1">w</h2>
-                    <h2 className="bg-primary p-1 m-1">X</h2>
+                    <IoLogoWhatsapp className="text-3xl mx-1 shadow border p-1"/>
+                    <IoLogoTwitter className="text-3xl mx-1 shadow border p-1"/>
                 </div>
               </div>
             </div>
@@ -79,8 +82,8 @@ const Landing = () => {
         </div>
         <div className="text-center mt-6">
           <Link to="news">
-          <button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-dashboard-sidebar">
-            View More <i className="fa fa-next"></i>
+          <button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-dashboard-sidebar flex items-center font-bold">
+            <span> View More </span> <IoIosArrowForward className="mt-1 bg-white p-1 text-black mx-1"/>
           </button>
           </Link>
         </div>
