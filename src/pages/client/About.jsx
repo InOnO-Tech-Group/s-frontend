@@ -1,5 +1,8 @@
 import React from 'react';
-import heroBackgroundImage from '/about-us-hero.png';
+import aboutUsHeroImage from '/classroom.png';
+import microscope from '/microscope.png';
+import principal from '/principal.png';
+import science from '/science.png';
 import { FiTarget } from 'react-icons/fi';
 import { BsClock, BsEye, BsLayers, BsStar } from 'react-icons/bs';
 import { BiPhone } from 'react-icons/bi';
@@ -12,7 +15,7 @@ const About = () => {
     <div>
       <div
         className="relative bg-cover bg-center h-[70vh] flex items-center justify-center"
-        style={{ backgroundImage: `url(${heroBackgroundImage})` }}
+        style={{ backgroundImage: `url(${aboutUsHeroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
         <div className="text-center text-white px-4 sm:px-8 md:px-16 z-10">
@@ -107,7 +110,7 @@ const About = () => {
               </div>
               <div className="flex-1 mt-6 lg:mt-0">
                 <img
-                  src={heroBackgroundImage}
+                  src={science}
                   alt="Our History"
                   className="rounded-lg shadow-lg object-cover w-full h-72"
                 />
@@ -121,10 +124,9 @@ const About = () => {
               <span className="ml-3 font-semibold text-xl">Core Values</span>
             </div>
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              {/* Science Section */}
               <div
                 className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105 hover:bg-primary"
-                style={{ backgroundImage: `url(${heroBackgroundImage})` }}
+                style={{ backgroundImage: `url(${microscope})` }}
               >
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                   <p className="font-semibold text-lg">Science</p>
@@ -136,7 +138,7 @@ const About = () => {
 
               <div
                 className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105"
-                style={{ backgroundImage: `url(${heroBackgroundImage})` }}
+                style={{ backgroundImage: `url(${microscope})` }}
               >
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                   <p className="font-semibold text-lg">Technology</p>
@@ -148,7 +150,7 @@ const About = () => {
 
               <div
                 className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105"
-                style={{ backgroundImage: `url(${heroBackgroundImage})` }}
+                style={{ backgroundImage: `url(${microscope})` }}
               >
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                   <p className="font-semibold text-lg">Culture</p>
@@ -172,29 +174,32 @@ const About = () => {
               <h1 className="font-bold text-2xl text-gray-800">
                 Ordinary Level
               </h1>
-              <p className="text-gray-600 text-center lg:text-left max-w-lg">
-                The Ordinary Level at ES Gishoma includes classes from Senior
-                One to Senior Three. During these years, students follow a
-                comprehensive curriculum that provides them with foundational
-                knowledge across core subjects, preparing them for the National
-                Examinations held at the end of Senior Three.
-                <br />
-                <br />
-                Our Ordinary Level program is known for its academic excellence,
-                with our students consistently achieving high rankings in these
-                national exams. This success is a testament to our school's
-                dedicated teaching staff, supportive learning environment, and a
-                strong emphasis on skill development and academic competency.
-                <br />
-                <br />
-                Through our Ordinary Level program, we equip students with the
-                knowledge and skills needed for success in further studies or
-                vocational pursuits.
+              <p className="text-gray-600 text-justify lg:text-left max-w-lg text-sm p-2 pl-0">
+                <p>
+                  The Ordinary Level at ES Gishoma includes classes from Senior
+                  One to Senior Three. During these years, students follow a
+                  comprehensive curriculum that provides them with foundational
+                  knowledge across core subjects, preparing them for the
+                  National Examinations held at the end of Senior Three.
+                </p>
+                <p>
+                  Our Ordinary Level program is known for its academic
+                  excellence, with our students consistently achieving high
+                  rankings in these national exams. This success is a testament
+                  to our school's dedicated teaching staff, supportive learning
+                  environment, and a strong emphasis on skill development and
+                  academic competency.
+                </p>
+                <p>
+                  Through our Ordinary Level program, we equip students with the
+                  knowledge and skills needed for success in further studies or
+                  vocational pursuits.
+                </p>
               </p>
             </div>
             <div className="flex-1 mt-6 lg:mt-0">
               <img
-                src={heroBackgroundImage}
+                src={science}
                 alt="Our History"
                 className="rounded-lg shadow-lg object-cover w-full h-72 lg:h-96"
               />
@@ -252,7 +257,7 @@ const About = () => {
                   key={index}
                   className="relative rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105 bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${heroBackgroundImage})`,
+                    backgroundImage: `url(${science})`,
                     height: '100px',
                   }}
                 >
@@ -273,7 +278,6 @@ const About = () => {
 
       <div className="pb-12 pt-4 bg-gray-300">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <div className="text-center mb-10">
             <div className="text-4xl text-primary-600 font-bold mb-4 flex items-center justify-center">
               <TbUsersGroup className="text-primary text-5xl mr-3" />
@@ -285,12 +289,10 @@ const About = () => {
             </p>
           </div>
 
-          {/* Leaders Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Leader Card */}
             <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
-                src={heroBackgroundImage}
+                src={principal}
                 alt="School Leader"
                 className="w-full h-48 object-cover"
               />
@@ -311,7 +313,7 @@ const About = () => {
             </div>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
-                src={heroBackgroundImage}
+                src={principal}
                 alt="School Leader"
                 className="w-full h-48 object-cover"
               />
@@ -332,28 +334,7 @@ const About = () => {
             </div>
             <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
-                src={heroBackgroundImage}
-                alt="School Leader"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-gray-800">
-                  John Doe
-                </h3>
-                <p className="text-sm text-gray-500 mb-3">School Principal</p>
-                <div className="flex items-center text-sm text-gray-700 mb-2">
-                  <BiPhone className="mr-2 text-primary-600" />
-                  +250781234567
-                </div>
-                <div className="flex items-center text-sm text-gray-700">
-                  <MdEmail className="mr-2 text-primary-600" />
-                  johndoe@gmail.com
-                </div>
-              </div>
-            </div>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-              <img
-                src={heroBackgroundImage}
+                src={principal}
                 alt="School Leader"
                 className="w-full h-48 object-cover"
               />
