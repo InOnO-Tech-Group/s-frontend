@@ -110,9 +110,6 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path={`/news/:id`} element={<SingleBlogPage />} />
-      <Route path="/test" element={<TestPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-otp" element={<VerifyOTP />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -120,8 +117,9 @@ const AppRouter = () => {
       <Route path="*" element={<HomeNotFound />} />
 
       <Route path="/" element={<ClientsLayout />}>
-      <Route index element={<Homepage />} />
-      <Route path="about" element={<About />} />
+        <Route index element={<Homepage />} />
+        <Route path={`/news/:id`} element={<SingleBlogPage />} />
+        <Route path="about" element={<About />} />
       </Route>
       <Route
         path="/dashboard"
