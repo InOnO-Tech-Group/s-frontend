@@ -60,6 +60,7 @@ export const clientViewBlogs = async () => {
         return handledError;
     }
 }
+
 export const clientViewBlog = async (id) => {
     try {
         const response = await axiosInstance.get(`/api/v1/blog/view/${id}`);
@@ -67,5 +68,15 @@ export const clientViewBlog = async (id) => {
     } catch (error) {
         const handledError = handleError(error);
         return handledError;
+    }
+}
+
+export const clientViewBlogByService = async (service) => {
+    try {
+        const response = await axiosInstance.get(`/api/v1/blog/view-by-service/${service}`);
+        return response.data
+    } catch (error) {
+        const handledError = handleError(error);
+        return handledError
     }
 }

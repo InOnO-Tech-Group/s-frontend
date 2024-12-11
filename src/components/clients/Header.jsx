@@ -3,12 +3,15 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '/public/es gishoma logo.svg';
 import { clientsAnnouncements } from '../../redux/slices/announcementsSlice';
 import { useToast } from '../../components/toasts/ToastManager';
+import Button from '../re-usable/Button';
+import MenuDropDown from './MenuDropDown';
 
 const Header = () => {
   const { addToast } = useToast();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [publishedAnnoncement, setPublishedAnnouncement] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const route = useLocation().pathname;
 
@@ -57,7 +60,9 @@ const Header = () => {
           <Link
             to="/"
             className={
-              route === '/' ? 'border-b-2 border-primary text-primary' : ''
+              route === '/' && !isModalVisible
+                ? 'border-b-2 border-primary text-primary'
+                : ''
             }
           >
             Home
@@ -65,19 +70,34 @@ const Header = () => {
           <Link
             to="/about"
             className={
-              route === '/about' ? 'border-b-2 border-primary text-primary' : ''
+              route === '/about' && !isModalVisible
+                ? 'border-b-2 border-primary text-primary'
+                : ''
             }
           >
             About us
           </Link>
-          <Link
-            to="/news"
-            className={
-              route === '/news' ? 'border-b-2 border-primary text-primary' : ''
-            }
+          <div
+            className="relative"
+            onMouseEnter={() => setIsModalVisible(true)}
+            onMouseLeave={() => setIsModalVisible(false)}
           >
-            News & Updates
-          </Link>
+            <button
+              className={`${
+                isModalVisible && 'border-b-2 border-primary text-primary'
+              }`}
+            >
+              Services
+            </button>
+            {isModalVisible && (
+              <div
+                className="absolute top-full left-0 bg-white shadow-lg rounded-lg p-4 z-50"
+                style={{ width: '200px', maxHeight: '300px', overflow: 'auto' }}
+              >
+                <MenuDropDown />
+              </div>
+            )}
+          </div>
           <Link
             to="/contact"
             className="bg-primary text-white px-4 py-2 rounded-lg"
