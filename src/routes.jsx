@@ -14,6 +14,7 @@ import { useToast } from './components/toasts/ToastManager';
 import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
 import Services from './pages/dashboard/Services';
 import HomeNotFound from './pages/dashboard/HomeNotFound';
+import SingleBlogPage from './pages/singleBlogPage';
 import Profile from './pages/dashboard/Profile';
 import { userViewProfile } from './redux/slices/userSlice';
 import Messages from './pages/dashboard/Messages';
@@ -110,6 +111,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Homepage />} />
+      <Route path={`/news/:id`} element={<SingleBlogPage />} />
       <Route path="/test" element={<TestPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/verify-otp" element={<VerifyOTP />} />

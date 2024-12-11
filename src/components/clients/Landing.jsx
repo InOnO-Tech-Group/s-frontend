@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import article from "/article.png";
 import { Fa0 } from "react-icons/fa6";
 import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
@@ -83,11 +84,13 @@ const Landing = () => {
             publishedBlogs.slice(0, 6).map((item) => {
               return (
                 <div className="bg-white shadow-md p-4 hover:shadow-lg">
+                  <Link to={`news/${item._id}`}>
                   <img
-                    src={item.coveImage || "../../../public/article.png"}
+                    src={item.coverImage}
                     alt="News"
                     className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
                   />
+                  </Link>
                   <h3 className="font-bold text-lg">{item.title}</h3>
                   <div className="flex w-full items-center">
                     <h3>
