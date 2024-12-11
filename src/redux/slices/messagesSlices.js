@@ -28,3 +28,18 @@ export const adminMarkMessagesAsRead = async (id) => {
         return handledError
     }
 }
+
+export const userSendMessage = async (data) => {
+    try {
+        const response = await axiosInstance.post('/api/v1/message/new', {
+            names: data.firstName + ' ' + data.lastName,
+            email: data.email,
+            phone: data.phone,
+            content: data.comment
+        });
+        return response.data
+    } catch (error) {
+        const handledError = handleError(error)
+        return handledError
+    }
+}
