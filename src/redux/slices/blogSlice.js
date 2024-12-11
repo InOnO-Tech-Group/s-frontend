@@ -50,3 +50,22 @@ export const adminGetBlogsStatistics = async (year) => {
         return handledError;
     }
 }
+
+export const clientViewBlogs = async () => {
+    try {
+        const response = await axiosInstance.get("/api/v1/blog/view-published-blogs");
+        return response.data
+    } catch (error) {
+        const handledError = handleError(error);
+        return handledError;
+    }
+}
+export const clientViewBlog = async (id) => {
+    try {
+        const response = await axiosInstance.get(`/api/v1/blog/view/${id}`);
+        return response.data
+    } catch (error) {
+        const handledError = handleError(error);
+        return handledError;
+    }
+}
