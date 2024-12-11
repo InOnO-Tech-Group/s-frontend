@@ -5,6 +5,7 @@ import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
+import HelloImage from "/school-buliding.png";
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -31,7 +32,7 @@ const Landing = () => {
     <div className="font-sans">
       <div className="relative bg-primary text-white ">
         <img
-          src="../../../public/school-buliding.png"
+          src={HelloImage}
           alt="School Building"
           className="w-full h-[80vh] md:h-[90vh] object-cover"
         />
@@ -85,13 +86,13 @@ const Landing = () => {
               return (
                 <div className="bg-white shadow-md p-4 hover:shadow-lg">
                   <Link to={`news/${item._id}`}>
-                  <img
-                    src={item.coverImage}
-                    alt="News"
-                    className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
-                  />
+                    <img
+                      src={item.coverImage}
+                      alt="News"
+                      className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
+                    />
+                    <h3 className="font-bold text-lg">{item.title}</h3>
                   </Link>
-                  <h3 className="font-bold text-lg">{item.title}</h3>
                   <div className="flex w-full items-center">
                     <h3>
                       {new Date(item.createdAt).toLocaleDateString("en-US", {
@@ -109,7 +110,7 @@ const Landing = () => {
               );
             })
           ) : (
-            <div>No Data found</div>
+            <div>No recent news Found</div>
           )}
         </div>
         <div className="text-center mt-6">
