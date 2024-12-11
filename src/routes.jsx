@@ -118,7 +118,7 @@ const AppRouter = () => {
 
       <Route path="/" element={<ClientsLayout />}>
         <Route index element={<Homepage />} />
-        <Route path={`/news/:id`} element={<SingleBlogPage />} />
+        <Route path={`news/:id`} element={<SingleBlogPage />} />
         <Route path="about" element={<About />} />
       </Route>
       <Route
