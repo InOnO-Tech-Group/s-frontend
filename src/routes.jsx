@@ -19,6 +19,7 @@ import { userViewProfile } from './redux/slices/userSlice';
 import Messages from './pages/dashboard/Messages';
 import About from './pages/client/About';
 import ClientsLayout from './pages/client/ClientsLayout';
+import ContactUs from './pages/client/ContactUs';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
@@ -120,6 +121,7 @@ const AppRouter = () => {
         <Route index element={<Homepage />} />
         <Route path={`news/:id`} element={<SingleBlogPage />} />
         <Route path="about" element={<About />} />
+        <Route path="contact" element={<ContactUs />} />
       </Route>
       <Route
         path="/dashboard"

@@ -1,75 +1,80 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import logo from  "/public/es gishoma logo.svg";
-import { clientsAnnouncements } from "../../redux/slices/announcementsSlice";
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '/public/es gishoma logo.svg';
+import { clientsAnnouncements } from '../../redux/slices/announcementsSlice';
 import { useToast } from '../../components/toasts/ToastManager';
 
 const Header = () => {
-    const { addToast } = useToast();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [publishedAnnoncement,setPublishedAnnouncement]= useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const { addToast } = useToast();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [publishedAnnoncement, setPublishedAnnouncement] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    const route = useLocation().pathname;
+  const route = useLocation().pathname;
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
-  const getActiveAnnoncement = async ()=>{
+  const getActiveAnnoncement = async () => {
     try {
-        const response = await clientsAnnouncements();
-        if (response.status === 200) {
-          console.log(response);
-          setPublishedAnnouncement(response.data)
-        } else {
-          console.log('error', response.message || 'Error in getting announcement');
-        }
-      } catch (error) {
-        console.log('error', error.toString() || 'Unknown error occurred');
-      } 
-    };
-    useEffect(()=>{
-        getActiveAnnoncement();
-    },[])
-    useEffect(() => {
-        if (publishedAnnoncement.length > 0) {
-          const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) =>
-              prevIndex === publishedAnnoncement.length - 1 ? 0 : prevIndex + 1
-            );
-          }, 8000);
-      
-          return () => clearInterval(interval);
-        }
-      }, [publishedAnnoncement]);
-      
+      const response = await clientsAnnouncements();
+      if (response.status === 200) {
+        console.log(response);
+        setPublishedAnnouncement(response.data);
+      } else {
+        console.log(
+          'error',
+          response.message || 'Error in getting announcement'
+        );
+      }
+    } catch (error) {
+      console.log('error', error.toString() || 'Unknown error occurred');
+    }
+  };
+  useEffect(() => {
+    getActiveAnnoncement();
+  }, []);
+  useEffect(() => {
+    if (publishedAnnoncement.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) =>
+          prevIndex === publishedAnnoncement.length - 1 ? 0 : prevIndex + 1
+        );
+      }, 8000);
+
+      return () => clearInterval(interval);
+    }
+  }, [publishedAnnoncement]);
+
   return (
     <div className="block bg-white py-1 sticky top-0 z-[1000]">
       <div className=" bg-white p-2 flex justify-between items-center">
         <div className="flex items-center lg:px-20">
-          <img
-            src={logo}
-            alt="Logo"
-            className="h-15 w-12 object-cover"
-          />
+          <img src={logo} alt="Logo" className="h-15 w-12 object-cover" />
         </div>
 
         <nav className="hidden md:flex lg:flex items-center space-x-6 text-black font-semibold px-10">
           <Link
             to="/"
-            className={route === "/" ? "border-b-2 border-primary text-primary" : ""}
+            className={
+              route === '/' ? 'border-b-2 border-primary text-primary' : ''
+            }
           >
             Home
           </Link>
           <Link
             to="/about"
-            className={route === "/about" ? "border-b-2 border-primary text-primary" : ""}
+            className={
+              route === '/about' ? 'border-b-2 border-primary text-primary' : ''
+            }
           >
             About us
           </Link>
           <Link
             to="/news"
-            className={route === "/news" ? "border-b-2 border-primary text-primary" : ""}
+            className={
+              route === '/news' ? 'border-b-2 border-primary text-primary' : ''
+            }
           >
             News & Updates
           </Link>
@@ -81,7 +86,9 @@ const Header = () => {
           </Link>
         </nav>
 
-        <h2 className="block md:hidden lg:hidden">Science,Technology & Culture</h2>
+        <h2 className="block md:hidden lg:hidden">
+          Science,Technology & Culture
+        </h2>
         <button
           className="md:hidden lg:hidden text-black"
           onClick={toggleMobileMenu}
@@ -112,7 +119,9 @@ const Header = () => {
             <li>
               <Link
                 to="/"
-                className={route === "/" ? "border-b-2 border-primary text-primary" : ""}
+                className={
+                  route === '/' ? 'border-b-2 border-primary text-primary' : ''
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Home
@@ -121,7 +130,11 @@ const Header = () => {
             <li>
               <Link
                 to="/about"
-                className={route === "/about" ? "border-b-2 border-primary text-primary" : ""}
+                className={
+                  route === '/about'
+                    ? 'border-b-2 border-primary text-primary'
+                    : ''
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About us
@@ -130,7 +143,11 @@ const Header = () => {
             <li>
               <Link
                 to="/news"
-                className={route === "/news" ? "border-b-2 border-primary text-primary" : ""}
+                className={
+                  route === '/news'
+                    ? 'border-b-2 border-primary text-primary'
+                    : ''
+                }
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 News & Updates
@@ -149,26 +166,24 @@ const Header = () => {
         </div>
       )}
 
-{
-  publishedAnnoncement.length > 0 && (
-    <div className="bg-primary w-full text-center text-white font-semibold p-3 overflow-hidden">
-      <div
-        className="whitespace-nowrap transition-transform duration-1000 ease-linear"
-        style={{
-          transform: `translateX(-${currentIndex * 100}%)`,
-        }}
-      >
-        {publishedAnnoncement.map((data, index) => (
+      {publishedAnnoncement.length > 0 && (
+        <div className="bg-primary w-full text-center text-white font-semibold p-3 overflow-hidden">
           <div
-            key={index}
-            className="inline-block w-full text-center font-bold"
-            dangerouslySetInnerHTML={{ __html: data.content }}
-          ></div>
-        ))}
-      </div>
-    </div>
-  )
-}
+            className="whitespace-nowrap transition-transform duration-1000 ease-linear"
+            style={{
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
+            {publishedAnnoncement.map((data, index) => (
+              <div
+                key={index}
+                className="inline-block w-full text-center font-bold"
+                dangerouslySetInnerHTML={{ __html: data.content }}
+              ></div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
