@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../../components/re-usable/SEO';
 import { useToast } from '../../components/toasts/ToastManager';
 import { userSendMessage } from '../../redux/slices/messagesSlices';
+import Button from '../../components/re-usable/Button';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ const ContactUs = () => {
     phone: '',
     comment: '',
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -54,7 +56,7 @@ const ContactUs = () => {
     e.preventDefault();
     setErrors({});
     if (validateForm()) {
-      console.log('Form submitted:', formData);
+      setSubmitting(true);
       try {
         const response = await userSendMessage(formData);
         if (response.status === 201) {
@@ -81,6 +83,8 @@ const ContactUs = () => {
           error.message || 'Unknown error occrured while sending the message',
           3000
         );
+      } finally {
+        setSubmitting(false);
       }
     }
   };
@@ -289,12 +293,41 @@ const ContactUs = () => {
                   <p className="text-red-500 text-xs">{errors.comment}</p>
                 )}
               </div>
-              <button
-                type="submit"
-                className="w-full bg-primary text-white py-2 text-sm rounded hover:bg-primary-dark transition"
-              >
-                Send Message
-              </button>
+              <Button
+                title={
+                  submitting ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin h-5 w-5 mr-2 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send message'
+                  )
+                }
+                disabled={submitting}
+                className={`w-full py-2 ${
+                  submitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
+              />
             </form>
           </section>
         </main>
