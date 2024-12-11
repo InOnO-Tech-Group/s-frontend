@@ -13,13 +13,13 @@ import { useToast } from './components/toasts/ToastManager';
 import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
 import Services from './pages/dashboard/Services';
 import HomeNotFound from './pages/dashboard/HomeNotFound';
-import SingleBlogPage from './pages/singleBlogPage';
 import Profile from './pages/dashboard/Profile';
 import { userViewProfile } from './redux/slices/userSlice';
 import Messages from './pages/dashboard/Messages';
 import About from './pages/client/About';
 import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
+import SingleBlogPage from './pages/client/SingleBlogPage';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
