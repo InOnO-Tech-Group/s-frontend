@@ -43,7 +43,6 @@ const Header = () => {
         }
       }, [publishedAnnoncement]);
       
-
   return (
     <div className="block bg-white py-1 sticky top-0 z-50">
       <div className=" bg-white p-2 flex justify-between items-center">
@@ -82,9 +81,9 @@ const Header = () => {
           </Link>
         </nav>
 
-        <h2 className=" md:hidden lg:hidden">Science,Technology & Culture</h2>
+        <h2 className="block md:hidden lg:hidden">Science,Technology & Culture</h2>
         <button
-          className="lg:hidden text-black"
+          className="md:hidden lg:hidden text-black"
           onClick={toggleMobileMenu}
         >
           <svg
@@ -106,7 +105,7 @@ const Header = () => {
 
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          className="fixed inset-0 bg-black w-full bg-opacity-50 flex justify-center items-center z-50"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <ul className="bg-white p-6 space-y-6 rounded-lg shadow-lg text-center">
@@ -162,7 +161,7 @@ const Header = () => {
         {publishedAnnoncement.map((data, index) => (
           <div
             key={index}
-            className="inline-block w-full text-center"
+            className="inline-block w-full text-center font-bold"
             dangerouslySetInnerHTML={{ __html: data.content }}
           ></div>
         ))}
@@ -170,8 +169,6 @@ const Header = () => {
     </div>
   )
 }
-
-
     </div>
   );
 };
