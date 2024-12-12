@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
 import HelloImage from "/school-buliding.png";
 import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
+import BlogCard from "./BlogCard";
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -85,29 +86,7 @@ const Landing = () => {
           {publishedBlogs.length > 0 ? (
             publishedBlogs.slice(0, 6).map((item) => {
               return (
-                <div className="bg-white shadow-md p-4 hover:shadow-lg">
-                  <Link to={`news/${item._id}`}>
-                    <img
-                      src={item.coverImage}
-                      alt="News"
-                      className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
-                    />
-                    <h3 className="font-bold text-lg">{item.title}</h3>
-                  </Link>
-                  <div className="flex w-full items-center">
-                    <h3>
-                      {new Date(item.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </h3>
-                    <div className="flex ml-auto">
-                      <IoLogoWhatsapp className="text-3xl mx-1 shadow border p-1" />
-                      <IoLogoTwitter className="text-3xl mx-1 shadow border p-1" />
-                    </div>
-                  </div>
-                </div>
+                <BlogCard id={item._id} title={item.title} date={item.createdAt} imageUrl={item.coverImage}/>
               );
             })
           ) : (

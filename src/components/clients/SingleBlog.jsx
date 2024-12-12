@@ -6,6 +6,7 @@ import { IoLogoTwitter, IoLogoWhatsapp } from 'react-icons/io5';
 import { IoIosArrowForward } from 'react-icons/io';
 import SEO from '../re-usable/SEO';
 import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
+import BlogCard from './BlogCard';
 
 function SingleBlog() {
   const [singleBlog, setSingleBlog] = useState([]);
@@ -93,32 +94,7 @@ function SingleBlog() {
               return (
                 item &&
                 item?._id !== singleBlog._id && (
-                  <div
-                    key={item._id}
-                    className="bg-white shadow-md p-4 hover:shadow-lg"
-                  >
-                    <Link to={`/news/${item._id}`}>
-                      <img
-                        src={item.coverImage}
-                        alt="News"
-                        className="w-full h-[15vh] md:h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
-                      />
-                      <h3 className="font-bold text-lg">{item.title}</h3>
-                    </Link>
-                    <div className="flex flex-col md:flex-row w-full items-left lg:items-center">
-                      <h3>
-                        {new Date(item.createdAt).toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
-                      </h3>
-                      <div className="flex ml-auto">
-                        <IoLogoWhatsapp className="text-3xl mx-1 shadow border p-1" />
-                        <IoLogoTwitter className="text-3xl mx-1 shadow border p-1" />
-                      </div>
-                    </div>
-                  </div>
+                  <BlogCard id={item._id} title={item.title} date={item.createdAt} imageUrl={item.coverImage}/>
                 )
               );
             })
