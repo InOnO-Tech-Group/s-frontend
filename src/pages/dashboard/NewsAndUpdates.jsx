@@ -22,7 +22,7 @@ import PublishToggle from '../../components/dashboard/PublishToggle';
 import UpdateBlogModal from '../../components/dashboard/UpdateBlogModal';
 
 const NewsAndUpdates = () => {
-  const [isNewArticleModalOpen, setisNewArticleModalOpen] = useState(false);
+  const [isNewArticleModalOpen, setIsNewArticleModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [services, setServices] = useState([]);
   const [data, setData] = useState([]);
@@ -38,8 +38,11 @@ const NewsAndUpdates = () => {
   const { addToast } = useToast();
 
   useEffect(() => {
-    getServices();
-    getBlogs();
+    const fetchData = async () => {
+      await getServices();
+      await getBlogs();
+    };
+    fetchData();
   }, []);
 
   const getServices = async () => {
@@ -88,7 +91,7 @@ const NewsAndUpdates = () => {
       const response = await adminDeleteBlog(blogId);
       if (response.status === 200) {
         addToast('success', 'Blog deleted successfully', 3000);
-        getBlogs();
+        await getBlogs();
         setConfirmationModal({ isOpen: false, id: null });
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);
@@ -104,12 +107,12 @@ const NewsAndUpdates = () => {
 
   const handleToggleClick = async (blogId, currentStatus) => {
     try {
-      const statusTosend =
+      const statusToSend = 
         currentStatus === 'published' ? 'unpublished' : 'published';
-      const response = await adminUpdateBlog(blogId, { status: statusTosend });
+      const response = await adminUpdateBlog(blogId, { status: statusToSend });
       if (response.status === 200) {
         addToast('success', 'Blog status updated successfully', 3000);
-        getBlogs();
+        await getBlogs();
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);
         localStorage.removeItem('token');
@@ -150,7 +153,7 @@ const NewsAndUpdates = () => {
     <>
       <SEO title="News & Updates - ES Gishoma" />
       <div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-4">
           <Titles title={'Blogs & News update'} />
           <div className="flex items-center gap-2">
             <label htmlFor="rowsPerPage" className="text-sm">
@@ -160,8 +163,9 @@ const NewsAndUpdates = () => {
               id="rowsPerPage"
               value={pageSize}
               onChange={(e) => {
-                setPageSize(Number(e.target.value));
-                getBlogs();
+                const newPageSize = Number(e.target.value);
+                setPageSize(newPageSize);
+                setCurrentPage(1); // Reset to first page when changing page size
               }}
               className="border px-2 py-1 rounded text-sm"
             >
@@ -173,7 +177,7 @@ const NewsAndUpdates = () => {
             </select>
           </div>
           <button
-            onClick={() => setisNewArticleModalOpen(true)}
+            onClick={() => setIsNewArticleModalOpen(true)}
             className="flex items-center justify-center bg-primary text-white rounded px-4 py-2 font-semibold hover:opacity-80 w-full sm:w-auto"
           >
             <BiPlus className="font-bold mr-2" />
@@ -204,8 +208,8 @@ const NewsAndUpdates = () => {
               ) : paginatedData.length > 0 ? (
                 paginatedData.map((row, rowIndex) => (
                   <tr
-                    key={rowIndex}
-                    className="bg-white hover:bg-gray-50 transition border-b" // Apply border to the entire row
+                    key={row._id || rowIndex}
+                    className="bg-white hover:bg-gray-50 transition border-b"
                   >
                     <td className="px-4 py-2">
                       {(currentPage - 1) * pageSize + rowIndex + 1}
@@ -214,7 +218,7 @@ const NewsAndUpdates = () => {
                       <img
                         src={row.coverImage}
                         alt={row.title}
-                        className="w-12 rounded"
+                        className="w-12 h-12 object-cover rounded"
                       />
                     </td>
                     <td className="px-4 py-2">{row.title}</td>
@@ -227,9 +231,11 @@ const NewsAndUpdates = () => {
                             : row.description,
                       }}
                     />
-                    <td className="px-4 py-2">{row.service.name}</td>
+                    <td className="px-4 py-2">
+                      {row?.service?.name || 'No Service'}
+                    </td>
                     <td className="px-4 py-2">{row.status}</td>
-                    <td className="px-4 py-2 flex">
+                    <td className="px-4 py-2 flex items-center">
                       <button
                         onClick={() => {
                           setIsUpdateModalOpen(true);
@@ -239,7 +245,7 @@ const NewsAndUpdates = () => {
                             coverImage: row.coverImage,
                             description: row.description,
                             status: row.status,
-                            service: row.service._id,
+                            service: row.service?._id,
                           });
                         }}
                         className="px-3 py-1.5 text-blue-500 rounded-md hover:bg-blue-100 flex items-center gap-2"
@@ -307,7 +313,7 @@ const NewsAndUpdates = () => {
       <NewBlogModal
         isOpen={isNewArticleModalOpen}
         onClose={() => {
-          setisNewArticleModalOpen(false);
+          setIsNewArticleModalOpen(false);
           getBlogs();
         }}
         services={services}
@@ -322,7 +328,7 @@ const NewsAndUpdates = () => {
         blog={dataToUpdate}
       />
       {confirmationModal.isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
             <h2 className="text-lg font-semibold">Confirm Deletion</h2>
             <p className="mt-2">

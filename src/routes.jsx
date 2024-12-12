@@ -17,19 +17,19 @@ import Profile from './pages/dashboard/Profile';
 import { userViewProfile } from './redux/slices/userSlice';
 import Messages from './pages/dashboard/Messages';
 import About from './pages/client/About';
-import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
 import ServiceBlog from './pages/client/ServiceBlog';
 import News from './pages/client/News';
-import SingleBlog from './components/clients/singleBlog.jsx';
+import SingleBlog from './components/clients/SingleBlog';
+import ClientsLayout from './pages/client/ClientsLayout';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
   const tokenTimestamp = localStorage.getItem('tokenTimestamp');
-  const sessionDuration = 5 * 60 * 60 * 1000; // 5 hours
+  const sessionDuration = 5 * 60 * 60 * 1000;
 
   if (!token || !tokenTimestamp) {
-    return { isValid: false, reason: 'Please login first!' };
+    return { isValid: false };
   }
 
   const currentTime = new Date().getTime();
@@ -38,32 +38,25 @@ const validateToken = () => {
   if (elapsedTime > sessionDuration) {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenTimestamp');
-    return { isValid: false, reason: 'Session expired. Please login again.' };
+    return { isValid: false };
   }
 
   return { isValid: true };
 };
 
 const ProtectedRoute = ({ children }) => {
-  const { addToast } = useToast();
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkAuthorization = async () => {
-      const { isValid, reason } = validateToken();
-
-      if (!isValid) {
-        addToast('error', reason, 5000);
-        setIsAuthorized(false);
-      } else {
-        setIsAuthorized(true);
-      }
+      const { isValid } = validateToken();
+      setIsAuthorized(isValid);
       setIsLoading(false);
     };
 
     checkAuthorization();
-  }, [addToast]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -73,7 +66,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return isAuthorized ? children : <Navigate to="/login" replace />;
+  return isAuthorized ? children : (window.location.href = '/login');
 };
 
 const AppRouter = () => {
@@ -96,7 +89,6 @@ const AppRouter = () => {
         });
       } else if (response.status === 401) {
         localStorage.removeItem('token');
-        addToast('error', 'Session expired. Please login again.', 5000);
       } else {
         throw new Error(response.message || 'Error fetching profile');
       }
@@ -106,9 +98,12 @@ const AppRouter = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      fetchProfile();
-    }
+    const fetchUserProfile = async () => {
+      if (localStorage.getItem('token')) {
+        await fetchProfile();
+      }
+    };
+    fetchUserProfile();
   }, []);
 
   return (
