@@ -6,6 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
 import HelloImage from "/school-buliding.png";
+import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -114,12 +115,7 @@ const Landing = () => {
           )}
         </div>
         <div className="text-center mt-6">
-          <Link to="news">
-            <button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-dashboard-sidebar flex items-center font-bold">
-              <span> All &nbsp; </span>{" "}
-              <IoIosArrowForward className="mt-1 bg-white p-1 text-black mx-1" />
-            </button>
-          </Link>
+        <ViewAllNewsButton to="/news" text="View All News" />
         </div>
       </section>
 
