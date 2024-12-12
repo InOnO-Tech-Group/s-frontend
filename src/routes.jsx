@@ -124,8 +124,8 @@ const AppRouter = () => {
         <Route path={`news/:id`} element={<SingleblogPage />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<ContactUs />} />
-        <Route path="/services/news/:serviceId" element={<ServiceBlog />} />
-        <Route path="/news" element={<News />} />
+        <Route path="services/news/:serviceId" element={<ServiceBlog />} />
+        <Route path="news" element={<News />} />
       </Route>
       <Route
         path="/dashboard"
