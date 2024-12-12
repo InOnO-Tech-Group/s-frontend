@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from "react";
-import article from "/article.png";
-import { Fa0 } from "react-icons/fa6";
-import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { clientViewBlogs } from "../../redux/slices/blogSlice";
+import React, { useEffect, useState } from 'react';
+import article from '/article.png';
+import { Fa0 } from 'react-icons/fa6';
+import { IoLogoWhatsapp, IoLogoTwitter } from 'react-icons/io5';
+import { IoIosArrowForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import { clientViewBlogs } from '../../redux/slices/blogSlice';
+import HelloImage from '/school-buliding.png';
+import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
+import BlogCard from './BlogCard';
+import Avatar from '/man 1.png';
+import Principal from '/profile.png';
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -12,16 +17,10 @@ const Landing = () => {
     try {
       const response = await clientViewBlogs();
       if (response.status === 200) {
-        console.log(response.data);
         setPublishedBlogs(response.data);
-      } else {
-        console.log(
-          "error",
-          response.message || "Error in getting announcement"
-        );
       }
     } catch (error) {
-      console.log("error", error.toString() || "Unknown error occurred");
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
   useEffect(() => {
@@ -31,7 +30,7 @@ const Landing = () => {
     <div className="font-sans">
       <div className="relative bg-primary text-white ">
         <img
-          src="../../../public/school-buliding.png"
+          src={HelloImage}
           alt="School Building"
           className="w-full h-[80vh] md:h-[90vh] object-cover"
         />
@@ -40,7 +39,7 @@ const Landing = () => {
             Welcome to E-S Gishoma
           </h1>
           <p className="text-center text-xl font-semibold text-sm md:text-4xl mt-2">
-            The <span className="text-primary">#1</span> O-Level and Advanced{" "}
+            The <span className="text-primary">#1</span> O-Level and Advanced{' '}
             <br /> Level school in Rusizi District
           </p>
           <Link to="/about">
@@ -57,7 +56,7 @@ const Landing = () => {
         </h2>
         <div className="flex flex-col md:flex-row items-center">
           <img
-            src="../../../public/profile.png"
+            src={Principal}
             alt="Principal"
             className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
           />
@@ -83,42 +82,20 @@ const Landing = () => {
           {publishedBlogs.length > 0 ? (
             publishedBlogs.slice(0, 6).map((item) => {
               return (
-                <div className="bg-white shadow-md p-4 hover:shadow-lg">
-                  <Link to={`news/${item._id}`}>
-                  <img
-                    src={item.coverImage}
-                    alt="News"
-                    className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"
-                  />
-                  </Link>
-                  <h3 className="font-bold text-lg">{item.title}</h3>
-                  <div className="flex w-full items-center">
-                    <h3>
-                      {new Date(item.createdAt).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </h3>
-                    <div className="flex ml-auto">
-                      <IoLogoWhatsapp className="text-3xl mx-1 shadow border p-1" />
-                      <IoLogoTwitter className="text-3xl mx-1 shadow border p-1" />
-                    </div>
-                  </div>
-                </div>
+                <BlogCard
+                  id={item._id}
+                  title={item.title}
+                  date={item.createdAt}
+                  imageUrl={item.coverImage}
+                />
               );
             })
           ) : (
-            <div>No Data found</div>
+            <div>No recent news Found</div>
           )}
         </div>
         <div className="text-center mt-6">
-          <Link to="news">
-            <button className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-dashboard-sidebar flex items-center font-bold">
-              <span> All &nbsp; </span>{" "}
-              <IoIosArrowForward className="mt-1 bg-white p-1 text-black mx-1" />
-            </button>
-          </Link>
+          <ViewAllNewsButton to="/news" text="View All News" />
         </div>
       </section>
 
@@ -133,7 +110,7 @@ const Landing = () => {
               className="flex flex-col items-center text-center p-4"
             >
               <img
-                src="/../../../public/profile.png"
+                src={Avatar}
                 alt="Parent photo"
                 className="w-20 h-20 rounded-full object-cover mb-2"
               />

@@ -22,14 +22,9 @@ const Header = () => {
       const response = await clientsAnnouncements();
       if (response.status === 200) {
         setPublishedAnnouncement(response.data);
-      } else {
-        console.log(
-          'error',
-          response.message || 'Error in getting announcement'
-        );
       }
     } catch (error) {
-      console.log('error', error.toString() || 'Unknown error occurred');
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
 
