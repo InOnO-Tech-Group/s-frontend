@@ -8,6 +8,8 @@ import { clientViewBlogs } from '../../redux/slices/blogSlice';
 import HelloImage from '/school-buliding.png';
 import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
 import BlogCard from './BlogCard';
+import Avatar from '/man 1.png';
+import Principal from '/profile.png';
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -54,7 +56,7 @@ const Landing = () => {
         </h2>
         <div className="flex flex-col md:flex-row items-center">
           <img
-            src="../../../public/profile.png"
+            src={Principal}
             alt="Principal"
             className="w-32 h-32 rounded-full object-cover mb-4 md:mb-0 md:mr-6"
           />
@@ -108,7 +110,7 @@ const Landing = () => {
               className="flex flex-col items-center text-center p-4"
             >
               <img
-                src="/../../../public/profile.png"
+                src={Avatar}
                 alt="Parent photo"
                 className="w-20 h-20 rounded-full object-cover mb-2"
               />
