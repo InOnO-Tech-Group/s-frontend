@@ -12,6 +12,9 @@ const ServiceBlog = () => {
   const [loading, setLoading] = useState(true);
   const { serviceId } = useParams();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(20);
+
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
@@ -33,6 +36,31 @@ const ServiceBlog = () => {
     fetchBlogs();
   }, [serviceId]);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
+  const getPageNumbers = () => {
+    const pageNumbers = [];
+    const maxPagesToShow = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
+    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+
+    if (endPage === totalPages) {
+      startPage = Math.max(1, totalPages - maxPagesToShow + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+      pageNumbers.push(i);
+    }
+
+    return pageNumbers;
+  };
+
   return (
     <>
       <SEO title="Service Blog - ES Gishoma" />
@@ -41,6 +69,7 @@ const ServiceBlog = () => {
           <h1 className="text-xl sm:text-2xl font-bold text-center my-6">
             {service ? `News & Updates in ${service.name}` : 'Loading...'}
           </h1>
+          
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {loading ? (
               Array.from({ length: 8 }).map((_, index) => (
@@ -53,8 +82,8 @@ const ServiceBlog = () => {
                   <div className="h-4 bg-gray-200 rounded w-1/2"></div>
                 </div>
               ))
-            ) : data && data.length > 0 ? (
-              data.map((blog, index) => (
+            ) : currentItems && currentItems.length > 0 ? (
+              currentItems.map((blog, index) => (
                 <BlogCard
                   key={index}
                   id={blog._id}
@@ -72,6 +101,48 @@ const ServiceBlog = () => {
               </div>
             )}
           </div>
+
+          {data.length > itemsPerPage && (
+            <div className="flex justify-center items-center space-x-2 mt-6">
+              <button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 border rounded ${
+                  currentPage === 1
+                    ? 'bg-gray-200 cursor-not-allowed'
+                    : 'bg-white hover:bg-gray-100'
+                }`}
+              >
+                Previous
+              </button>
+
+              {getPageNumbers().map((number) => (
+                <button
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`px-4 py-2 border rounded ${
+                    currentPage === number
+                      ? 'bg-primary text-white'
+                      : 'bg-white hover:bg-gray-100'
+                  }`}
+                >
+                  {number}
+                </button>
+              ))}
+
+              <button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 border rounded ${
+                  currentPage === totalPages
+                    ? 'bg-gray-200 cursor-not-allowed'
+                    : 'bg-white hover:bg-gray-100'
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
