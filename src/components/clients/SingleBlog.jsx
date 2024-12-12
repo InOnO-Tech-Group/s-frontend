@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+import { FaCalendarAlt } from 'react-icons/fa';
 import { clientViewBlog, clientViewBlogs } from '../../redux/slices/blogSlice';
 import { useParams } from 'react-router-dom';
 import { IoLogoWhatsapp } from 'react-icons/io5';
