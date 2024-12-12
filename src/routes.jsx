@@ -20,7 +20,7 @@ import About from './pages/client/About';
 import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
 import SingleBlogPage from './pages/client/SingleBlogPage';
-import ServiceBlog from './pages/dashboard/ServiceBlog';
+import ServiceBlog from './pages/client/ServiceBlog';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');

@@ -7,6 +7,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import SEO from '../re-usable/SEO';
 import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
 import BlogCard from './BlogCard';
+import { FaXTwitter } from 'react-icons/fa6';
 
 function SingleBlog() {
   const [singleBlog, setSingleBlog] = useState([]);
@@ -51,6 +52,24 @@ function SingleBlog() {
   useEffect(() => {
     getPublishedBlog();
   }, []);
+  const blogUrl = `${window.location.origin}/news/${id}`;
+
+  const shareOnX = (title, fullImageUrl) => {
+    const shareText = `Check out this article: ${title}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      shareText
+    )}&url=${encodeURIComponent(blogUrl)}&image=${encodeURIComponent(
+      fullImageUrl
+    )}`;
+    window.open(url, '_blank');
+  };
+
+  const shareOnWhatsApp = (title, fullImageUrl) => {
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+      `${title} - ${blogUrl}\n\n${fullImageUrl}`
+    )}`;
+    window.open(whatsappUrl, '_blank');
+  };
   return (
     <>
       <SEO title={`${singleBlog.title} - ES Gishoma`} />
@@ -65,7 +84,7 @@ function SingleBlog() {
         />
         <div className="flex w-full items-center">
           <h3 className="font-bold flex">
-            <FaCalendarAlt className="text-xl" />
+            <FaCalendarAlt className="text-sm m-1.5" />
             {new Date(singleBlog.createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -73,8 +92,20 @@ function SingleBlog() {
             })}
           </h3>
           <div className="flex ml-auto">
-            <IoLogoWhatsapp className="text-3xl mx-1 shadow border p-1" />
-            <IoLogoTwitter className="text-3xl mx-1 shadow border p-1" />
+            <button className="text-3xl mx-1 shadow border p-1 cursor-pointer hover:text-green-500 text-sm">
+              <IoLogoWhatsapp
+                onClick={() =>
+                  shareOnWhatsApp(singleBlog.title, singleBlog.coverImage)
+                }
+              />
+            </button>
+            <button className="text-3xl mx-1 shadow border p-1  cursor-pointer hover:text-blue-500 text-sm">
+              <FaXTwitter
+                onClick={() =>
+                  shareOnX(singleBlog.title, singleBlog.coverImage)
+                }
+              />
+            </button>
           </div>
         </div>
         <div
@@ -94,7 +125,12 @@ function SingleBlog() {
               return (
                 item &&
                 item?._id !== singleBlog._id && (
-                  <BlogCard id={item._id} title={item.title} date={item.createdAt} imageUrl={item.coverImage}/>
+                  <BlogCard
+                    id={item._id}
+                    title={item.title}
+                    date={item.createdAt}
+                    imageUrl={item.coverImage}
+                  />
                 )
               );
             })

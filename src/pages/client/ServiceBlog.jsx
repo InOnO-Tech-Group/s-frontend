@@ -63,13 +63,13 @@ const ServiceBlog = () => {
 
   return (
     <>
-      <SEO title="Service Blog - ES Gishoma" />
+      <SEO title={`${service?.name} Blogs - ES Gishoma`} />
       <div className="bg-gray-300 pt-4 pb-6">
         <div className="max-w-screen-lg mx-auto px-4 lg:w-[80%]">
           <h1 className="text-xl sm:text-2xl font-bold text-center my-6">
             {service ? `News & Updates in ${service.name}` : 'Loading...'}
           </h1>
-          
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {loading ? (
               Array.from({ length: 8 }).map((_, index) => (
