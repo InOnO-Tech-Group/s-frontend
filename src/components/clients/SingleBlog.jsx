@@ -106,23 +106,24 @@ function SingleBlog() {
         <h2 className="font-bold capitalize p-1">Latest News</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {publishedBlogs.length > 0 ? (
-            publishedBlogs.slice(0, 3).map((item) => {
-              return (
-                item &&
-                item?._id !== singleBlog._id && (
+            publishedBlogs
+              .filter((item) => item && item._id !== singleBlog._id)
+              .slice(0, 3)
+              .map((item) => {
+                return (
                   <BlogCard
                     id={item._id}
                     title={item.title}
                     date={item.createdAt}
                     imageUrl={item.coverImage}
                   />
-                )
-              );
-            })
+                );
+              })
           ) : (
             <div>No recent news</div>
           )}
         </div>
+
         <ViewAllNewsButton to="/news" text="View All News" />
       </section>
     </>
