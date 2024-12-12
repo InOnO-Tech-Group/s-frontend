@@ -21,6 +21,7 @@ import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
 import SingleBlogPage from './pages/client/SingleBlogPage';
 import ServiceBlog from './pages/client/ServiceBlog';
+import News from './pages/client/News';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
@@ -124,6 +125,7 @@ const AppRouter = () => {
         <Route path="about" element={<About />} />
         <Route path="contact" element={<ContactUs />} />
         <Route path="/services/news/:serviceId" element={<ServiceBlog />} />
+        <Route path="/news" element={<News />} />
       </Route>
       <Route
         path="/dashboard"
