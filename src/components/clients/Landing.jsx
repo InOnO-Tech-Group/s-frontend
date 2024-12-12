@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import article from "/article.png";
-import { Fa0 } from "react-icons/fa6";
-import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { clientViewBlogs } from "../../redux/slices/blogSlice";
-import HelloImage from "/school-buliding.png";
-import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
-import BlogCard from "./BlogCard";
+import React, { useEffect, useState } from 'react';
+import article from '/article.png';
+import { Fa0 } from 'react-icons/fa6';
+import { IoLogoWhatsapp, IoLogoTwitter } from 'react-icons/io5';
+import { IoIosArrowForward } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import { clientViewBlogs } from '../../redux/slices/blogSlice';
+import HelloImage from '/school-buliding.png';
+import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
+import BlogCard from './BlogCard';
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -15,16 +15,10 @@ const Landing = () => {
     try {
       const response = await clientViewBlogs();
       if (response.status === 200) {
-        console.log(response.data);
         setPublishedBlogs(response.data);
-      } else {
-        console.log(
-          "error",
-          response.message || "Error in getting announcement"
-        );
       }
     } catch (error) {
-      console.log("error", error.toString() || "Unknown error occurred");
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
   useEffect(() => {
@@ -43,7 +37,7 @@ const Landing = () => {
             Welcome to E-S Gishoma
           </h1>
           <p className="text-center text-xl font-semibold text-sm md:text-4xl mt-2">
-            The <span className="text-primary">#1</span> O-Level and Advanced{" "}
+            The <span className="text-primary">#1</span> O-Level and Advanced{' '}
             <br /> Level school in Rusizi District
           </p>
           <Link to="/about">
@@ -86,7 +80,12 @@ const Landing = () => {
           {publishedBlogs.length > 0 ? (
             publishedBlogs.slice(0, 6).map((item) => {
               return (
-                <BlogCard id={item._id} title={item.title} date={item.createdAt} imageUrl={item.coverImage}/>
+                <BlogCard
+                  id={item._id}
+                  title={item.title}
+                  date={item.createdAt}
+                  imageUrl={item.coverImage}
+                />
               );
             })
           ) : (
@@ -94,7 +93,7 @@ const Landing = () => {
           )}
         </div>
         <div className="text-center mt-6">
-        <ViewAllNewsButton to="/news" text="View All News" />
+          <ViewAllNewsButton to="/news" text="View All News" />
         </div>
       </section>
 

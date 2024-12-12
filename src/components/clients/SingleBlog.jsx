@@ -17,15 +17,9 @@ function SingleBlog() {
       const response = await clientViewBlog(id);
       if (response.status === 200) {
         setSingleBlog(response.data);
-        console.log('asas', response.data);
-      } else {
-        console.log(
-          'error',
-          response.message || 'Error in getting announcement'
-        );
       }
     } catch (error) {
-      console.log('error', error.toString() || 'Unknown error occurred');
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
   useEffect(() => {
@@ -37,16 +31,10 @@ function SingleBlog() {
     try {
       const response = await clientViewBlogs();
       if (response.status === 200) {
-        console.log(response.data);
         setPublishedBlogs(response.data);
-      } else {
-        console.log(
-          'error',
-          response.message || 'Error in getting announcement'
-        );
       }
     } catch (error) {
-      console.log('error', error.toString() || 'Unknown error occurred');
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
   useEffect(() => {

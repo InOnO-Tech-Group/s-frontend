@@ -18,7 +18,6 @@ const Messages = () => {
     setLoading(true);
     try {
       const response = await adminGetMessages();
-      console.log('RS', response);
       if (response.status === 200) {
         setMessages(response.data);
       } else if (response.status === 401) {
