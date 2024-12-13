@@ -34,7 +34,7 @@ const BlogCard = ({ id, title, date, imageUrl }) => {
   };
 
   return (
-    <div className="bg-white shadow-md p-4 hover:shadow-lg">
+    <div className="w-full m-1 p-2 rounded-lg bg-gray-300">
       <Link to={`/news/${id}`}>
         <img
           src={imageUrl || 'https://via.placeholder.com/150'}

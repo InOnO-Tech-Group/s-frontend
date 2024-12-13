@@ -1,14 +1,15 @@
-import React from 'react';
-import aboutUsHeroImage from '/classroom.png';
-import microscope from '/microscope.png';
-import principal from '/principal.png';
-import science from '/science.png';
-import { FiTarget } from 'react-icons/fi';
-import { BsClock, BsEye, BsLayers, BsStar } from 'react-icons/bs';
-import { BiPhone } from 'react-icons/bi';
-import { FaCube } from 'react-icons/fa';
-import { MdEmail, MdLeaderboard } from 'react-icons/md';
-import { TbUsersGroup } from 'react-icons/tb';
+import React from "react";
+import aboutUsHeroImage from "/classroom.png";
+import microscope from "/microscope.png";
+import principal from "/principal.png";
+import science from "/science.png";
+import { FiTarget } from "react-icons/fi";
+import { BsClock, BsEye, BsLayers, BsStar } from "react-icons/bs";
+import { BiPhone } from "react-icons/bi";
+import { FaCube } from "react-icons/fa";
+import { MdEmail, MdLeaderboard } from "react-icons/md";
+import { TbUsersGroup } from "react-icons/tb";
+import { FaStar } from "react-icons/fa6";
 
 const About = () => {
   return (
@@ -31,12 +32,12 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row py-8 px-4 sm:px-8 lg:px-16 max-w-4xl mx-auto">
-        <div className="bg-primary text-white p-6 flex-1 mb-8 lg:mb-0 rounded-lg shadow-lg">
+      <div className="md:w-[50vw] mx-auto flex flex-col md:flex-ro lg:flex-row py-8 px-4">
+        <div className="md:w-1/2 bg-primary p-6 text-white flex-1 mb-8 lg:mb-0 rounded-lg shadow-lg">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-4">
             Who we are?
           </h2>
-          <p className="text-sm sm:text-base">
+          <p className="text-sm sm:text-base text-justify">
             Welcome to ES Gishoma, where quality education meets community
             empowerment.
             <br />
@@ -54,31 +55,31 @@ const About = () => {
         </div>
 
         <div className="flex-1 space-y-6">
-          <div className="bg-white p-4 rounded-lg text-center">
+          <div className="bg-white rounded-lg text-center">
             <div className="text-3xl text-primary-600 mb-4 flex justify-center items-center">
               <FiTarget className="text-primary" />
               <span className="ml-2 font-semibold text-lg">Mission</span>
             </div>
-            <p className="text-sm sm:text-base">
+            <p className="text-sm p-2 sm:text-base text-justify">
               At <strong>ES Gishoma</strong>, our mission is to provide a
               well-rounded, inclusive education that inspires students to
               achieve their highest potential and become responsible, impactful
               members of society. We focus on nurturing academic excellence,
               ethical character, and a commitment to service, empowering
-              students to be leaders and innovators of tomorrow.{' '}
+              students to be leaders and innovators of tomorrow.{" "}
             </p>
           </div>
 
-          <div className="bg-white p-4 rounded-lg text-center">
+          <div className="bg-white p-2 rounded-lg text-center">
             <div className="text-3xl text-primary-600 mb-4 flex justify-center items-center">
               <BsEye className="text-primary" />
               <span className="ml-2 font-semibold text-lg">Vision</span>
             </div>
-            <p className="text-sm sm:text-base">
+            <p className="text-sm sm:text-base text-justify">
               Our vision is to become a leading educational institution in
               Rwanda, known for academic excellence, strong community ties, and
               a nurturing environment where every student is empowered to excel
-              and positively contribute to the world around them.{' '}
+              and positively contribute to the world around them.{" "}
             </p>
           </div>
         </div>
@@ -86,7 +87,7 @@ const About = () => {
       <div className="bg-gray-300 pb-10">
         <div
           className="px-4 py-8  max-w-screen-xl mx-auto"
-          style={{ maxWidth: '80%' }}
+          style={{ maxWidth: "80%" }}
         >
           <div className="mb-12">
             <div className="flex flex-col lg:flex-row items-center">
@@ -97,7 +98,7 @@ const About = () => {
                     Our History
                   </span>
                 </div>
-                <p className="text-gray-600 text-center lg:text-left max-w-lg">
+                <p className="text-gray-600 text-justify max-w-lg">
                   Through decades of service, ES Gishoma has remained steadfast
                   in its commitment to fostering a supportive learning
                   environment. Milestones include the expansion of academic
@@ -117,54 +118,53 @@ const About = () => {
               </div>
             </div>
           </div>
-
-          <div className="mt-12">
-            <div className="text-3xl text-primary-600 mb-6 flex">
-              <BsStar className="text-primary text-4xl" />
-              <span className="ml-3 font-semibold text-xl">Core Values</span>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <h1 className="flex items-center font-bold pb-8">
+              <FaStar className="text-primary" />
+              Core Values
+            </h1>
+            <div className="flex flex-col md:flex-row gap-4">
+        
               <div
-                className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105 hover:bg-primary"
+                className="group relative w-full h-40 bg-cover bg-center rounded-lg shadow-md"
                 style={{ backgroundImage: `url(${microscope})` }}
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <p className="font-semibold text-lg">Science</p>
-                  <p className="text-gray-200 mt-2 text-center px-4 opacity-0 hover:opacity-100 transition-opacity">
-                    We prioritize evidence-based approaches to innovation.
-                  </p>
+                <h2 className="text-center font-bold text-white mt-4">
+                  Science
+                </h2>
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="px-2">We deal with systematic study of natural and social worl with various methodologie to build and organize knowledge. </p>
                 </div>
               </div>
 
               <div
-                className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105"
+                className="group relative w-full h-40 bg-cover bg-center rounded-lg shadow-md"
                 style={{ backgroundImage: `url(${microscope})` }}
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <p className="font-semibold text-lg">Technology</p>
-                  <p className="text-gray-200 mt-2 text-center px-4 opacity-0 hover:opacity-100 transition-opacity">
-                    Harnessing technology to create solutions that matter.
-                  </p>
+                <h2 className="text-center font-bold text-white mt-4">
+                  Technology
+                </h2>
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="px-2">We embrance application scientific knowledge in practical basis specifically in our teaching sector.</p>
                 </div>
               </div>
-
               <div
-                className="flex-1 h-64 rounded-lg relative bg-cover bg-center overflow-hidden shadow-md transform transition-transform hover:scale-105"
+                className="group relative w-full h-40 bg-cover bg-center rounded-lg shadow-md"
                 style={{ backgroundImage: `url(${microscope})` }}
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                  <p className="font-semibold text-lg">Culture</p>
-                  <p className="text-gray-200 mt-2 text-center px-4 opacity-0 hover:opacity-100 transition-opacity">
-                    Embracing diversity and fostering a collaborative spirit.
-                  </p>
+                <h2 className="text-center font-bold text-white mt-4">
+                  Culture
+                </h2>
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="px-2">We ensure collection of beliefs, behaviours, values and practices that define our society.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="py-8 px-6 max-w-5xl mx-auto">
-        <div className="mb-12 mx-auto" style={{ maxWidth: '80%' }}>
+      <div className="w-full py-8 px-4">
+        <div className="w-full md:w-[50vw] mb-12 mx-auto ">
           <div className="text-3xl text-primary-600 mb-4 flex items-center space-x-4">
             <FaCube className="text-primary text-4xl" />
             <span className="font-semibold text-xl">Combinations</span>
@@ -174,7 +174,7 @@ const About = () => {
               <h1 className="font-bold text-2xl text-gray-800">
                 Ordinary Level
               </h1>
-              <p className="text-gray-600 text-justify lg:text-left max-w-lg text-sm p-2 pl-0">
+              <p className="text-gray-600 text-justify max-w-lg text-sm p-2 pl-0">
                 <p>
                   The Ordinary Level at ES Gishoma includes classes from Senior
                   One to Senior Three. During these years, students follow a
@@ -209,7 +209,7 @@ const About = () => {
             <h1 className="font-bold text-xl mb-3 text-gray-800">
               Advanced Level
             </h1>
-            <p className="mb-5 text-gray-600">
+            <p className="mb-5 text-gray-600 text-justify">
               In the Advanced Level program, covering Senior Four to Senior Six,
               ES Gishoma offers a variety of subject combinations tailored to
               meet diverse student interests and career aspirations. These
@@ -223,34 +223,34 @@ const About = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
               {[
                 {
-                  name: 'MEG',
+                  name: "MEG",
                   description:
-                    'We prioritize evidence-based approaches to innovation.',
+                    "We prioritize evidence-based approaches to innovation.",
                 },
                 {
-                  name: 'PCB',
+                  name: "PCB",
                   description:
-                    'Harnessing technology to create solutions that matter.',
+                    "Harnessing technology to create solutions that matter.",
                 },
                 {
-                  name: 'MCB',
+                  name: "MCB",
                   description:
-                    'Embracing diversity and fostering a collaborative spirit.',
+                    "Embracing diversity and fostering a collaborative spirit.",
                 },
                 {
-                  name: 'MEG',
+                  name: "MEG",
                   description:
-                    'We prioritize evidence-based approaches to innovation.',
+                    "We prioritize evidence-based approaches to innovation.",
                 },
                 {
-                  name: 'PCB',
+                  name: "PCB",
                   description:
-                    'Harnessing technology to create solutions that matter.',
+                    "Harnessing technology to create solutions that matter.",
                 },
                 {
-                  name: 'MCB',
+                  name: "MCB",
                   description:
-                    'Embracing diversity and fostering a collaborative spirit.',
+                    "Embracing diversity and fostering a collaborative spirit.",
                 },
               ].map((combination, index) => (
                 <div
@@ -258,7 +258,7 @@ const About = () => {
                   className="relative rounded-lg overflow-hidden shadow-lg transform transition-transform hover:scale-105 bg-cover bg-center"
                   style={{
                     backgroundImage: `url(${science})`,
-                    height: '100px',
+                    height: "100px",
                   }}
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 bg-gradient-to-t from-black opacity-75">
@@ -276,25 +276,25 @@ const About = () => {
         </div>
       </div>
 
-      <div className="pb-12 pt-4 bg-gray-300">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full flex pb-12 pt-4 bg-gray-300">
+        <div className=" w-[80vw] mx-auto px-4 sm:px-6 lg:px-8 bg-gray-300">
           <div className="text-center mb-10">
             <div className="text-4xl text-primary-600 font-bold mb-4 flex items-center justify-center">
               <TbUsersGroup className="text-primary text-5xl mr-3" />
               <span>Our School Leaders</span>
             </div>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 text-justify w-full mx-auto">
               Meet the dedicated individuals leading our institution towards
               academic excellence and community growth.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
                 src={principal}
                 alt="School Leader"
-                className="w-full h-48 object-cover"
+                className="w-full h-68 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-800">
@@ -311,11 +311,11 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
                 src={principal}
                 alt="School Leader"
-                className="w-full h-48 object-cover"
+                className="w-full h-68 object-cover"
               />
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-800">
@@ -332,11 +332,11 @@ const About = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
               <img
                 src={principal}
                 alt="School Leader"
-                className="w-full h-48 object-cover"
+                className="w-full h-68 object-cover rounded-tr-3xl rounded-tl-3xl"
               />
               <div className="p-6">
                 <h3 className="text-lg font-semibold text-gray-800">

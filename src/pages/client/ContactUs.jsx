@@ -98,7 +98,7 @@ const ContactUs = () => {
           <p className="text-gray-600 text-sm">We're here to assist you!</p>
         </header>
 
-        <main className="container mx-auto px-4 lg:max-w-4xl flex flex-col lg:flex-row gap-6">
+        <main className="container mx-auto px-4 lg:max-w-6xl flex flex-col lg:flex-row gap-6">
           <section className="flex-1 bg-white shadow-md p-6 rounded-lg">
             <h2 className="text-lg font-semibold text-gray-700 mb-4">
               Get in Touch
