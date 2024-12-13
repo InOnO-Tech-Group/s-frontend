@@ -1,27 +1,28 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Homepage from './pages/client/Homepage';
-import Login from './pages/auth/Login';
-import ResetPassword from './pages/auth/ResetPassword';
-import ForgotPassword from './pages/auth/ForgotPassword';
-import VerifyOTP from './pages/auth/VerifyOTP';
-import Dashboard from './pages/dashboard/Dashboard';
-import DashboardLayout from './pages/dashboard/DashboardLayout';
-import DashboardNotFound from './pages/dashboard/DashboardNotFound';
-import DashboardAnnouncements from './pages/dashboard/DashboardAnnouncements';
-import { useToast } from './components/toasts/ToastManager';
-import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
-import Services from './pages/dashboard/Services';
-import HomeNotFound from './pages/dashboard/HomeNotFound';
-import Profile from './pages/dashboard/Profile';
-import { userViewProfile } from './redux/slices/userSlice';
-import Messages from './pages/dashboard/Messages';
-import About from './pages/client/About';
-import ContactUs from './pages/client/ContactUs';
-import ServiceBlog from './pages/client/ServiceBlog';
-import News from './pages/client/News';
-import SingleBlog from './components/clients/SingleBlog';
-import ClientsLayout from './pages/client/ClientsLayout';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Homepage from "./pages/client/Homepage";
+import Login from "./pages/auth/Login";
+import ResetPassword from "./pages/auth/ResetPassword";
+import ForgotPassword from "./pages/auth/ForgotPassword";
+import VerifyOTP from "./pages/auth/VerifyOTP";
+import Dashboard from "./pages/dashboard/Dashboard";
+import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import DashboardNotFound from "./pages/dashboard/DashboardNotFound";
+import DashboardAnnouncements from "./pages/dashboard/DashboardAnnouncements";
+import { useToast } from "./components/toasts/ToastManager";
+import NewsAndUpdates from "./pages/dashboard/NewsAndUpdates";
+import Services from "./pages/dashboard/Services";
+import HomeNotFound from "./pages/dashboard/HomeNotFound";
+import Profile from "./pages/dashboard/Profile";
+import { userViewProfile } from "./redux/slices/userSlice";
+import Messages from "./pages/dashboard/Messages";
+import About from "./pages/client/About";
+import ClientsLayout from "./pages/client/ClientsLayout";
+import ContactUs from "./pages/client/ContactUs";
+import ServiceBlog from "./pages/client/ServiceBlog";
+import News from "./pages/client/News";
+import SingleBlog from "./components/clients/singleBlog.jsx";
+import ScrollToTop from "./components/ScrollTop.jsx";
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
@@ -71,9 +72,9 @@ const ProtectedRoute = ({ children }) => {
 
 const AppRouter = () => {
   const [profile, setProfile] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
+    firstname: "",
+    lastname: "",
+    email: "",
   });
 
   const { addToast } = useToast();
@@ -83,17 +84,17 @@ const AppRouter = () => {
       const response = await userViewProfile();
       if (response.status === 200) {
         setProfile({
-          firstname: response.data.firstName || '',
-          lastname: response.data.lastName || '',
-          email: response.data.email || '',
+          firstname: response.data.firstName || "",
+          lastname: response.data.lastName || "",
+          email: response.data.email || "",
         });
       } else if (response.status === 401) {
         localStorage.removeItem('token');
       } else {
-        throw new Error(response.message || 'Error fetching profile');
+        throw new Error(response.message || "Error fetching profile");
       }
     } catch (error) {
-      addToast('error', error.message || 'Unknown error occurred', 3000);
+      addToast("error", error.message || "Unknown error occurred", 3000);
     }
   };
 

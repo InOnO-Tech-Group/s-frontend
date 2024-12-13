@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import article from '/article.png';
-import { Fa0 } from 'react-icons/fa6';
-import { IoLogoWhatsapp, IoLogoTwitter } from 'react-icons/io5';
-import { IoIosArrowForward } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import { clientViewBlogs } from '../../redux/slices/blogSlice';
-import HelloImage from '/school-buliding.png';
-import ViewAllNewsButton from '../re-usable/ViewAllNewsButton';
-import BlogCard from './BlogCard';
-import Avatar from '/man 1.png';
-import Principal from '/profile.png';
+import React, { useEffect, useState } from "react";
+import article from "/article.png";
+import { Fa0 } from "react-icons/fa6";
+import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
+import { IoIosArrowForward } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { clientViewBlogs } from "../../redux/slices/blogSlice";
+import HelloImage from "/school-buliding.png";
+import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
+import BlogCard from "./BlogCard";
+import Avatar from "/man 1.png";
+import Principal from "/profile.png";
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -20,7 +20,7 @@ const Landing = () => {
         setPublishedBlogs(response.data);
       }
     } catch (error) {
-      console.error('error', error.toString() || 'Unknown error occurred');
+      console.error("error", error.toString() || "Unknown error occurred");
     }
   };
   useEffect(() => {
@@ -39,7 +39,7 @@ const Landing = () => {
             Welcome to E-S Gishoma
           </h1>
           <p className="text-center text-xl font-semibold text-sm md:text-4xl mt-2">
-            The <span className="text-primary">#1</span> O-Level and Advanced{' '}
+            The <span className="text-primary">#1</span> O-Level and Advanced{" "}
             <br /> Level school in Rusizi District
           </p>
           <Link to="/about">
@@ -51,7 +51,7 @@ const Landing = () => {
       </div>
 
       <section className="py-10 px-4 md:px-20">
-        <h2 className="text-center text-2xl md:text-3xl md:text-left font-bold mb-6">
+        <h2 className="text-center text-primary text-2xl md:text-3xl md:text-left font-bold mb-6">
           A Message from our Principal
         </h2>
         <div className="flex flex-col md:flex-row items-center">
@@ -74,33 +74,35 @@ const Landing = () => {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-10 px-4 md:px-20">
-        <h2 className="text-center text-2xl md:text-3xl md:text-left font-bold mb-6">
-          Latest News
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {publishedBlogs.length > 0 ? (
-            publishedBlogs.slice(0, 6).map((item) => {
-              return (
-                <BlogCard
-                  id={item._id}
-                  title={item.title}
-                  date={item.createdAt}
-                  imageUrl={item.coverImage}
-                />
-              );
-            })
-          ) : (
-            <div>No recent news Found</div>
-          )}
-        </div>
-        <div className="text-center mt-6">
-          <ViewAllNewsButton to="/news" text="View All News" />
-        </div>
-      </section>
+      {publishedBlogs.length>0 && (
+        <section className="bg-gray-100 py-10 px-4 md:px-20">
+          <h2 className="text-center text-xl md:text-2xl md:text-left font-bold mb-6">
+            Latest News
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {publishedBlogs.length > 0 ? (
+              publishedBlogs.slice(0, 6).map((item) => {
+                return (
+                  <BlogCard
+                    id={item._id}
+                    title={item.title}
+                    date={item.createdAt}
+                    imageUrl={item.coverImage}
+                  />
+                );
+              })
+            ) : (
+              <div>No recent news Found</div>
+            )}
+          </div>
+          <div className="text-center mt-6">
+            <ViewAllNewsButton to="/news" text="View All News" />
+          </div>
+        </section>
+      )}
 
       <section className="py-10 px-4 md:px-20">
-        <h2 className="text-center text-2xl md:text-left md:text-3xl font-bold mb-6">
+        <h2 className="text-center text-primary text-2xl md:text-left  md:text-3xl font-bold mb-6">
           Parents Testimonials
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
@@ -119,7 +121,7 @@ const Landing = () => {
                   <span key={i}>⭐</span>
                 ))}
               </div>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600">
                 "Amazing school! The teachers and staff are excellent."
               </p>
             </div>

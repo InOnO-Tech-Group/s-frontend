@@ -113,7 +113,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Enter service title"
+                placeholder="Enter blog title"
                 className="w-full px-3 py-2 border rounded-md"
                 aria-invalid={errors.name ? 'true' : 'false'}
               />
@@ -207,7 +207,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                 id="description"
                 value={description}
                 onChange={setDescription}
-                placeholder="Enter service description"
+                placeholder="Enter blog description"
               />
               {errors.description && (
                 <p className="text-red-500 text-sm mt-1" role="alert">

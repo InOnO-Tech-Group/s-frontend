@@ -7,6 +7,7 @@ import {
   clientViewBlogs,
 } from '../../redux/slices/blogSlice';
 import { useParams } from 'react-router-dom';
+import ContentNotFound from '../../components/clients/ContentNotFound';
 
 const News = () => {
   const { addToast } = useToast();
@@ -64,15 +65,15 @@ const News = () => {
   return (
     <>
       <SEO title="Latest Blogs - ES Gishoma" />
-      <div className="bg-gray-300 pt-4 pb-6">
-        <div className="max-w-screen-lg mx-auto px-4 lg:w-[80%]">
-          <h1 className="text-xl sm:text-2xl font-bold text-center my-6">
-            Latest News & Updates
+      <div className="bg-gray-100 pt-4 pb-6 min-h-[70vh]">
+        <div className="mx-auto px-4 py-10 md:px-20 md:w-[100vw]">
+          <h1 className="text-xl sm:text-2xl font-bold text-primary my-6">
+            News & Updates
           </h1>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {loading ? (
-              Array.from({ length: 8 }).map((_, index) => (
+              Array.from({ length: 6 }).map((_, index) => (
                 <div
                   key={index}
                   className="bg-white animate-pulse rounded-lg shadow-md p-4"
@@ -93,12 +94,7 @@ const News = () => {
                 />
               ))
             ) : (
-              <div className="col-span-2 sm:col-span-3 lg:col-span-4 text-center text-gray-700 bg-white p-6 rounded shadow-lg">
-                <p className="text-lg font-semibold">No Blogs Found</p>
-                <p className="text-sm text-gray-500">
-                  Stay tuned for updates. New content will be available soon!
-                </p>
-              </div>
+              <ContentNotFound/>
             )}
           </div>
 
