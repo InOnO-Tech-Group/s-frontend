@@ -21,9 +21,9 @@ import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
 import ServiceBlog from './pages/client/ServiceBlog';
 import News from './pages/client/News';
+import SingleBlog from './components/clients/singleBlog.jsx';
 import Gallery from './pages/client/Gallery.jsx';
 import DashboardGallery from './pages/dashboard/DashboardGallery.jsx';
-import SingleBlog from "./components/clients/SingleBlog.jsx"
 
 const validateToken = () => {
   const token = localStorage.getItem('token');

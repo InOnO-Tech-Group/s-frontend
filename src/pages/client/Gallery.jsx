@@ -25,6 +25,10 @@ const Gallery = () => {
       const response = await viewGalleryImages();
       if (response.status === 200) {
         setImages(response.data.data);
+      } else if (response.data.status === 401) {
+        addToast('error', 'You are not authorized!', 3000);
+        localStorage.removeItem('token');
+        window.location.href = '/login';
       } else {
         setError(response.data.message);
         addToast(
