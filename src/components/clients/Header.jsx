@@ -5,11 +5,14 @@ import { clientsAnnouncements } from "../../redux/slices/announcementsSlice";
 import MenuDropDown from "./MenuDropDown";
 import { BiStar } from "react-icons/bi";
 import Marquee from "react-fast-marquee";
+import { FaChevronRight } from "react-icons/fa6";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [publishedAnnoncement, setPublishedAnnouncement] = useState([]);
   const [isServicesModalVisible, setIsServicesModalVisible] = useState(false);
+  const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(false);
 
   const route = useLocation().pathname;
 
@@ -35,7 +38,9 @@ const Header = () => {
   const toggleServicesModal = () => {
     setIsServicesModalVisible((prev) => !prev);
   };
-
+  const toggleAnnouncementModal = () => {
+    setIsAnnouncementModalOpen((prev) => !prev);
+  };
   return (
     <div className="block bg-white py-1 sticky top-0 z-[1000]">
       <div className="bg-white p-2 flex justify-between items-center">
@@ -212,8 +217,43 @@ const Header = () => {
         </div>
       )}
 
+{isAnnouncementModalOpen && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 animate-fade-in">
+    <div
+      className="bg-white p-8 rounded-lg shadow-lg w-4/5 max-w-4xl relative animate-slide-down"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        onClick={toggleAnnouncementModal}
+        className="absolute top-4 right-4 text-red-500  transition-transform transform hover:scale-150"
+      >
+       <AiOutlineClose className="w-6 h-6 border p-1 " />
+      </button>
+      <h2 className="text-2xl font-bold text-center mb-6">Announcements</h2>
+
+      <div className="space-y-6 max-h-[70vh] overflow-y-auto">
+        {publishedAnnoncement.map((data, index) => (
+          <div
+            key={index}
+            className="p-4 bg-gray-100 rounded-lg "
+          >
+            <p className="text-sm text-gray-500 mb-2">
+              {new Date(data.createdAt).toLocaleDateString()}
+            </p>
+            <div
+              className="text-lg font-medium text-gray-800"
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+
       {publishedAnnoncement.length > 0 && (
-        <div className="bg-primary w-full text-center text-white font-semibold p-3 overflow-hidden">
+        <div className="bg-primary w-full text-center text-white font-semibold p-3 overflow-hidden flex">
           <Marquee>
             <div className="flex whitespace-nowrap transition-transform duration-1000 ease-linear">
               {publishedAnnoncement.map((data, index) => (
@@ -226,6 +266,17 @@ const Header = () => {
               ))}
             </div>
           </Marquee>
+          <button
+            className="w-auto px-3 py-2 text-lg flex items-center bg-white rounded-sm text-black shadow-lg "
+            onClick={toggleAnnouncementModal}
+            title="Click to view all announcement together ."
+          >
+            All
+            <FaChevronRight
+              className="text-black"
+              
+            />
+          </button>
         </div>
       )}
     </div>
