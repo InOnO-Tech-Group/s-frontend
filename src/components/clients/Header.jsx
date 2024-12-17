@@ -227,7 +227,7 @@ const Header = () => {
         onClick={toggleAnnouncementModal}
         className="absolute top-4 right-4 text-red-500  transition-transform transform hover:scale-150"
       >
-       <AiOutlineClose className="w-6 h-6 border p-1" />
+       <AiOutlineClose className="w-6 h-6 border p-1 " />
       </button>
       <h2 className="text-2xl font-bold text-center mb-6">Announcements</h2>
 
@@ -267,13 +267,14 @@ const Header = () => {
             </div>
           </Marquee>
           <button
-            className="w-auto px-3 py-2 text-lg flex items-center bg-white rounded-sm text-primary shadow-lg "
+            className="w-auto px-3 py-2 text-lg flex items-center bg-white rounded-sm text-black shadow-lg "
             onClick={toggleAnnouncementModal}
+            title="Click to view all announcement together ."
           >
             All
             <FaChevronRight
               className="text-black"
-              title="Click to view all announcement together ."
+              
             />
           </button>
         </div>
