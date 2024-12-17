@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import SEO from "../../components/re-usable/SEO";
-import BlogCard from "../../components/clients/BlogCard";
-import { useToast } from "../../components/toasts/ToastManager";
-import { clientViewBlogByService } from "../../redux/slices/blogSlice";
-import { useParams } from "react-router-dom";
-import ContentNotFound from "../../components/clients/ContentNotFound";
+import React, { useEffect, useState } from 'react';
+import SEO from '../../components/re-usable/SEO';
+import BlogCard from '../../components/clients/BlogCard';
+import { useToast } from '../../components/toasts/ToastManager';
+import { clientViewBlogByService } from '../../redux/slices/blogSlice';
+import { useParams } from 'react-router-dom';
+import ContentNotFound from '../../components/clients/ContentNotFound';
 
 const ServiceBlog = () => {
   const { addToast } = useToast();
@@ -18,19 +18,19 @@ const ServiceBlog = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      setLoading(true); 
+      setLoading(true);
       try {
         const response = await clientViewBlogByService(serviceId);
         if (response.status === 200) {
           setData(response.blogs);
           setService(response.service);
         } else {
-          addToast("error", response.message, 3000);
+          addToast('error', response.message, 3000);
         }
       } catch (error) {
-        addToast("error", error.message || "Unknown error occurred", 3000);
+        addToast('error', error.message || 'Unknown error occurred', 3000);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -52,8 +52,8 @@ const ServiceBlog = () => {
         <div className="px-4 py-10 md:px-20">
           <h1 className="text-xl sm:text-2xl font-bold capitalize text-primary mb-6">
             {service
-              ? `News & Updates in ${service.name} Services`
-              : "Service Updates"} 
+              ? `Updates in ${service.name} Services`
+              : 'Service Updates'}
           </h1>
 
           <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -79,7 +79,7 @@ const ServiceBlog = () => {
                 />
               ))
             ) : (
-              <ContentNotFound/>
+              <ContentNotFound />
             )}
           </div>
 
@@ -90,8 +90,8 @@ const ServiceBlog = () => {
                 disabled={currentPage === 1}
                 className={`px-4 py-2 border rounded ${
                   currentPage === 1
-                    ? "bg-gray-200 text-black cursor-not-allowed"
-                    : "bg-primary text-white hover:bg-gray-500"
+                    ? 'bg-gray-200 text-black cursor-not-allowed'
+                    : 'bg-primary text-white hover:bg-gray-500'
                 }`}
               >
                 Previous
@@ -106,8 +106,8 @@ const ServiceBlog = () => {
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 border rounded ${
                   currentPage === totalPages
-                    ? "bg-gray-200 cursor-not-allowed"
-                    : "bg-primary text-white hover:bg-gray-500"
+                    ? 'bg-gray-200 cursor-not-allowed'
+                    : 'bg-primary text-white hover:bg-gray-500'
                 }`}
               >
                 Next

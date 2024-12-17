@@ -17,6 +17,7 @@ import {
 } from '../../redux/slices/servicesSlice';
 import TableSpinner from '../../components/dashboard/TableSpinner';
 import UpdateServiceModal from '../../components/dashboard/UpdateServiceModal';
+import TableSkeleton from '../../components/dashboard/TableSkeleton';
 
 const Services = () => {
   const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);
@@ -129,11 +130,7 @@ const Services = () => {
             </thead>
             <tbody>
               {isLoading ? (
-                <tr>
-                  <td colSpan={columns.length}>
-                    <TableSpinner size="32px" color="#4A90E2" />
-                  </td>
-                </tr>
+                <TableSkeleton rows={pageSize} columns={columns.length} />
               ) : paginatedData.length > 0 ? (
                 paginatedData.map((row, rowIndex) => (
                   <tr

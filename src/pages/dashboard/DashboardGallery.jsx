@@ -1,32 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Titles from '../../components/dashboard/Titles';
 import SEO from '../../components/re-usable/SEO';
-import NewBlogModal from '../../components/dashboard/NewBlogModal';
-import {
-  BiEdit,
-  BiPlus,
-  BiTrashAlt,
-  BiCheckCircle,
-  BiXCircle,
-} from 'react-icons/bi';
-import { adminViewServices } from '../../redux/slices/servicesSlice';
+import { BiPlus, BiTrashAlt } from 'react-icons/bi';
 import { useToast } from '../../components/toasts/ToastManager';
-import {
-  adminViewBlogs,
-  adminDeleteBlog,
-  adminUpdateBlog,
-} from '../../redux/slices/blogSlice';
 import { BsArrowLeftSquare, BsArrowRightSquare } from 'react-icons/bs';
-import PublishToggle from '../../components/dashboard/PublishToggle';
-import UpdateBlogModal from '../../components/dashboard/UpdateBlogModal';
 import TableSkeleton from '../../components/dashboard/TableSkeleton';
+import NewImageModal from '../../components/dashboard/NewImageModal';
+import {
+  deleteGalleryImage,
+  viewGalleryImages,
+} from '../../redux/slices/gallerySlice';
 
-const NewsAndUpdates = () => {
-  const [isNewArticleModalOpen, setIsNewArticleModalOpen] = useState(false);
-  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [services, setServices] = useState([]);
+const DashboardGallery = () => {
+  const [isNewImageModalOpen, setIsNewImageModalOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [dataToUpdate, setDataToUpdate] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
@@ -39,45 +26,24 @@ const NewsAndUpdates = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await getServices();
-      await getBlogs();
+      await getGalleryImages();
     };
     fetchData();
   }, []);
 
-  const getServices = async () => {
-    try {
-      const response = await adminViewServices();
-      if (response.status === 200) {
-        setServices(response.data);
-      } else if (response.status === 401) {
-        addToast('error', 'You are not authorized!', 3000);
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-      } else {
-        addToast(
-          'error',
-          response.message || 'Error getting the services',
-          3000
-        );
-      }
-    } catch (error) {
-      addToast('error', 'Error getting the services', 3000);
-    }
-  };
-
-  const getBlogs = async () => {
+  const getGalleryImages = async () => {
     setIsLoading(true);
     try {
-      const response = await adminViewBlogs();
+      const response = await viewGalleryImages();
+      console.log(response);
       if (response.status === 200) {
-        setData(response.blogs);
+        setData(response.data.data);
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);
         localStorage.removeItem('token');
         window.location.href = '/login';
       } else {
-        addToast('error', response.message || 'Error getting the blogs', 3000);
+        addToast('error', response.message || 'Error getting the Gallery images', 3000);
       }
     } catch (error) {
       addToast('error', error.toString() || 'Unknown error occurred', 3000);
@@ -86,51 +52,23 @@ const NewsAndUpdates = () => {
     }
   };
 
-  const handleDeleteClick = async (blogId) => {
+  const handleDeleteClick = async (id) => {
     try {
-      const response = await adminDeleteBlog(blogId);
+      const response = await deleteGalleryImage(id);
       if (response.status === 200) {
-        addToast('success', 'Blog deleted successfully', 3000);
-        await getBlogs();
+        addToast('success', 'Image deleted successfully', 3000);
+        await getGalleryImages();
         setConfirmationModal({ isOpen: false, id: null });
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized!', 3000);
         localStorage.removeItem('token');
         window.location.href = '/login';
       } else {
-        addToast('error', response.message || 'Error deleting blog', 3000);
+        addToast('error', response.message || 'Error deleting Image', 3000);
       }
     } catch (error) {
-      addToast('error', 'Error deleting blog', 3000);
+      addToast('error', 'Error deleting Image', 3000);
     }
-  };
-
-  const handleToggleClick = async (blogId, currentStatus) => {
-    try {
-      const statusToSend =
-        currentStatus === 'published' ? 'unpublished' : 'published';
-      const response = await adminUpdateBlog(blogId, { status: statusToSend });
-      if (response.status === 200) {
-        addToast('success', 'Blog status updated successfully', 3000);
-        await getBlogs();
-      } else if (response.status === 401) {
-        addToast('error', 'You are not authorized!', 3000);
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-      } else {
-        addToast(
-          'error',
-          response.message || 'Error updating blog status',
-          3000
-        );
-      }
-    } catch (error) {
-      addToast('error', 'Error updating blog status', 3000);
-    }
-  };
-
-  const isBlogPublished = (status) => {
-    return status === 'published';
   };
 
   const totalPages = Math.ceil(data.length / pageSize);
@@ -139,22 +77,14 @@ const NewsAndUpdates = () => {
     currentPage * pageSize
   );
 
-  const columns = [
-    '#',
-    'Image',
-    'Title',
-    'Description',
-    'Service',
-    'Status',
-    'Actions',
-  ];
+  const columns = ['#', 'Image', 'Caption', 'Actions'];
 
   return (
     <>
-      <SEO title="News & Updates - ES Gishoma" />
+      <SEO title="Gallery - ES Gishoma" />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <Titles title={'News update'} />
+          <Titles title={'Gallery'} />
           <div className="flex items-center gap-2">
             <label htmlFor="rowsPerPage" className="text-sm">
               Rows per page:
@@ -177,11 +107,11 @@ const NewsAndUpdates = () => {
             </select>
           </div>
           <button
-            onClick={() => setIsNewArticleModalOpen(true)}
+            onClick={() => setIsNewImageModalOpen(true)}
             className="flex items-center justify-center bg-primary text-white rounded px-4 py-2 font-semibold hover:opacity-80 w-full sm:w-auto"
           >
             <BiPlus className="font-bold mr-2" />
-            New Article
+            New Image
           </button>
         </div>
         <div
@@ -212,52 +142,14 @@ const NewsAndUpdates = () => {
                     </td>
                     <td className="px-4 py-2">
                       <img
-                        src={row.coverImage}
-                        alt={row.title}
+                        src={row.imageURL}
+                        alt={row.caption}
                         className="w-12 h-12 object-cover rounded"
                       />
                     </td>
-                    <td className="px-4 py-2">{row.title}</td>
-                    <td
-                      className="px-4 py-2"
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          row.description.length > 30
-                            ? row.description.trim().slice(0, 30) + '...'
-                            : row.description,
-                      }}
-                    />
-                    <td className="px-4 py-2">
-                      {row?.service?.name || 'No Service'}
-                    </td>
-                    <td className="px-4 py-2">{row.status}</td>
-                    <td className="px-4 py-2 flex items-center">
-                      <button
-                        onClick={() => {
-                          setIsUpdateModalOpen(true);
-                          setDataToUpdate({
-                            _id: row._id,
-                            title: row.title,
-                            coverImage: row.coverImage,
-                            description: row.description,
-                            status: row.status,
-                            service: row.service?._id,
-                          });
-                        }}
-                        className="px-3 py-1.5 text-blue-500 rounded-md hover:bg-blue-100 flex items-center gap-2"
-                      >
-                        <BiEdit />
-                      </button>
 
-                      <PublishToggle
-                        isToggled={isBlogPublished(row.status)}
-                        onClick={() => handleToggleClick(row._id, row.status)}
-                        icons={{
-                          off: <BiCheckCircle />,
-                          on: <BiXCircle />,
-                        }}
-                        className="ml-2"
-                      />
+                    <td className="px-4 py-2">{row.caption}</td>
+                    <td className="px-4 py-2 flex items-center">
                       <button
                         onClick={() =>
                           setConfirmationModal({ isOpen: true, id: row._id })
@@ -306,31 +198,18 @@ const NewsAndUpdates = () => {
           </button>
         </div>
       </div>
-      <NewBlogModal
-        isOpen={isNewArticleModalOpen}
+      <NewImageModal
+        isOpen={isNewImageModalOpen}
         onClose={() => {
-          setIsNewArticleModalOpen(false);
-          getBlogs();
+          setIsNewImageModalOpen(false);
+          getGalleryImages();
         }}
-        services={services}
-      />
-      <UpdateBlogModal
-        isOpen={isUpdateModalOpen}
-        onClose={() => {
-          setIsUpdateModalOpen(false);
-          getBlogs();
-        }}
-        services={services}
-        blog={dataToUpdate}
       />
       {confirmationModal.isOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-sm mx-auto">
             <h2 className="text-lg font-semibold">Confirm Deletion</h2>
-            <p className="mt-2">
-              Are you sure you want to delete this blog? This action is
-              irreversible.
-            </p>
+            <p className="mt-2">This action is irreversible.</p>
             <div className="flex justify-end mt-4 gap-2">
               <button
                 onClick={() =>
@@ -354,4 +233,4 @@ const NewsAndUpdates = () => {
   );
 };
 
-export default NewsAndUpdates;
+export default DashboardGallery;

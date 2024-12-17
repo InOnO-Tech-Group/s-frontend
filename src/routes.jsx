@@ -1,33 +1,34 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import Homepage from "./pages/client/Homepage";
-import Login from "./pages/auth/Login";
-import ResetPassword from "./pages/auth/ResetPassword";
-import ForgotPassword from "./pages/auth/ForgotPassword";
-import VerifyOTP from "./pages/auth/VerifyOTP";
-import Dashboard from "./pages/dashboard/Dashboard";
-import DashboardLayout from "./pages/dashboard/DashboardLayout";
-import DashboardNotFound from "./pages/dashboard/DashboardNotFound";
-import DashboardAnnouncements from "./pages/dashboard/DashboardAnnouncements";
-import { useToast } from "./components/toasts/ToastManager";
-import NewsAndUpdates from "./pages/dashboard/NewsAndUpdates";
-import Services from "./pages/dashboard/Services";
-import HomeNotFound from "./pages/dashboard/HomeNotFound";
-import Profile from "./pages/dashboard/Profile";
-import { userViewProfile } from "./redux/slices/userSlice";
-import Messages from "./pages/dashboard/Messages";
-import About from "./pages/client/About";
-import ClientsLayout from "./pages/client/ClientsLayout";
-import ContactUs from "./pages/client/ContactUs";
-import ServiceBlog from "./pages/client/ServiceBlog";
-import News from "./pages/client/News";
-import SingleBlog from "./components/clients/singleBlog.jsx";
-import ScrollToTop from "./components/ScrollTop.jsx";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Homepage from './pages/client/Homepage';
+import Login from './pages/auth/Login';
+import ResetPassword from './pages/auth/ResetPassword';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import VerifyOTP from './pages/auth/VerifyOTP';
+import Dashboard from './pages/dashboard/Dashboard';
+import DashboardLayout from './pages/dashboard/DashboardLayout';
+import DashboardNotFound from './pages/dashboard/DashboardNotFound';
+import DashboardAnnouncements from './pages/dashboard/DashboardAnnouncements';
+import { useToast } from './components/toasts/ToastManager';
+import NewsAndUpdates from './pages/dashboard/NewsAndUpdates';
+import Services from './pages/dashboard/Services';
+import HomeNotFound from './pages/dashboard/HomeNotFound';
+import Profile from './pages/dashboard/Profile';
+import { userViewProfile } from './redux/slices/userSlice';
+import Messages from './pages/dashboard/Messages';
+import About from './pages/client/About';
+import ClientsLayout from './pages/client/ClientsLayout';
+import ContactUs from './pages/client/ContactUs';
+import ServiceBlog from './pages/client/ServiceBlog';
+import News from './pages/client/News';
+import SingleBlog from './components/clients/singleBlog.jsx';
+import Gallery from './pages/client/Gallery.jsx';
+import DashboardGallery from './pages/dashboard/DashboardGallery.jsx';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
   const tokenTimestamp = localStorage.getItem('tokenTimestamp');
-  const sessionDuration = 5 * 60 * 60 * 1000;
+  const sessionDuration = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
 
   if (!token || !tokenTimestamp) {
     return { isValid: false };
@@ -35,6 +36,23 @@ const validateToken = () => {
 
   const currentTime = new Date().getTime();
   const elapsedTime = currentTime - parseInt(tokenTimestamp, 10);
+
+  // Calculate the token creation time
+  const tokenCreationTime = new Date(parseInt(tokenTimestamp, 10));
+  const tokenCreationHours = tokenCreationTime.getHours();
+  const tokenCreationMinutes = tokenCreationTime.getMinutes();
+  const tokenCreationSeconds = tokenCreationTime.getSeconds();
+
+  console.log(
+    `Token was created at ${tokenCreationHours}:${tokenCreationMinutes}:${tokenCreationSeconds}`
+  );
+
+  console.log(
+    `Elapsed time since token creation: ${(
+      elapsedTime /
+      (1000 * 60 * 60)
+    ).toFixed(2)} hours`
+  );
 
   if (elapsedTime > sessionDuration) {
     localStorage.removeItem('token');
@@ -72,9 +90,9 @@ const ProtectedRoute = ({ children }) => {
 
 const AppRouter = () => {
   const [profile, setProfile] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
+    firstname: '',
+    lastname: '',
+    email: '',
   });
 
   const { addToast } = useToast();
@@ -84,17 +102,17 @@ const AppRouter = () => {
       const response = await userViewProfile();
       if (response.status === 200) {
         setProfile({
-          firstname: response.data.firstName || "",
-          lastname: response.data.lastName || "",
-          email: response.data.email || "",
+          firstname: response.data.firstName || '',
+          lastname: response.data.lastName || '',
+          email: response.data.email || '',
         });
       } else if (response.status === 401) {
         localStorage.removeItem('token');
       } else {
-        throw new Error(response.message || "Error fetching profile");
+        throw new Error(response.message || 'Error fetching profile');
       }
     } catch (error) {
-      addToast("error", error.message || "Unknown error occurred", 3000);
+      addToast('error', error.message || 'Unknown error occurred', 3000);
     }
   };
 
@@ -122,6 +140,7 @@ const AppRouter = () => {
         <Route path="contact" element={<ContactUs />} />
         <Route path="services/news/:serviceId" element={<ServiceBlog />} />
         <Route path="news" element={<News />} />
+        <Route path="gallery" element={<Gallery />} />
       </Route>
       <Route
         path="/dashboard"
@@ -136,6 +155,7 @@ const AppRouter = () => {
         <Route path="services" element={<Services />} />
         <Route path="announcements" element={<DashboardAnnouncements />} />
         <Route path="messages" element={<Messages />} />
+        <Route path="gallery" element={<DashboardGallery />} />
         <Route
           path="profile"
           element={

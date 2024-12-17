@@ -4,6 +4,7 @@ import { FiSettings, FiMessageSquare, FiHome, FiFolder } from 'react-icons/fi';
 import { FaSignOutAlt, FaBullhorn, FaHandHolding } from 'react-icons/fa';
 import { RxAvatar } from 'react-icons/rx';
 import { IoNewspaperOutline, IoSettingsOutline } from 'react-icons/io5';
+import { GrGallery } from 'react-icons/gr';
 
 const Sidebar = ({ isCollapsed, onLogout, profile }) => {
   return (
@@ -96,6 +97,19 @@ const Sidebar = ({ isCollapsed, onLogout, profile }) => {
           >
             <FiMessageSquare className="text-xl" />
             {!isCollapsed && <span className="text-base">Messages</span>}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="gallery"
+            className={({ isActive }) =>
+              isActive
+                ? 'flex items-center gap-3 bg-black text-white border-l-4 border-primary transition-colors p-3 rounded'
+                : 'flex items-center gap-3 text-grey hover:text-blue-500 transition-colors'
+            }
+          >
+            <GrGallery className="text-xl" />
+            {!isCollapsed && <span className="text-base">Gallery</span>}
           </NavLink>
         </li>
       </ul>

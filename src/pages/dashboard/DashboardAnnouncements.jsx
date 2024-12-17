@@ -19,6 +19,7 @@ import {
 import { useToast } from '../../components/toasts/ToastManager';
 import UpdateAnnouncementForm from '../../components/dashboard/UpdateAnnouncementForm';
 import PublishToggle from '../../components/dashboard/PublishToggle';
+import TableSkeleton from '../../components/dashboard/TableSkeleton';
 
 const DashboardAnnouncements = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,11 +178,7 @@ const DashboardAnnouncements = () => {
           </thead>
           <tbody>
             {isLoading ? (
-              <tr>
-                <td colSpan={columns.length}>
-                  <TableSpinner size="32px" color="#4A90E2" />
-                </td>
-              </tr>
+              <TableSkeleton rows={pageSize} columns={columns.length} />
             ) : paginatedData.length > 0 ? (
               paginatedData.map((row, rowIndex) => (
                 <tr
