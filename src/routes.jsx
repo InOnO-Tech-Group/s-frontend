@@ -21,14 +21,14 @@ import ClientsLayout from './pages/client/ClientsLayout';
 import ContactUs from './pages/client/ContactUs';
 import ServiceBlog from './pages/client/ServiceBlog';
 import News from './pages/client/News';
-import SingleBlog from './components/clients/singleBlog.jsx';
 import Gallery from './pages/client/Gallery.jsx';
 import DashboardGallery from './pages/dashboard/DashboardGallery.jsx';
+import SingleBlog from './components/clients/singleBlog.jsx';
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
   const tokenTimestamp = localStorage.getItem('tokenTimestamp');
-  const sessionDuration = 5 * 60 * 60 * 1000; // 5 hours in milliseconds
+  const sessionDuration = 5 * 60 * 60 * 1000; 
 
   if (!token || !tokenTimestamp) {
     return { isValid: false };
@@ -37,7 +37,6 @@ const validateToken = () => {
   const currentTime = new Date().getTime();
   const elapsedTime = currentTime - parseInt(tokenTimestamp, 10);
 
-  // Calculate the token creation time
   const tokenCreationTime = new Date(parseInt(tokenTimestamp, 10));
   const tokenCreationHours = tokenCreationTime.getHours();
   const tokenCreationMinutes = tokenCreationTime.getMinutes();
