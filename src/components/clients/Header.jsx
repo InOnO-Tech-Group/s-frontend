@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import logo from "/public/es gishoma logo.svg";
-import { clientsAnnouncements } from "../../redux/slices/announcementsSlice";
-import MenuDropDown from "./MenuDropDown";
-import { BiStar } from "react-icons/bi";
-import Marquee from "react-fast-marquee";
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '/public/es gishoma logo.svg';
+import { clientsAnnouncements } from '../../redux/slices/announcementsSlice';
+import MenuDropDown from './MenuDropDown';
+import { BiStar } from 'react-icons/bi';
+import Marquee from 'react-fast-marquee';
 import { FaChevronRight } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
 
@@ -27,7 +27,7 @@ const Header = () => {
         setPublishedAnnouncement(response.data);
       }
     } catch (error) {
-      console.error("error", error.toString() || "Unknown error occurred");
+      console.error('error', error.toString() || 'Unknown error occurred');
     }
   };
 
@@ -54,9 +54,9 @@ const Header = () => {
           <Link
             to="/"
             className={
-              route === "/" && !isServicesModalVisible
-                ? "border-b-2 border-primary text-primary"
-                : ""
+              route === '/' && !isServicesModalVisible
+                ? 'border-b-2 border-primary text-primary'
+                : ''
             }
           >
             Home
@@ -64,12 +64,22 @@ const Header = () => {
           <Link
             to="/about"
             className={
-              route === "/about" && !isServicesModalVisible
-                ? "border-b-2 border-primary text-primary"
-                : ""
+              route === '/about' && !isServicesModalVisible
+                ? 'border-b-2 border-primary text-primary'
+                : ''
             }
           >
             About us
+          </Link>
+          <Link
+            to="/gallery"
+            className={
+              route === '/gallery' && !isServicesModalVisible
+                ? 'border-b-2 border-primary text-primary'
+                : ''
+            }
+          >
+            Gallery
           </Link>
           <div
             className="relative"
@@ -78,9 +88,9 @@ const Header = () => {
           >
             <button
               className={
-                route.includes("/news") && !isServicesModalVisible
-                  ? "border-b-2 border-primary text-primary"
-                  : ""
+                route.includes('/news') && !isServicesModalVisible
+                  ? 'border-b-2 border-primary text-primary'
+                  : ''
               }
             >
               Services
@@ -88,7 +98,7 @@ const Header = () => {
             {isServicesModalVisible && (
               <div
                 className="absolute top-full left-0 bg-white shadow-lg rounded-lg p-4 z-50"
-                style={{ width: "200px", maxHeight: "300px", overflow: "auto" }}
+                style={{ width: '200px', maxHeight: '300px', overflow: 'auto' }}
               >
                 <MenuDropDown />
               </div>
@@ -157,9 +167,9 @@ const Header = () => {
                 <Link
                   to="/"
                   className={
-                    route === "/" && !isServicesModalVisible
-                      ? "border-b-2 border-primary text-primary"
-                      : ""
+                    route === '/' && !isServicesModalVisible
+                      ? 'border-b-2 border-primary text-primary'
+                      : ''
                   }
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -170,13 +180,26 @@ const Header = () => {
                 <Link
                   to="/about"
                   className={
-                    route === "/about" && !isServicesModalVisible
-                      ? "border-b-2 border-primary text-primary"
-                      : ""
+                    route === '/about' && !isServicesModalVisible
+                      ? 'border-b-2 border-primary text-primary'
+                      : ''
                   }
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   About us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/gallery"
+                  className={
+                    route === '/gallery' && !isServicesModalVisible
+                      ? 'border-b-2 border-primary text-primary'
+                      : ''
+                  }
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Gallery
                 </Link>
               </li>
 
@@ -186,8 +209,8 @@ const Header = () => {
                     onClick={toggleServicesModal}
                     className={`w-50 ${
                       isServicesModalVisible
-                        ? "border-b-2 border-primary text-primary "
-                        : ""
+                        ? 'border-b-2 border-primary text-primary '
+                        : ''
                     }`}
                   >
                     Services
