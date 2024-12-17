@@ -23,7 +23,7 @@ import ServiceBlog from './pages/client/ServiceBlog';
 import News from './pages/client/News';
 import Gallery from './pages/client/Gallery.jsx';
 import DashboardGallery from './pages/dashboard/DashboardGallery.jsx';
-import SingleBlog from './components/clients/singleBlog.jsx';
+import SingleBlog from "./components/clients/SingleBlog.jsx"
 
 const validateToken = () => {
   const token = localStorage.getItem('token');
