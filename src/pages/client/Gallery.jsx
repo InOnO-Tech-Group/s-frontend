@@ -23,15 +23,11 @@ const Gallery = () => {
     setError(null);
     try {
       const response = await viewGalleryImages();
+      console.log(response);
       if (response.status === 200) {
         setImages(response.data.data);
       } else {
-        setError(response.data.message);
-        addToast(
-          'error',
-          response.data.message || 'Error fetching images',
-          3000
-        );
+        setError(response.message); 
       }
     } catch (err) {
       setError(err.message || 'Unknown error occurred');
@@ -78,7 +74,7 @@ const Gallery = () => {
         </div>
       ) : error ? (
         <div className="text-center text-red-500 text-lg">
-          <p>{'Unknown error occured!'}</p>
+          <p>{error}</p>
           <button
             onClick={handleRetry}
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
