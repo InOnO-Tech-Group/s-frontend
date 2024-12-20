@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import article from "/article.png";
-import { IoLogoWhatsapp, IoLogoTwitter } from "react-icons/io5";
-import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
 import HelloImage from "/school-buliding.png";
@@ -14,7 +11,6 @@ import Principal from "/profile.png";
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
 
-  // Animation Variants
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 60 },
     visible: { 
