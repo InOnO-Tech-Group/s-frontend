@@ -1,41 +1,45 @@
-import React from "react";
-import { motion } from "framer-motion";
-import aboutUsHeroImage from "/classroom.png";
-import microscope from "/microscope.png";
-import principal from "/principal.png";
-import science from "/science.png";
-import { FiTarget } from "react-icons/fi";
-import { BsClock, BsEye } from "react-icons/bs";
-import { BiPhone } from "react-icons/bi";
-import { FaCube } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { TbUsersGroup } from "react-icons/tb";
-import { FaStar } from "react-icons/fa6";
+import React from 'react';
+import { motion } from 'framer-motion';
+import aboutUsHeroImage from '/classroom.png';
+import microscope from '/microscope.png';
+import ChemistryLab2 from '/Chemistry_Lab2.png';
+import ChemistryLab from '/Chemistry_Lab.png';
+import Library from '/Library.png';
+import MCELab from '/MCE_Lab.png';
+import MPCLab from '/MPC_Lab.png';
+import principal from '/principal.png';
+import science from '/history.png';
+import history from '/history.png';
+import { FiTarget } from 'react-icons/fi';
+import { BsClock, BsEye } from 'react-icons/bs';
+import { BiPhone } from 'react-icons/bi';
+import { FaCube } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
+import { TbUsersGroup } from 'react-icons/tb';
+import { FaStar } from 'react-icons/fa6';
 
 const About = () => {
-  // Animation Variants
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 60 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   const scaleHoverVariants = {
-    hover: { 
+    hover: {
       scale: 1.05,
-      transition: { duration: 0.3 }
-    }
+      transition: { duration: 0.3 },
+    },
   };
 
   return (
     <div>
-      {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -44,7 +48,7 @@ const About = () => {
         style={{ backgroundImage: `url(${aboutUsHeroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -63,8 +67,7 @@ const About = () => {
         </motion.div>
       </motion.div>
 
-      {/* Who We Are & Mission/Vision Section */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -92,27 +95,23 @@ const About = () => {
           </p>
         </div>
 
-        <div className="flex-1 space-y-6">
-          <motion.div 
+        <div className="flex-1 space-y-6 mt-8">
+          <motion.div
             variants={scaleHoverVariants}
-            whileHover="hover"
             className="bg-white rounded-lg text-center"
           >
-            <div className="text-3xl text-primary-600 mb-4 flex justify-center items-center">
+            <div className="text-3xl text-primary-600 mb-4 flex justify-center items-center ">
               <FiTarget className="text-primary" />
               <span className="ml-2 font-semibold text-lg">Mission</span>
             </div>
             <p className="text-sm p-2 sm:text-base text-justify">
-              At <strong>ES Gishoma</strong>, our mission is to provide a
-              well-rounded, inclusive education that inspires students to
-              achieve their highest potential and become responsible, impactful
-              members of society.
+              To educate excellently a learner with required Knowledge Skills,
+              Attitudes and Values.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={scaleHoverVariants}
-            whileHover="hover"
             className="bg-white p-2 rounded-lg text-center"
           >
             <div className="text-3xl text-primary-600 mb-4 flex justify-center items-center">
@@ -120,24 +119,24 @@ const About = () => {
               <span className="ml-2 font-semibold text-lg">Vision</span>
             </div>
             <p className="text-sm sm:text-base text-justify">
-              Our vision is to become a leading educational institution in
-              Rwanda, known for academic excellence, strong community ties, and
-              a nurturing environment where every student is empowered to excel
-              and positively contribute to the world around them.
+              Excellence in silence, Technology and Culture for responding to
+              society needs.
             </p>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Our History Section */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeInUpVariants}
         className="bg-gray-300 pb-10"
       >
-        <div className="px-4 py-8 max-w-screen-xl mx-auto" style={{ maxWidth: "80%" }}>
+        <div
+          className="px-4 py-8 max-w-screen-xl mx-auto"
+          style={{ maxWidth: '80%' }}
+        >
           <div className="mb-12">
             <div className="flex flex-col lg:flex-row items-center">
               <div className="flex-1 flex flex-col items-center lg:items-start">
@@ -153,13 +152,13 @@ const About = () => {
                   environment.
                 </p>
               </div>
-              <motion.div 
+              <motion.div
                 variants={scaleHoverVariants}
                 whileHover="hover"
                 className="flex-1 mt-6 lg:mt-0"
               >
                 <img
-                  src={science}
+                  src={history}
                   alt="Our History"
                   className="rounded-lg shadow-lg object-cover w-full h-72"
                 />
@@ -172,23 +171,78 @@ const About = () => {
               <FaStar className="text-primary" />
               Core Values
             </h1>
-            <div className="flex flex-col md:flex-row gap-4">
-              {["Science", "Technology", "Culture"].map((value, index) => (
+            <div className="flex flex-col md:flex-row gap-10">
+              {[
+                {
+                  name: 'DISCIPLINE',
+                  description:
+                    'Disciplined mind lead to happiness and undisciplined mind lead to suffering',
+                  image: microscope,
+                },
+                {
+                  name: 'EXCELLENCE',
+                  description:
+                    'Excellence is no accident but a continous process. Excellence is doing ordinary things in extraordinary ways',
+                  image: microscope,
+                },
+                {
+                  name: 'DETERMINATION',
+                  description: 'Determination is out driving force',
+                  image: microscope,
+                },
+              ].map((value, index) => (
                 <motion.div
                   key={index}
                   variants={scaleHoverVariants}
                   whileHover="hover"
                   className="group relative w-full h-40 bg-cover bg-center rounded-lg shadow-md"
-                  style={{ backgroundImage: `url(${microscope})` }}
+                  style={{ backgroundImage: `url(${value.image})` }}
                 >
                   <h2 className="text-center font-bold text-white mt-4">
-                    {value}
+                    {value.name}
+                  </h2>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="px-2">{value.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex flex-col mt-10 md:flex-row gap-10">
+              {[
+                {
+                  name: 'ACCOUNTABILITY',
+                  description:
+                    'Responsibility equals accountability. Accountability equals ownership and sense of ownership is the most powerful thing the team or organisation can have.',
+                  image: microscope,
+                },
+                {
+                  name: 'HAPPINESS',
+                  description: 'Be happy. Be happy. Be Happy',
+                  image: microscope,
+                },
+                {
+                  name: 'CREATIVITY',
+                  description: 'There is no success without failure',
+                  image: microscope,
+                },
+              ].map((value, index) => (
+                <motion.div
+                  key={index}
+                  variants={scaleHoverVariants}
+                  whileHover="hover"
+                  className="group relative w-full h-40 bg-cover bg-center rounded-lg shadow-md"
+                  style={{ backgroundImage: `url(${value.image})` }}
+                >
+                  <h2 className="text-center font-bold text-white mt-4">
+                    {value.name}
                   </h2>
                   <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <p className="px-2">
-                      {value === "Science" && "We deal with systematic study of natural and social world with various methodologies to build and organize knowledge."}
-                      {value === "Technology" && "We embrace application of scientific knowledge in practical basis specifically in our teaching sector."}
-                      {value === "Culture" && "We ensure collection of beliefs, behaviours, values and practices that define our society."}
+                      {value.description}
+                      {value === 'Technology' &&
+                        'We embrace application of scientific knowledge in practical basis specifically in our teaching sector.'}
+                      {value === 'Culture' &&
+                        'We ensure collection of beliefs, behaviours, values and practices that define our society.'}
                     </p>
                   </div>
                 </motion.div>
@@ -198,8 +252,7 @@ const About = () => {
         </div>
       </motion.div>
 
-      {/* Combinations Section */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
@@ -211,8 +264,7 @@ const About = () => {
             <FaCube className="text-primary text-4xl" />
             <span className="font-semibold text-xl">Combinations</span>
           </div>
-          
-          {/* Ordinary Level Section */}
+
           <div className="flex flex-col lg:flex-row items-center">
             <div className="flex-1 flex flex-col items-center lg:items-start mb-6 lg:mb-0">
               <h1 className="font-bold text-2xl text-gray-800">
@@ -224,7 +276,7 @@ const About = () => {
                 core subjects and preparing students for National Examinations.
               </p>
             </div>
-            <motion.div 
+            <motion.div
               variants={scaleHoverVariants}
               whileHover="hover"
               className="flex-1 mt-6 lg:mt-0"
@@ -237,7 +289,6 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* Advanced Level Section */}
           <div className="mt-8">
             <h1 className="font-bold text-xl mb-3 text-gray-800">
               Advanced Level
@@ -247,23 +298,57 @@ const About = () => {
               ES Gishoma offers various subject combinations tailored to meet
               diverse student interests and career aspirations.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-              {["MEG", "PCB", "MCB", "MEG", "PCB", "MCB"].map((combination, index) => (
+              {[
+                {
+                  name: 'MCB',
+                  description: 'Mathematics - Chemistry - Biology',
+                  image: ChemistryLab,
+                },
+                {
+                  name: 'MPC',
+                  description: 'Mathematics - Physics - Chemistry',
+                  image: MPCLab,
+                },
+                {
+                  name: 'PCB',
+                  description: 'Physics',
+                  image: ChemistryLab2,
+                },
+                {
+                  name: 'MCE',
+                  description: 'Mathematics - Computer - Economy',
+                  image: MCELab,
+                },
+                {
+                  name: 'MPG',
+                  description: 'Descriptions of MPG',
+                  image: science,
+                },
+                {
+                  name: 'BCG',
+                  description: 'Descriptions of BCG',
+                  image: science,
+                },
+              ].map((combination, index) => (
                 <motion.div
                   key={index}
                   variants={scaleHoverVariants}
                   whileHover="hover"
-                  className="relative rounded-lg overflow-hidden shadow-lg transform transition-transform bg-cover bg-center"
+                  className="relative rounded-lg overflow-hidden shadow-lg transform transition-transform bg-cover bg-center group"
                   style={{
-                    backgroundImage: `url(${science})`,
-                    height: "100px",
+                    backgroundImage: `url(${combination.image})`,
+                    height: '150px',
                   }}
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 bg-gradient-to-t from-black opacity-75">
                     <p className="font-semibold text-lg text-white">
-                      {combination}
+                      {combination.name}
                     </p>
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-60 text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="px-4">{combination.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -272,8 +357,7 @@ const About = () => {
         </div>
       </motion.div>
 
-      {/* School Leaders Section */}
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
