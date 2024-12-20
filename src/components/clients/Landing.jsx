@@ -7,6 +7,7 @@ import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
 import BlogCard from "./BlogCard";
 import Avatar from "/man 1.png";
 import Principal from "/profile.png";
+import profile from "/profile.jpg"
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
@@ -122,7 +123,6 @@ const Landing = () => {
         </div>
       </motion.section>
 
-      {/* Latest News Section */}
       {publishedBlogs.length > 0 && (
         <motion.section 
           initial="hidden"
@@ -160,7 +160,7 @@ const Landing = () => {
         </motion.section>
       )}
 
-      {/* Parents Testimonials Section */}
+
       <motion.section 
         initial="hidden"
         whileInView="visible"
@@ -180,7 +180,7 @@ const Landing = () => {
               className="flex flex-col items-center text-center p-4"
             >
               <img
-                src={Avatar}
+                src={profile}
                 alt="Parent photo"
                 className="w-20 h-20 rounded-full object-cover mb-2"
               />
@@ -190,7 +190,7 @@ const Landing = () => {
                 ))}
               </div>
               <p className="text-gray-600">
-                "Amazing school! The teachers and staff are excellent."
+                "Amazing school! The teachers and staff are excellent.{index}"
               </p>
             </motion.div>
           ))}

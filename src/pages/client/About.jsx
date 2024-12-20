@@ -7,9 +7,16 @@ import ChemistryLab from '/Chemistry_Lab.png';
 import Library from '/Library.png';
 import MCELab from '/MCE_Lab.png';
 import MPCLab from '/MPC_Lab.png';
-import principal from '/principal.png';
+import principal from '/profile.jpg';
 import science from '/history.png';
 import history from '/history.png';
+import displine from "/displine.png";
+import excellent from "/excellence.jpg"
+import hapiness from "/hapiness.jpg"
+import determination from "/determination.jpg"
+import creativity from "/creativity.png"
+import accountability from "/accountability.jpg"
+
 import { FiTarget } from 'react-icons/fi';
 import { BsClock, BsEye } from 'react-icons/bs';
 import { BiPhone } from 'react-icons/bi';
@@ -177,18 +184,18 @@ const About = () => {
                   name: 'DISCIPLINE',
                   description:
                     'Disciplined mind lead to happiness and undisciplined mind lead to suffering',
-                  image: microscope,
+                  image: displine,
                 },
                 {
                   name: 'EXCELLENCE',
                   description:
                     'Excellence is no accident but a continous process. Excellence is doing ordinary things in extraordinary ways',
-                  image: microscope,
+                  image: excellent,
                 },
                 {
                   name: 'DETERMINATION',
                   description: 'Determination is out driving force',
-                  image: microscope,
+                  image: determination,
                 },
               ].map((value, index) => (
                 <motion.div
@@ -213,17 +220,17 @@ const About = () => {
                   name: 'ACCOUNTABILITY',
                   description:
                     'Responsibility equals accountability. Accountability equals ownership and sense of ownership is the most powerful thing the team or organisation can have.',
-                  image: microscope,
+                  image: accountability,
                 },
                 {
                   name: 'HAPPINESS',
                   description: 'Be happy. Be happy. Be Happy',
-                  image: microscope,
+                  image: hapiness,
                 },
                 {
                   name: 'CREATIVITY',
                   description: 'There is no success without failure',
-                  image: microscope,
+                  image: creativity,
                 },
               ].map((value, index) => (
                 <motion.div
@@ -372,10 +379,8 @@ const About = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((_, index) => (
-              <motion.div
-                key={index}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+              <div
                 variants={scaleHoverVariants}
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -387,20 +392,19 @@ const About = () => {
                 />
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    John Doe
+                    MWITABA Anaclet
                   </h3>
-                  <p className="text-sm text-gray-500 mb-3">School Principal</p>
+                  <p className="text-sm text-gray-500 mb-3">School Director</p>
                   <div className="flex items-center text-sm text-gray-700 mb-2">
                     <BiPhone className="mr-2 text-primary-600" />
-                    +250781234567
+                    +250788458307
                   </div>
                   <div className="flex items-center text-sm text-gray-700">
                     <MdEmail className="mr-2 text-primary-600" />
-                    johndoe@gmail.com
+                    mwitabaanaclet@gmail.com
                   </div>
                 </div>
-              </motion.div>
-            ))}
+              </div>
           </div>
         </div>
       </motion.div>
