@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
-import HelloImage from "/school-buliding.png";
+import HomeImage from "/school-builiding.png";
 import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
 import BlogCard from "./BlogCard";
 import Avatar from "/man 1.png";
@@ -48,7 +48,6 @@ const Landing = () => {
 
   return (
     <div className="font-sans">
-      {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -56,7 +55,7 @@ const Landing = () => {
         className="relative bg-primary text-white"
       >
         <img
-          src={HelloImage}
+          src={HomeImage}
           alt="School Building"
           className="w-full h-[80vh] md:h-[90vh] object-cover"
         />
@@ -90,7 +89,6 @@ const Landing = () => {
         </div>
       </motion.div>
 
-      {/* Principal's Message Section */}
       <motion.section 
         initial="hidden"
         whileInView="visible"
