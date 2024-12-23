@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import SEO from '../../components/re-usable/SEO';
 import Landing from '../../components/clients/Landing';
 
