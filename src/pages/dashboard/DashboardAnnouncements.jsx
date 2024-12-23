@@ -7,7 +7,6 @@ import {
 } from 'react-icons/bi';
 import { useEffect, useState } from 'react';
 import { BsArrowRightSquare, BsArrowLeftSquare } from 'react-icons/bs';
-import TableSpinner from '../../components/dashboard/TableSpinner';
 import NewAnnouncementForm from '../../components/dashboard/NewAnnouncementForm';
 import SEO from '../../components/re-usable/SEO';
 import Titles from '../../components/dashboard/Titles';
@@ -45,6 +44,9 @@ const DashboardAnnouncements = () => {
       } else if (response.status === 401) {
         addToast('error', 'You are not authorized to view announcements', 3000);
         setData([]);
+      }
+      else if (response.status === 404) {
+        setData([])
       } else {
         addToast('error', 'Failed to fetch announcements', 3000);
         setData([]);
