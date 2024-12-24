@@ -135,7 +135,7 @@ const SingleBlog = () => {
         )}
       </section>
       <hr />
-      {singleBlog._id && (
+      {singleBlog._id && publishedBlogs.length > 1 && (
         <section className="py-10 px-4 md:px-20">
           <h2 className="font-bold capitalize p-1">Latest News</h2>
           {loadingPublishedBlogs ? (

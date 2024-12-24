@@ -2,7 +2,7 @@ import React from 'react';
 import { IoCall, IoLocationSharp, IoMail } from 'react-icons/io5'; // Import icons
 import { Link } from 'react-router-dom';
 import logo from '/es gishoma logo.svg';
-import FooterBackground from '/footer-bg.png';
+import FooterBackground from '/footer_bg1.jpg';
 import { FaCopyright } from 'react-icons/fa6';
 const Footer = () => {
   return (
@@ -41,7 +41,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/news" className="hover:underline">
-                  News & Updates
+                  News
                 </Link>
               </li>
               <li>

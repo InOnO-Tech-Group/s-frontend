@@ -1,19 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import aboutUsHeroImage from '/classroom.png';
+import aboutUsHeroImage from '/about_us_hero.jpg';
 import ChemistryLab2 from '/Chemistry_Lab2.png';
 import ChemistryLab from '/Chemistry_Lab.png';
 import MCELab from '/MCE_Lab.png';
 import MPCLab from '/MPC_Lab.png';
-import principal from '/profile.jpg';
-import science from '/history.png';
+
 import history from '/history.png';
-import displine from "/displine.png";
-import excellent from "/excellence.jpg"
-import hapiness from "/hapiness.jpg"
-import determination from "/determination.jpg"
-import creativity from "/creativity.png"
-import accountability from "/accountability.jpg"
+import BCGLAB from "/BCG_LAB.jpg";
+import GeographyLab from "/Geography_Lab.jpg";
+
+
+import DOD from "/leaders/DOD.jpg";
+import DOS from "/leaders/DOS.jpg";
+import HT from "/leaders/HT.jpg";
+
+import OrdinaryLevel from "/OrdinaryLevel.jpg";
 
 import { FiTarget } from 'react-icons/fi';
 import { BsClock, BsEye } from 'react-icons/bs';
@@ -22,6 +24,13 @@ import { FaCube } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { TbUsersGroup } from 'react-icons/tb';
 import { FaStar } from 'react-icons/fa6';
+
+import S1 from "/core values/S1.jpg";
+import S2 from "/core values/S2.jpg";
+import S3 from "/core values/S3.jpg";
+import S4 from "/core values/S4.jpg";
+import S5 from "/core values/S5.jpg";
+import S6 from "/core values/S6.jpg";
 
 import SEO from '../../components/re-usable/SEO';
 
@@ -187,18 +196,18 @@ const About = () => {
                     name: 'DISCIPLINE',
                     description:
                       'Disciplined mind lead to happiness and undisciplined mind lead to suffering',
-                    image: displine,
+                    image: S1,
                   },
                   {
                     name: 'EXCELLENCE',
                     description:
                       'Excellence is no accident but a continous process. Excellence is doing ordinary things in extraordinary ways',
-                    image: excellent,
+                    image: S2,
                   },
                   {
                     name: 'DETERMINATION',
                     description: 'Determination is out driving force',
-                    image: determination,
+                    image: S3,
                   },
                 ].map((value, index) => (
                   <motion.div
@@ -223,17 +232,17 @@ const About = () => {
                     name: 'ACCOUNTABILITY',
                     description:
                       'Responsibility equals accountability. Accountability equals ownership and sense of ownership is the most powerful thing the team or organisation can have.',
-                    image: accountability,
+                    image: S4,
                   },
                   {
                     name: 'HAPPINESS',
                     description: 'Be happy. Be happy. Be Happy',
-                    image: hapiness,
+                    image: S5,
                   },
                   {
                     name: 'CREATIVITY',
                     description: 'There is no success without failure',
-                    image: creativity,
+                    image: S6,
                   },
                 ].map((value, index) => (
                   <motion.div
@@ -292,7 +301,7 @@ const About = () => {
                 className="flex-1 mt-6 lg:mt-0"
               >
                 <img
-                  src={science}
+                  src={OrdinaryLevel}
                   alt="Ordinary Level"
                   className="rounded-lg shadow-lg object-cover w-full h-72 lg:h-96"
                 />
@@ -333,13 +342,13 @@ const About = () => {
                   },
                   {
                     name: 'MPG',
-                    description: 'Descriptions of MPG',
-                    image: science,
+                    description: 'Mathematics - Physics - Geography',
+                    image: GeographyLab,
                   },
                   {
                     name: 'BCG',
-                    description: 'Descriptions of BCG',
-                    image: science,
+                    description: 'Biology - Chemistry - Geography',
+                    image: BCGLAB,
                   },
                 ].map((combination, index) => (
                   <motion.div
@@ -389,7 +398,7 @@ const About = () => {
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <img
-                  src={principal}
+                  src={HT}
                   alt="School Leader"
                   className="w-full h-68 object-cover"
                 />
@@ -397,7 +406,7 @@ const About = () => {
                   <h3 className="text-lg font-semibold text-gray-800">
                     MWITABA Anaclet
                   </h3>
-                  <p className="text-sm text-gray-500 mb-3">School Director</p>
+                  <p className="text-sm text-gray-500 mb-3">School Head Teacher</p>
                   <div className="flex items-center text-sm text-gray-700 mb-2">
                     <BiPhone className="mr-2 text-primary-600" />
                     +250788458307
@@ -405,6 +414,56 @@ const About = () => {
                   <div className="flex items-center text-sm text-gray-700">
                     <MdEmail className="mr-2 text-primary-600" />
                     mwitabaanaclet@gmail.com
+                  </div>
+                </div>
+              </div>
+              <div
+                variants={scaleHoverVariants}
+                whileHover="hover"
+                className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={DOS}
+                  alt="DOS"
+                  className="w-full h-68 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    NGIRABABYEYI Thomas
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-3">Dean of Studies</p>
+                  <div className="flex items-center text-sm text-gray-700 mb-2">
+                    <BiPhone className="mr-2 text-primary-600" />
+                    +250784136081
+                  </div>
+                  <div className="flex items-center text-sm text-gray-700">
+                    <MdEmail className="mr-2 text-primary-600" />
+                    ngirababyeyithomas5@gmail.com
+                  </div>
+                </div>
+              </div>
+              <div
+                variants={scaleHoverVariants}
+                whileHover="hover"
+                className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={DOD}
+                  alt="DOD"
+                  className="w-full h-68 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    MWITABA Anaclet
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-3">Dean of Discipline</p>
+                  <div className="flex items-center text-sm text-gray-700 mb-2">
+                    <BiPhone className="mr-2 text-primary-600" />
+                    +250788877516
+                  </div>
+                  <div className="flex items-center text-sm text-gray-700">
+                    <MdEmail className="mr-2 text-primary-600" />
+                    placide.rukundo89@gmail.com
                   </div>
                 </div>
               </div>
