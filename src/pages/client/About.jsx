@@ -14,6 +14,7 @@ import GeographyLab from "/Geography_Lab.jpg";
 import DOD from "/leaders/DOD.jpg";
 import DOS from "/leaders/DOS.jpg";
 import HT from "/leaders/HT.jpg";
+import BURSAR from "/leaders/BURSAR.jpg";
 
 import OrdinaryLevel from "/OrdinaryLevel.jpg";
 
@@ -332,7 +333,7 @@ const About = () => {
                   },
                   {
                     name: 'PCB',
-                    description: 'Physics',
+                    description: 'Physics - Chemistry - Biology',
                     image: ChemistryLab2,
                   },
                   {
@@ -391,7 +392,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center">
               <div
                 variants={scaleHoverVariants}
                 whileHover="hover"
@@ -464,6 +465,31 @@ const About = () => {
                   <div className="flex items-center text-sm text-gray-700">
                     <MdEmail className="mr-2 text-primary-600" />
                     placide.rukundo89@gmail.com
+                  </div>
+                </div>
+              </div>
+              <div
+                variants={scaleHoverVariants}
+                whileHover="hover"
+                className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
+              >
+                <img
+                  src={BURSAR}
+                  alt="BURSAR"
+                  className="w-full h-68 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-800">
+                    BIGIRIMANA ANDRE
+                  </h3>
+                  <p className="text-sm text-gray-500 mb-3">Bursar</p>
+                  <div className="flex items-center text-sm text-gray-700 mb-2">
+                    <BiPhone className="mr-2 text-primary-600" />
+                    +250788774563
+                  </div>
+                  <div className="flex items-center text-sm text-gray-700">
+                    <MdEmail className="mr-2 text-primary-600" />
+                    bigirimanandre@gmail.com
                   </div>
                 </div>
               </div>

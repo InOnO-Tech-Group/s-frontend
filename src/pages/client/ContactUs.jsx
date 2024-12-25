@@ -124,7 +124,7 @@ const ContactUs = () => {
                   />
                   <div>
                     <p className="text-gray-700 font-medium">Phone</p>
-                    <p className="text-gray-600 text-sm">+250781234567</p>
+                    <p className="text-gray-600 text-sm">+250788458307</p>
                   </div>
                 </div>
               </div>
@@ -137,7 +137,7 @@ const ContactUs = () => {
                   />
                   <div>
                     <p className="text-gray-700 font-medium">Email</p>
-                    <p className="text-gray-600 text-sm">example@example.com</p>
+                    <p className="text-gray-600 text-sm">mwitabaanaclet@gmail.com</p>
                   </div>
                 </div>
               </div>
@@ -197,7 +197,7 @@ const ContactUs = () => {
                     id="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    placeholder="Enter John"
+                    placeholder="Enter Firstname"
                     className={`w-full p-2 text-sm border ${
                       errors.firstName ? 'border-red-500' : 'border-gray-300'
                     } rounded focus:outline-none focus:ring focus:ring-primary`}
@@ -218,7 +218,7 @@ const ContactUs = () => {
                     id="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    placeholder="Enter Doe"
+                    placeholder="Enter Lastbane"
                     className={`w-full p-2 text-sm border ${
                       errors.lastName ? 'border-red-500' : 'border-gray-300'
                     } rounded focus:outline-none focus:ring focus:ring-primary`}
@@ -241,7 +241,7 @@ const ContactUs = () => {
                     id="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="example@example.com"
+                    placeholder="Enter your email address"
                     className={`w-full p-2 text-sm border ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     } rounded focus:outline-none focus:ring focus:ring-primary`}
@@ -262,7 +262,7 @@ const ContactUs = () => {
                     id="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+250123456789"
+                    placeholder="Enter phone number"
                     className={`w-full p-2 text-sm border ${
                       errors.phone ? 'border-red-500' : 'border-gray-300'
                     } rounded focus:outline-none focus:ring focus:ring-primary`}
@@ -284,7 +284,7 @@ const ContactUs = () => {
                   rows="4"
                   value={formData.comment}
                   onChange={handleChange}
-                  placeholder="Your message here"
+                  placeholder="Enter your message here"
                   className={`w-full p-2 text-sm border ${
                     errors.comment ? 'border-red-500' : 'border-gray-300'
                   } rounded focus:outline-none focus:ring focus:ring-primary`}
