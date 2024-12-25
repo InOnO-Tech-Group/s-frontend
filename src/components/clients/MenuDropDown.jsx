@@ -14,6 +14,8 @@ const MenuDropDown = () => {
       const response = await adminViewServices();
       if (response.status === 200) {
         setServices(response.data);
+      } else if (response.status === 404) {
+        setServices([])
       } else {
         addToast(
           'error',

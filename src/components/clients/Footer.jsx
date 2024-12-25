@@ -2,7 +2,7 @@ import React from 'react';
 import { IoCall, IoLocationSharp, IoMail } from 'react-icons/io5'; // Import icons
 import { Link } from 'react-router-dom';
 import logo from '/es gishoma logo.svg';
-import FooterBackground from '/footer-bg.png';
+import FooterBackground from '/footer_bg1.jpg';
 import { FaCopyright } from 'react-icons/fa6';
 const Footer = () => {
   return (
@@ -30,7 +30,7 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-4">Quick links</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/home" className="hover:underline">
+                <Link to="/" className="hover:underline">
                   Home
                 </Link>
               </li>
@@ -41,7 +41,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/news" className="hover:underline">
-                  News & Updates
+                  News
                 </Link>
               </li>
               <li>
@@ -63,18 +63,18 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="mailto:info@esgishoma.rw"
+                  href="mailto:mwitabaanaclet@gmail.com"
                   className="hover:underline flex items-center"
                 >
-                  <IoMail className="text-lg mx-2" /> info@esgishoma.rw
+                  <IoMail className="text-lg mx-2" />mwitabaanaclet@gmail.com
                 </a>
               </li>
               <li>
                 <a
-                  href="tel:+250781234567"
+                  href="tel:+250788458307"
                   className="hover:underline flex items-center"
                 >
-                  <IoCall className="text-lg mx-2" /> +250781234567
+                  <IoCall className="text-lg mx-2" /> +250788458307
                 </a>
               </li>
             </ul>

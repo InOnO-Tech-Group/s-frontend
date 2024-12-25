@@ -42,6 +42,8 @@ const DashboardGallery = () => {
         addToast('error', 'You are not authorized!', 3000);
         localStorage.removeItem('token');
         window.location.href = '/login';
+      } else if (response.status === 404) {
+        setData([])
       } else {
         addToast('error', response.message || 'Error getting the Gallery images', 3000);
       }

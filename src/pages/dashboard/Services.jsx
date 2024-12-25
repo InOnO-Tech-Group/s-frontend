@@ -3,11 +3,9 @@ import Titles from '../../components/dashboard/Titles';
 import SEO from '../../components/re-usable/SEO';
 import NewSeviceModall from '../../components/dashboard/NewSeviceModall';
 import {
-  BiCheckCircle,
   BiEdit,
   BiPlus,
   BiTrashAlt,
-  BiXCircle,
 } from 'react-icons/bi';
 import { BsArrowLeftSquare, BsArrowRightSquare } from 'react-icons/bs';
 import { useToast } from '../../components/toasts/ToastManager';
@@ -15,7 +13,6 @@ import {
   adminDeleteService,
   adminViewServices,
 } from '../../redux/slices/servicesSlice';
-import TableSpinner from '../../components/dashboard/TableSpinner';
 import UpdateServiceModal from '../../components/dashboard/UpdateServiceModal';
 import TableSkeleton from '../../components/dashboard/TableSkeleton';
 
@@ -37,6 +34,8 @@ const Services = () => {
       const response = await adminViewServices();
       if (response.status === 200) {
         setData(response.data);
+      } else if (response.status === 404) {
+        setData([])
       } else {
         addToast('error', response.message || 'Failed to fetch services', 3000);
       }

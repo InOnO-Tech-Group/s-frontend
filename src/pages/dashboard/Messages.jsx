@@ -26,8 +26,10 @@ const Messages = () => {
       } else if (response.status === 401) {
         localStorage.removeItem('token');
         window.location.href = '/login';
+      } else if (response.status === 404) {
+        setMessages([])
       } else {
-        addToast('success', response.message, 3000);
+        addToast('error', response.message, 3000);
       }
     } catch (error) {
       addToast('error', error.message || 'Unknown error occurred', 3000);
@@ -116,9 +118,8 @@ const Messages = () => {
               .map((msg) => (
                 <div
                   key={msg.id}
-                  className={`p-4 border rounded-lg w-full sm:w-1/2 lg:w-1/4 transition-shadow hover:shadow-lg ${
-                    msg.isRead ? 'bg-gray-100' : 'bg-blue-50'
-                  }`}
+                  className={`p-4 border rounded-lg w-full sm:w-1/2 lg:w-1/4 transition-shadow hover:shadow-lg ${msg.isRead ? 'bg-gray-100' : 'bg-blue-50'
+                    }`}
                 >
                   <div className="flex items-center gap-2 mb-2">
                     <AiOutlineUser className="w-6 h-6 text-blue-600" />
