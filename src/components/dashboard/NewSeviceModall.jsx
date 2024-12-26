@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import SEO from '../re-usable/SEO';
-import { CgClose } from 'react-icons/cg';
-import RichTextEditor from './RichTextEditor';
-import { adminCreateService } from '../../redux/slices/servicesSlice';
-import { useToast } from '../../components/toasts/ToastManager';
+import React, { useState } from "react";
+import SEO from "../re-usable/SEO";
+import { CgClose } from "react-icons/cg";
+import RichTextEditor from "./RichTextEditor";
+import { adminCreateService } from "../../redux/slices/servicesSlice";
+import { useToast } from "../../components/toasts/ToastManager";
 
 const NewServiceModal = ({ isOpen, onClose }) => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({ name, description });
   const [loading, setLoading] = useState(false);
   const { addToast } = useToast();
 
   const validateForm = () => {
     const newErrors = {};
-    if (!name.trim()) newErrors.name = 'Name is required';
-    if (!description.trim()) newErrors.description = 'Description is required';
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!description.trim()) newErrors.description = "Description is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -27,10 +27,12 @@ const NewServiceModal = ({ isOpen, onClose }) => {
         setLoading(true);
         const response = await adminCreateService({ name, description });
         if (response.status === 201) {
-          addToast('success', 'Service created successfully', 3000);
+          addToast("success", "Service created successfully", 3000);
+          setName("");
+          setDescription("");
           onClose();
         } else {
-          addToast('error', response.message, 3000);
+          addToast("error", response.message, 3000);
         }
       } catch (error) {
         setErrors({ submit: error.message });
@@ -71,7 +73,7 @@ const NewServiceModal = ({ isOpen, onClose }) => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter service title"
                 className="w-full px-3 py-2 border rounded-md"
-                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-invalid={errors.name ? "true" : "false"}
               />
               {errors.name && (
                 <p
@@ -117,7 +119,7 @@ const NewServiceModal = ({ isOpen, onClose }) => {
                 className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : 'Submit'}
+                {loading ? "Submitting..." : "Submit"}
               </button>
               <button
                 type="button"

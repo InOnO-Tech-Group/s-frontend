@@ -58,7 +58,7 @@ const Gallery = () => {
       <SEO title="Gallery - ES Gishoma" />
       <div className="container mx-auto p-6 min-h-screen">
         <h1 className="text-xl sm:text-2xl font-bold capitalize text-primary mb-6">
-          Images Gallery
+          School Gallery
         </h1>
 
         {isLoading ? (

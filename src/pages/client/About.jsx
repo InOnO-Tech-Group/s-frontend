@@ -455,7 +455,7 @@ const About = () => {
                 />
                 <div className="p-6">
                   <h3 className="text-lg font-semibold text-gray-800">
-                    MWITABA Anaclet
+                    RUKUNDO Placide
                   </h3>
                   <p className="text-sm text-gray-500 mb-3">Dean of Discipline</p>
                   <div className="flex items-center text-sm text-gray-700 mb-2">
