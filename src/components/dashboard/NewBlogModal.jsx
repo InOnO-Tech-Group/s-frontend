@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import SEO from '../re-usable/SEO';
-import { CgClose } from 'react-icons/cg';
-import RichTextEditor from './RichTextEditor';
-import { adminCreateService } from '../../redux/slices/servicesSlice';
-import { uploadImageToCloudinary } from '../../utils/cloudinary/uploadImages';
-import { useToast } from '../toasts/ToastManager';
-import { useDropzone } from 'react-dropzone';
-import { adminCreateBlog } from '../../redux/slices/blogSlice';
+import React, { useState } from "react";
+import SEO from "../re-usable/SEO";
+import { CgClose } from "react-icons/cg";
+import RichTextEditor from "./RichTextEditor";
+import { adminCreateService } from "../../redux/slices/servicesSlice";
+import { uploadImageToCloudinary } from "../../utils/cloudinary/uploadImages";
+import { useToast } from "../toasts/ToastManager";
+import { useDropzone } from "react-dropzone";
+import { adminCreateBlog } from "../../redux/slices/blogSlice";
 
 const NewBlogModal = ({ isOpen, onClose, services }) => {
-  const [title, setTitle] = useState('');
-  const [service, setService] = useState('');
+  const [title, setTitle] = useState("");
+  const [service, setService] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [imageName, setImageName] = useState('');
-  const [description, setDescription] = useState('');
+  const [imageName, setImageName] = useState("");
+  const [description, setDescription] = useState("");
   const [uploadProgress, setUploadProgress] = useState(0);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -21,17 +21,17 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!title.trim()) newErrors.name = 'Title is required';
-    if (!service) newErrors.service = 'Service selection is required';
-    if (!coverImage) newErrors.coverImage = 'Cover image is required';
-    if (!description.trim()) newErrors.description = 'Description is required';
+    if (!title.trim()) newErrors.name = "Title is required";
+    if (!service) newErrors.service = "Service selection is required";
+    if (!coverImage) newErrors.coverImage = "Cover image is required";
+    if (!description.trim()) newErrors.description = "Description is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleImageUpload = async (file) => {
     try {
-      addToast('info', 'Uploading image...', 3000);
+      addToast("info", "Uploading image...", 3000);
 
       const onUploadProgress = (event) => {
         const progress = Math.round((event.loaded / event.total) * 100);
@@ -41,9 +41,9 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
       const { url } = await uploadImageToCloudinary(file, onUploadProgress);
       setCoverImage(url);
       setImageName(file.name);
-      addToast('success', 'Image uploaded successfully', 3000);
+      addToast("success", "Image uploaded successfully", 3000);
     } catch (error) {
-      addToast('error', 'Failed to upload image', 3000);
+      addToast("error", "Failed to upload image", 3000);
     } finally {
       setUploadProgress(0);
     }
@@ -68,13 +68,18 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
           coverImage,
         });
         if (response.status === 201) {
-          addToast('success', response.message, 3000);
+          addToast("success", response.message, 3000);
+          setCoverImage("");
+          setTitle("");
+          setDescription("");
+          setImageName("");
+          setService("");
           onClose();
         } else {
-          addToast('error', response.message, 3000);
+          addToast("error", response.message, 3000);
         }
       } catch (error) {
-        addToast('error', 'Unkown error occured', 3000);
+        addToast("error", "Unkown error occured", 3000);
       } finally {
         setLoading(false);
       }
@@ -83,7 +88,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop: handleFileChange,
-    accept: 'image/*',
+    accept: "image/*",
   });
 
   if (!isOpen) return null;
@@ -115,7 +120,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter blog title"
                 className="w-full px-3 py-2 border rounded-md"
-                aria-invalid={errors.name ? 'true' : 'false'}
+                aria-invalid={errors.name ? "true" : "false"}
               />
               {errors.name && (
                 <p className="text-red-500 text-sm mt-1" role="alert">
@@ -135,7 +140,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                 value={service}
                 onChange={(e) => setService(e.target.value)}
                 className="w-full px-3 py-2 border rounded-md"
-                aria-invalid={errors.service ? 'true' : 'false'}
+                aria-invalid={errors.service ? "true" : "false"}
               >
                 <option value="">Select a service</option>
                 {services?.map((service) => (
@@ -226,7 +231,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                 className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? 'Submitting...' : 'Submit'}
+                {loading ? "Submitting..." : "Submit"}
               </button>
               <button
                 type="button"
