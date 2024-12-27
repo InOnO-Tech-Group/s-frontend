@@ -143,7 +143,7 @@ const DashboardGallery = () => {
                       {(currentPage - 1) * pageSize + rowIndex + 1}
                     </td>
                     <td className="px-4 py-2">
-                      <img
+                      <img loading="lazy"
                         src={row.imageURL}
                         alt={row.caption}
                         className="w-12 h-12 object-cover rounded"

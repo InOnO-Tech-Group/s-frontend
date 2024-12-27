@@ -214,7 +214,7 @@ const NewsAndUpdates = () => {
                       {(currentPage - 1) * pageSize + rowIndex + 1}
                     </td>
                     <td className="px-4 py-2">
-                      <img
+                      <img loading="lazy"
                         src={row.coverImage}
                         alt={row.title}
                         className="w-12 h-12 object-cover rounded"

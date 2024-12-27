@@ -6,7 +6,7 @@ const getToken = () => {
 
 const axiosInstance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
-    timeout: 10000,
+    timeout: 100000,
     headers: {
         "Content-Type": "application/json"
     }

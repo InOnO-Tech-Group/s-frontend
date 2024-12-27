@@ -93,7 +93,7 @@ const ResetPasswordForm = () => {
     return (
         <div className="flex flex-1 bg-white items-center justify-center rounded-3xl shadow-lg w-full mx-auto mt-10 max-w-4xl h-[500px]">
             <div className="flex-1 hidden md:block">
-                <img
+                <img loading="lazy"
                     src={leftImage}
                     alt="Background"
                     className="w-full h-full object-cover rounded-l-xl"

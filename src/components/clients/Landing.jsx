@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { clientViewBlogs } from "../../redux/slices/blogSlice";
-import HomeImage from "/school-builiding.png";
+const HomeImage = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735305235/es_gishoma/rjlzzr4vbsntow514xrm.png";
+const Principal = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288295/esgishoma_assets/leaders/owuuiubmwmi6duz6z0sq.jpg"
+const profile = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288290/esgishoma_assets/leaders/pzdxyvlrzzft6nddop3f.jpg"
 import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
 import BlogCard from "./BlogCard";
-const  Principal ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735288295/esgishoma_assets/leaders/owuuiubmwmi6duz6z0sq.jpg"
-const profile = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288290/esgishoma_assets/leaders/pzdxyvlrzzft6nddop3f.jpg"
 
 
 const Landing = () => {
@@ -54,7 +54,7 @@ const Landing = () => {
         transition={{ duration: 0.8 }}
         className="relative bg-primary text-white"
       >
-        <img
+        <img loading="lazy"
           src={HomeImage}
           alt="School Building"
           className="w-full h-[80vh] md:h-[90vh] object-cover"
@@ -186,7 +186,7 @@ const Landing = () => {
               whileHover="hover"
               className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md"
             >
-              <img
+              <img loading="lazy"
                 src={profile}
                 alt={`Photo of ${parent.name}`}
                 className="w-20 h-20 rounded-full object-cover mb-2"
