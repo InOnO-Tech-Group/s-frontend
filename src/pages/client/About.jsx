@@ -1,22 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import aboutUsHeroImage from '/about_us_hero.jpg';
-import ChemistryLab2 from '/Chemistry_Lab2.png';
-import ChemistryLab from '/Chemistry_Lab.png';
-import MCELab from '/MCE_Lab.png';
-import MPCLab from '/MPC_Lab.png';
 
-import history from '/history.png';
-import BCGLAB from "/BCG_LAB.jpg";
-import GeographyLab from "/Geography_Lab.jpg";
+const BCGLAB ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735291809/esgishoma_assets/leaders/alls/oedmkktlslhqo9pwikxv.jpg"
+const GeographyLab = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735290800/esgishoma_assets/leaders/alls/knxjpgcbw4nupr9i4iyc.jpg"
+const history = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735291170/esgishoma_assets/leaders/alls/hhtdpemkbz9yiqadkas5.jpg"
+const OrdinaryLevel ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735291131/esgishoma_assets/leaders/alls/daqm1bbhc4gvrgx5sd5e.jpg"
+const ChemistryLab2 = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735290841/esgishoma_assets/leaders/alls/zmdy6ixrr0fiwhdkracp.jpg"
+const aboutUsHeroImage = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735290496/esgishoma_assets/leaders/alls/f3kghpoi9htgutdpdcr0.jpg"
+const ChemistryLab = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735290859/esgishoma_assets/leaders/alls/vuc2h6vwdsufpuy9ro50.jpg"
+const MCELab = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735291214/esgishoma_assets/leaders/alls/yiepbrqoeim7tsqv7pbe.jpg"
+const HT = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288295/esgishoma_assets/leaders/owuuiubmwmi6duz6z0sq.jpg"
+const MPCLab ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735291222/esgishoma_assets/leaders/alls/zucpasli6wtepinmllig.jpg"
+const DOD = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288295/esgishoma_assets/leaders/wvutcmmjwc95tc61ukoy.jpg"
+const BURSAR = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288293/esgishoma_assets/leaders/hqgrdwtze98iqt2ph76w.jpg"
+const DOS = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288290/esgishoma_assets/leaders/pzdxyvlrzzft6nddop3f.jpg"
 
-
-import DOD from "/leaders/DOD.jpg";
-import DOS from "/leaders/DOS.jpg";
-import HT from "/leaders/HT.jpg";
-import BURSAR from "/leaders/BURSAR.jpg";
-
-import OrdinaryLevel from "/OrdinaryLevel.jpg";
 
 import { FiTarget } from 'react-icons/fi';
 import { BsClock, BsEye } from 'react-icons/bs';
@@ -26,15 +24,14 @@ import { MdEmail } from 'react-icons/md';
 import { TbUsersGroup } from 'react-icons/tb';
 import { FaStar } from 'react-icons/fa6';
 
-import S1 from "/core values/S1.jpg";
-import S2 from "/core values/S2.jpg";
-import S3 from "/core values/S3.jpg";
-import S4 from "/core values/S4.jpg";
-import S5 from "/core values/S5.jpg";
-import S6 from "/core values/S6.jpg";
+const S2 ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735287209/esgishoma_assets/bagplwp6do7oeyzai8tt.jpg"
+const S1 = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735287208/esgishoma_assets/rkgo418uaeqz8q4xldxu.jpg"
+const S3 = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735287208/esgishoma_assets/dwugbkacymlor2ya5xrw.jpg"
+const S4 = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735287982/esgishoma_assets/vzeqnwxh6ydx7hrms5ic.jpg"
+const S5 ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735287210/esgishoma_assets/m0aqpjre4igkorepzumd.jpg"
+const S6 = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735287858/esgishoma_assets/lasahioe1wgsfpmfmco3.jpg"
 
 import SEO from '../../components/re-usable/SEO';
-
 
 const About = () => {
   const fadeInUpVariants = {
@@ -177,7 +174,7 @@ const About = () => {
                   whileHover="hover"
                   className="flex-1 mt-6 lg:mt-0"
                 >
-                  <img
+                  <img loading="lazy"
                     src={history}
                     alt="Our History"
                     className="rounded-lg shadow-lg object-cover w-full h-72"
@@ -301,7 +298,7 @@ const About = () => {
                 whileHover="hover"
                 className="flex-1 mt-6 lg:mt-0"
               >
-                <img
+                <img loading="lazy"
                   src={OrdinaryLevel}
                   alt="Ordinary Level"
                   className="rounded-lg shadow-lg object-cover w-full h-72 lg:h-96"
@@ -398,7 +395,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img
+                <img loading="lazy"
                   src={HT}
                   alt="School Leader"
                   className="w-full h-68 object-cover"
@@ -414,7 +411,7 @@ const About = () => {
                   </div>
                   <div className="flex items-center text-sm text-gray-700">
                     <MdEmail className="mr-2 text-primary-600" />
-                    mwitabaanaclet@gmail.com
+                    anacletmwitaba@gmail.com
                   </div>
                 </div>
               </div>
@@ -423,7 +420,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img
+                <img loading="lazy"
                   src={DOS}
                   alt="DOS"
                   className="w-full h-68 object-cover"
@@ -448,7 +445,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img
+                <img loading="lazy"
                   src={DOD}
                   alt="DOD"
                   className="w-full h-68 object-cover"
@@ -473,7 +470,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img
+                <img loading="lazy"
                   src={BURSAR}
                   alt="BURSAR"
                   className="w-full h-68 object-cover"

@@ -91,7 +91,7 @@ const SingleBlog = () => {
             <h4 className="text-xl text-primary font-bold capitalize p-1 text-center">
               {singleBlog.title}
             </h4>
-            <img
+            <img loading="lazy"
               src={singleBlog.coverImage}
               alt={singleBlog.title}
               className="w-full md:w-[70vw] md:mx-[11vw] h-[60vh] mb-4 rounded-lg object-cover"

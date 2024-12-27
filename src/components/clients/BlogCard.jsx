@@ -36,7 +36,7 @@ const BlogCard = ({ id, title, date, imageUrl }) => {
   return (
     <div className="w-full m-1 p-2 rounded-lg bg-gray-300">
       <Link to={`/news/${id}`}>
-        <img
+        <img loading="lazy"
           src={imageUrl || 'https://via.placeholder.com/150'}
           alt={title}
           className="w-full h-[25vh] rounded-t-lg object-cover mb-4 rounded-lg"

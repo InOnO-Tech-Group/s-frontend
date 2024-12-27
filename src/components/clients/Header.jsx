@@ -46,7 +46,7 @@ const Header = () => {
       <div className="bg-white p-2 flex justify-between items-center">
         <div className="flex items-center lg:px-20">
           <Link to="/">
-            <img src={logo} alt="Logo" className="h-15 w-12 object-cover" />
+            <img loading="lazy" src={logo} alt="Logo" className="h-15 w-12 object-cover" />
           </Link>
         </div>
 

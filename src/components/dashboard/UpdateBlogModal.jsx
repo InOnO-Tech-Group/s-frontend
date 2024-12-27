@@ -176,7 +176,7 @@ const UpdateBlogModal = ({ isOpen, onClose, services, blog }) => {
               </label>
               <div className="mb-4">
                 {coverImage ? (
-                  <img
+                  <img loading="lazy"
                     src={coverImage}
                     alt="Selected cover"
                     className="w-full h-32 object-cover rounded"

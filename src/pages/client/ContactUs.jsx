@@ -137,7 +137,7 @@ const ContactUs = () => {
                   />
                   <div>
                     <p className="text-gray-700 font-medium">Email</p>
-                    <p className="text-gray-600 text-sm">mwitabaanaclet@gmail.com</p>
+                    <p className="text-gray-600 text-sm">anacletmwitaba@gmail.com</p>
                   </div>
                 </div>
               </div>
