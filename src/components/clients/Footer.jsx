@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="bg-primary opacity-70 py-4">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="flex flex-col items-center">
-            <img loading="lazy"
+            <img
               src={logo}
               alt="ES Gishoma Logo"
               className="h-16 w-auto mb-4"

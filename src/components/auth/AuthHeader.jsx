@@ -7,7 +7,7 @@ const AuthHeader = () => {
         <header className="flex items-center justify-between bg-[#00B5E2] p-4 md:p-6 lg:p-8">
             <div className="flex items-center text-white font-bold text-lg sm:text-xl lg:text-2xl">
                 <Link to="/login" className="flex items-center space-x-2">
-                    <img loading="lazy"
+                    <img
                         src={logo}
                         alt="ES Gishoma Logo"
                         className="w-8 sm:w-12 lg:w-16 h-auto"

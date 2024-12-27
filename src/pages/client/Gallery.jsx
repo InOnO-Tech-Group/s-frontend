@@ -93,7 +93,7 @@ const Gallery = () => {
                   key={index}
                   className="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg transition-all hover:scale-105 hover:shadow-xl"
                 >
-                  <img loading="lazy"
+                  <img
                     src={image.imageURL}
                     alt={image.caption}
                     className="w-full h-64 object-cover rounded-t-md cursor-pointer"

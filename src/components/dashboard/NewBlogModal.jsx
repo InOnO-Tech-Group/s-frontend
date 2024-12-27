@@ -165,7 +165,7 @@ const NewBlogModal = ({ isOpen, onClose, services }) => {
                   <p className="text-lg text-gray-700">
                     Uploaded Image: {imageName}
                   </p>
-                  <img loading="lazy"
+                  <img
                     src={coverImage}
                     alt={imageName}
                     className="mt-2 w-full max-h-40 object-cover rounded-md"

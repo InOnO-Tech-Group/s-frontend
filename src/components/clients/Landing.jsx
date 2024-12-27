@@ -54,7 +54,7 @@ const Landing = () => {
         transition={{ duration: 0.8 }}
         className="relative bg-primary text-white"
       >
-        <img loading="lazy"
+        <img
           src={HomeImage}
           alt="School Building"
           className="w-full h-[80vh] md:h-[90vh] object-cover"
@@ -186,7 +186,7 @@ const Landing = () => {
               whileHover="hover"
               className="flex flex-col items-center text-center p-4 bg-white rounded-lg shadow-md"
             >
-              <img loading="lazy"
+              <img
                 src={profile}
                 alt={`Photo of ${parent.name}`}
                 className="w-20 h-20 rounded-full object-cover mb-2"

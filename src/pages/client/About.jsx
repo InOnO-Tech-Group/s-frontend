@@ -174,7 +174,7 @@ const About = () => {
                   whileHover="hover"
                   className="flex-1 mt-6 lg:mt-0"
                 >
-                  <img loading="lazy"
+                  <img
                     src={history}
                     alt="Our History"
                     className="rounded-lg shadow-lg object-cover w-full h-72"
@@ -298,7 +298,7 @@ const About = () => {
                 whileHover="hover"
                 className="flex-1 mt-6 lg:mt-0"
               >
-                <img loading="lazy"
+                <img
                   src={OrdinaryLevel}
                   alt="Ordinary Level"
                   className="rounded-lg shadow-lg object-cover w-full h-72 lg:h-96"
@@ -395,7 +395,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img loading="lazy"
+                <img
                   src={HT}
                   alt="School Leader"
                   className="w-full h-68 object-cover"
@@ -420,7 +420,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img loading="lazy"
+                <img
                   src={DOS}
                   alt="DOS"
                   className="w-full h-68 object-cover"
@@ -445,7 +445,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img loading="lazy"
+                <img
                   src={DOD}
                   alt="DOD"
                   className="w-full h-68 object-cover"
@@ -470,7 +470,7 @@ const About = () => {
                 whileHover="hover"
                 className="bg-white shadow-lg rounded-3xl overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
-                <img loading="lazy"
+                <img
                   src={BURSAR}
                   alt="BURSAR"
                   className="w-full h-68 object-cover"

@@ -55,7 +55,7 @@ const VerifyOTPForm = () => {
   return (
     <div className="flex bg-white p-8 rounded-xl shadow-lg w-full mx-auto mt-10 max-w-4xl h-[500px]">
       <div className="flex-1 hidden md:block">
-        <img loading="lazy"
+        <img
           src={leftImage}
           alt="Background"
           className="w-full h-full object-cover rounded-l-xl"
