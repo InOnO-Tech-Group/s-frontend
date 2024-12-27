@@ -66,7 +66,7 @@ const Footer = () => {
                   href="mailto:mwitabaanaclet@gmail.com"
                   className="hover:underline flex items-center"
                 >
-                  <IoMail className="text-lg mx-2" />mwitabaanaclet@gmail.com
+                  <IoMail className="text-lg mx-2" />anacletmwitaba@gmail.com
                 </a>
               </li>
               <li>

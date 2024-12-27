@@ -5,8 +5,9 @@ import { clientViewBlogs } from "../../redux/slices/blogSlice";
 import HomeImage from "/school-builiding.png";
 import ViewAllNewsButton from "../re-usable/ViewAllNewsButton";
 import BlogCard from "./BlogCard";
-import Principal from "/leaders/HT.jpg";
-import profile from "/profile.jpg"
+const  Principal ="https://res.cloudinary.com/dcwchdco1/image/upload/v1735288295/esgishoma_assets/leaders/owuuiubmwmi6duz6z0sq.jpg"
+const profile = "https://res.cloudinary.com/dcwchdco1/image/upload/v1735288290/esgishoma_assets/leaders/pzdxyvlrzzft6nddop3f.jpg"
+
 
 const Landing = () => {
   const [publishedBlogs, setPublishedBlogs] = useState([]);
